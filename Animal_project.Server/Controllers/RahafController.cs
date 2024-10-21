@@ -33,7 +33,7 @@ namespace Animal_project.Server.Controllers
         }
 
         // GET: api/Posts/5
-        [HttpGet("{id}")]
+        [HttpGet("GetPost")]
         public IActionResult GetPost(int id)
         {
             var post = _db.Posts.FirstOrDefault(p => p.StoryId == id);
@@ -45,7 +45,7 @@ namespace Animal_project.Server.Controllers
         }
 
         // POST: api/Posts
-        [HttpPost]
+        [HttpPost("post")]
         public IActionResult CreatePost([FromBody] PostRequestDTO dto)
         {
             var post = new Post
@@ -64,7 +64,7 @@ namespace Animal_project.Server.Controllers
         }
 
         // PUT: api/Posts/5
-        [HttpPut("{id}")]
+        [HttpPut("UpdatePost")]
         public IActionResult UpdatePost(int id, [FromBody] PostRequestDTO dto)
         {
             var post = _db.Posts.FirstOrDefault(p => p.StoryId == id);
@@ -83,7 +83,7 @@ namespace Animal_project.Server.Controllers
         }
 
         // DELETE: api/Posts/5
-        [HttpDelete("{id}")]
+        [HttpDelete("DeletePost")]
         public IActionResult DeletePost(int id)
         {
             var post = _db.Posts.FirstOrDefault(p => p.StoryId == id);
@@ -110,7 +110,7 @@ namespace Animal_project.Server.Controllers
         }
 
         // GET: api/Comments/5
-        [HttpGet("{id}")]
+        [HttpGet("GetComment")]
         public IActionResult GetComment(int id)
         {
             var comment = _db.Comments.Include(c => c.User).Include(c => c.Post)
@@ -123,7 +123,7 @@ namespace Animal_project.Server.Controllers
         }
 
         // POST: api/Comments
-        [HttpPost]
+        [HttpPost("CreateComment")]
         public IActionResult CreateComment([FromBody] CommentRequestDTO dto)
         {
             var comment = new Comment
@@ -139,7 +139,7 @@ namespace Animal_project.Server.Controllers
         }
 
         // PUT: api/Comments/5
-        [HttpPut("{id}")]
+        [HttpPut("UpdateComment")]
         public IActionResult UpdateComment(int id, [FromBody] CommentRequestDTO dto)
         {
             var comment = _db.Comments.FirstOrDefault(c => c.CommentId == id);
@@ -155,7 +155,7 @@ namespace Animal_project.Server.Controllers
         }
 
         // DELETE: api/Comments/5
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteComment")]
         public IActionResult DeleteComment(int id)
         {
             var comment = _db.Comments.FirstOrDefault(c => c.CommentId == id);
@@ -184,7 +184,7 @@ namespace Animal_project.Server.Controllers
         }
 
         // GET: api/Replies/5
-        [HttpGet("{id}")]
+        [HttpGet("GetReply")]
         public IActionResult GetReply(int id)
         {
             var reply = _db.Replies.Include(r => r.User).Include(r => r.Comment)
@@ -197,7 +197,7 @@ namespace Animal_project.Server.Controllers
         }
 
         // POST: api/Replies
-        [HttpPost]
+        [HttpPost("CreateReply")]
         public IActionResult CreateReply([FromBody] ReplyRequestDTO dto)
         {
             var reply = new Reply
@@ -213,7 +213,7 @@ namespace Animal_project.Server.Controllers
         }
 
         // PUT: api/Replies/5
-        [HttpPut("{id}")]
+        [HttpPut("UpdateReply")]
         public IActionResult UpdateReply(int id, [FromBody] ReplyRequestDTO dto)
         {
             var reply = _db.Replies.FirstOrDefault(r => r.ReplyId == id);
@@ -229,7 +229,7 @@ namespace Animal_project.Server.Controllers
         }
 
         // DELETE: api/Replies/5
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteReply")]
         public IActionResult DeleteReply(int id)
         {
             var reply = _db.Replies.FirstOrDefault(r => r.ReplyId == id);
@@ -242,6 +242,18 @@ namespace Animal_project.Server.Controllers
             _db.SaveChanges(); // Save changes to the database
             return NoContent();
         }
+        [HttpGet("getImages/{imageName}")]
+        public IActionResult getImage(string imageName)
+        {
+            var pathImage = Path.Combine(Directory.GetCurrentDirectory(), "images", imageName);
 
+            if (System.IO.File.Exists(pathImage))
+            {
+                return PhysicalFile(pathImage, "image/*");
+            }
+
+            return NotFound();
+
+        }
     }
 }
