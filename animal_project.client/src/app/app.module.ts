@@ -14,6 +14,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { RegistrationComponent } from './Omar/registration/registration.component';
 import { LoginComponent } from './Omar/login/login.component';
 import { CategoryComponent } from './Raneem/category/category.component';
+import { AllAnimalComponent } from './Raneem/all-animal/all-animal.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { CategoryComponent } from './Raneem/category/category.component';
     NavBarComponent,
     RegistrationComponent,
     LoginComponent,
-    CategoryComponent
+    CategoryComponent,
+    AllAnimalComponent
   ],
   imports: [
     FormsModule,
@@ -44,6 +46,7 @@ import { CategoryComponent } from './Raneem/category/category.component';
       { path: 'registration', component: RegistrationComponent},
       { path: 'login', component: LoginComponent },
       { path: 'category', component: CategoryComponent },
+      { path: 'Animal/:id', component: AllAnimalComponent },
 
 
 

@@ -12,5 +12,9 @@ export class RaneemService {
 
   GetAllCategory(): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Raneem/GetAllCategory`);
-}
+  }
+
+  getAllAnimal(id: any): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/Raneem/GetAnimalsByCategoryId/${id}`);
+  }
 }
