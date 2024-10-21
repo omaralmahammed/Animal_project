@@ -11,14 +11,13 @@ import { PostComponent } from './Rahaf/post/post.component';
 import { RouterModule } from '@angular/router';
 import { AdminSideComponent } from './Admin/admin-side/admin-side.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { ContactComponent } from './Yousef/contact/contact.component';
 
 @NgModule({
   declarations: [
     
     PostComponent,
     CommentComponent,
-    ReplyComponent,
-    HomeComponent,
     ReplyComponent,
     AppComponent,
     HomeComponent,
@@ -34,6 +33,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'Posts', component: PostComponent },
+      { path: 'Contact', component: ContactComponent},
       {
         path: 'Admin', component: AdminSideComponent, children:
           [
