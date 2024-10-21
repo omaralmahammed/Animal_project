@@ -19,6 +19,8 @@ public partial class Post
 
     public string? Image2 { get; set; }
 
+    public int? LikeNumber { get; set; }
+
     public virtual Animal? Animal { get; set; }
 
     public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
