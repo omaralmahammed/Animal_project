@@ -5,11 +5,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';  // <-- Impor
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { PostComponent } from './Rahaf/post/post.component';
+import { CommentComponent } from './Rahaf/comment/comment.component';
+import { ReplyComponent } from './Rahaf/reply/reply.component';
 import { HomeComponent } from './Hadeel/home/home.component';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
+    AppComponent,
+    PostComponent,
+    CommentComponent,
+    ReplyComponent
     AppComponent,
     HomeComponent
   ],
