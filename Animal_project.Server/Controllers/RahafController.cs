@@ -242,6 +242,18 @@ namespace Animal_project.Server.Controllers
             _db.SaveChanges(); // Save changes to the database
             return NoContent();
         }
+        [HttpGet("getImages/{imageName}")]
+        public IActionResult getImage(string imageName)
+        {
+            var pathImage = Path.Combine(Directory.GetCurrentDirectory(), "images", imageName);
 
+            if (System.IO.File.Exists(pathImage))
+            {
+                return PhysicalFile(pathImage, "image/*");
+            }
+
+            return NotFound();
+
+        }
     }
 }

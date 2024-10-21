@@ -11,7 +11,7 @@ public partial class Category
 
     public string? Description { get; set; }
 
-    public byte[]? Image { get; set; }
+    public string? Image { get; set; }
 
     public virtual ICollection<Animal> Animals { get; set; } = new List<Animal>();
 }
