@@ -2,6 +2,7 @@
 using Animal_project.Server.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Animal_project.Server.Controllers
 {
@@ -51,22 +52,32 @@ namespace Animal_project.Server.Controllers
                 return BadRequest("Invalid category data");
             }
 
-            var newCategory = new Category
-            {
-                Name = request.Name,
-                Description = request.Description
-            };
+           
 
             // تحميل الصورة
             if (request.Image != null)
             {
-                var imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", request.Image.FileName);
-                using (var stream = new FileStream(imagePath, FileMode.Create))
+
+                var folder = Path.Combine(Directory.GetCurrentDirectory(), "images");
+
+                if (!Directory.Exists(folder))
                 {
-                    request.Image.CopyTo(stream);
+                    Directory.CreateDirectory(folder);
                 }
-                newCategory.Image = Path.Combine("/images", request.Image.FileName);
+                var imageFile = Path.Combine(folder, request.Image.FileName);
+
+                using (var stream = new FileStream(imageFile, FileMode.Create))
+                {
+                    request.Image.CopyToAsync(stream);
+                }
             }
+
+            var newCategory = new Category
+            {
+                Name = request.Name,
+                Description = request.Description,
+                Image =request.Image.FileName
+            };
 
             _db.Categories.Add(newCategory);
             _db.SaveChanges();
@@ -89,19 +100,33 @@ namespace Animal_project.Server.Controllers
                 return NotFound("No category found for the given category ID");
             }
 
-            category.Name = request.Name;
-            category.Description = request.Description;
+            
 
             // تحميل الصورة إذا تم توفير واحدة
             if (request.Image != null)
             {
-                var imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", request.Image.FileName);
-                using (var stream = new FileStream(imagePath, FileMode.Create))
+                var folder = Path.Combine(Directory.GetCurrentDirectory(), "images");
+                if (!Directory.Exists(folder))
                 {
-                    request.Image.CopyTo(stream);
+                    Directory.CreateDirectory(folder);
                 }
-                category.Image = Path.Combine("images", request.Image.FileName);
+                var imageFile = Path.Combine(folder, request.Image.FileName);
+
+                using (var stream = new FileStream(imageFile, FileMode.Create))
+                {
+                    if (stream != null)
+                    {
+                        request.Image.CopyToAsync(stream);
+
+                    }
+                }
+
             }
+
+            category.Name = request.Name ?? category.Name;
+            category.Description = request.Description;
+            category.Image = request.Image.FileName;
+
 
             _db.SaveChanges();
 
