@@ -14,21 +14,18 @@ import { AdminSideComponent } from './Admin/admin-side/admin-side.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    
     PostComponent,
     CommentComponent,
-    ReplyComponent,
-    HomeComponent
     ReplyComponent,
     AppComponent,
     HomeComponent,
     AdminSideComponent
   ],
   imports: [
-    FormsModule,
     ReactiveFormsModule,
-    BrowserModule, HttpClientModule,
-    AppRoutingModule,
+    BrowserModule,
+    HttpClientModule,
     FormsModule,
     AppRoutingModule,
     RouterModule.forRoot([
