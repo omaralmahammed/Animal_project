@@ -5,35 +5,41 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';  // <-- Impor
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PostComponent } from './Rahaf/post/post.component';
 import { CommentComponent } from './Rahaf/comment/comment.component';
 import { ReplyComponent } from './Rahaf/reply/reply.component';
-import { FormsModule } from '@angular/forms'; // Keep FormsModule import
-import { RouterModule } from '@angular/router';
 import { HomeComponent } from './Hadeel/home/home.component';
+import { PostComponent } from './Rahaf/post/post.component';
 import { RouterModule } from '@angular/router';
+import { AdminSideComponent } from './Admin/admin-side/admin-side.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PostComponent,
     CommentComponent,
-    ReplyComponent
-    AppComponent,
+    ReplyComponent,
     HomeComponent
+    ReplyComponent,
+    AppComponent,
+    HomeComponent,
+    AdminSideComponent
   ],
   imports: [
     FormsModule,
     ReactiveFormsModule,
     BrowserModule, HttpClientModule,
-    AppRoutingModule, FormsModule,
-    RouterModule.forRoot([
-      { path: 'Posts', component: PostComponent },
-
-    ])
+    AppRoutingModule,
+    FormsModule,
     AppRoutingModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: 'Posts', component: PostComponent },
+      {
+        path: 'Admin', component: AdminSideComponent, children:
+          [
+
+        ]
+    }
 
     ])
   ],
