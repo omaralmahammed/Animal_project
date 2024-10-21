@@ -47,7 +47,9 @@ import { CategoryComponent } from './Raneem/category/category.component';
 
 
 
-
+      { path: 'posts', component: PostComponent },
+      { path: 'reply', component: ReplyComponent },
+      { path: 'comments', component: CommentComponent },
 
 
 
