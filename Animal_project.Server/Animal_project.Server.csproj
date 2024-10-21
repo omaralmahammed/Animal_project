@@ -33,4 +33,9 @@
     </ProjectReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="images\" />
+    <Folder Include="youseFDTO\" />
+  </ItemGroup>
+
 </Project>
