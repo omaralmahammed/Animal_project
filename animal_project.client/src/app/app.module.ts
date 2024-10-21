@@ -11,6 +11,8 @@ import { PostComponent } from './Rahaf/post/post.component';
 import { RouterModule } from '@angular/router';
 import { AdminSideComponent } from './Admin/admin-side/admin-side.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { RegistrationComponent } from './Omar/registration/registration.component';
+import { LoginComponent } from './Omar/login/login.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     AppComponent,
     HomeComponent,
     AdminSideComponent,
-    NavBarComponent
+    NavBarComponent,
+    RegistrationComponent,
+    LoginComponent
   ],
   imports: [
     FormsModule,
@@ -35,8 +39,38 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'Posts', component: PostComponent },
-      {
-        path: 'Admin', component: AdminSideComponent, children:
+      { path: 'registration', component: RegistrationComponent},
+      { path: 'login', component: LoginComponent},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      {path: 'Admin', component: AdminSideComponent, children:
           [
 
         ]
