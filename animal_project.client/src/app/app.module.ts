@@ -45,7 +45,9 @@ import { LoginComponent } from './Omar/login/login.component';
 
 
 
-
+      { path: 'posts', component: PostComponent },
+      { path: 'reply', component: ReplyComponent },
+      { path: 'comments', component: CommentComponent },
 
 
 
