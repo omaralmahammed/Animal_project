@@ -11,6 +11,7 @@ import { PostComponent } from './Rahaf/post/post.component';
 import { RouterModule } from '@angular/router';
 import { AdminSideComponent } from './Admin/admin-side/admin-side.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { CategoryComponent } from './Raneem/category/category.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     AppComponent,
     HomeComponent,
     AdminSideComponent,
-    NavBarComponent
+    NavBarComponent,
+    CategoryComponent
   ],
   imports: [
     FormsModule,
