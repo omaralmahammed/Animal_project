@@ -2,7 +2,8 @@
 using Animal_project.Server.youseFDTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
+using MimeKit;
+using MailKit.Net.Smtp;
 namespace Animal_project.Server.Controllers
 {
     [Route("api/[controller]")]
@@ -10,18 +11,18 @@ namespace Animal_project.Server.Controllers
     public class YousefController : ControllerBase
     {
         private readonly MyDbContext _db;
-        //private readonly IEmailService _emailService;
+        private readonly IEmailService _emailService;
 
-        public YousefController(MyDbContext db/*, IEmailService emailService*/)
+        public YousefController(MyDbContext db, IEmailService emailService)
         {
             _db = db;
-            //_emailService = emailService;
+            _emailService = emailService;
         }
 
         [HttpGet("GetAllMessage")]
         public IActionResult GetAllMessage()
         {
-            var GetAllMessage = _db.Comments.ToList();
+            var GetAllMessage = _db.ContactUs.ToList();
 
             return Ok(GetAllMessage);
         }
@@ -74,39 +75,41 @@ namespace Animal_project.Server.Controllers
         /// ////////////////////////////////////////////////////
         /// 
 
-        //[HttpPost("PostMessageToEmail")]
-        //public async Task<IActionResult> PostMessageToEmail([FromForm] ContactUsDto contactUsDto)
-        //{
-        //    var contact = new ContactU
-        //    {
-        //        Message = contactUsDto.Message,
-        //        Subject = contactUsDto.Subject,
-        //        Email = contactUsDto.Email,
-        //    };
+        [HttpPost("PostMessageToEmail")]
+        public async Task<IActionResult> PostMessageToEmail([FromForm] ContactUsDto contactUsDto)
+        {
+            var contact = new ContactU
+            {
+                Message = contactUsDto.Message,
+                Subject = contactUsDto.Subject,
+                Email = contactUsDto.Email,
+            };
 
-        //    _db.ContactUs.Add(contact);
-        //    await _db.SaveChangesAsync();
+            _db.ContactUs.Add(contact);
+            await _db.SaveChangesAsync();
 
-        //    var subject = contactUsDto.Subject;
-        //    var messageBody = $"You have received a new message from {contactUsDto.Name} ({contactUsDto.Email}):<br><br>{contactUsDto.MessageContent}";
+            var subject = contactUsDto.Subject;
+            var messageBody = $"You have received a new message from {contactUsDto.Name} ({contactUsDto.Email}):<br><br>{contactUsDto.Message}";
 
-        //    try
-        //    {
-        //        // Send email to admin
-        //        await _emailService.SendEmailAsync("admin@example.com", subject, messageBody);
+            try
+            {
+                // Send email to admin
+                await _emailService.SendEmailAsync("admin@example.com", subject, messageBody);
 
-        //        // Send email to the user
-        //        var userEmailSubject = "Thank you for contacting us!";
-        //        var userEmailBody = $"Dear {contactUsDto.Name},<br><br>Thank you for reaching out. We have received your message:<br><br>{contactUsDto.MessageContent}<br><br>We will get back to you shortly.";
-        //        await _emailService.SendEmailAsync(contactUsDto.Email, userEmailSubject, userEmailBody);
+                // Send email to the user
+                var userEmailSubject = "Thank you for contacting us!";
+                var userEmailBody = $"Dear {contactUsDto.Name},<br><br>Thank you for reaching out. We have received your message:<br><br>{contactUsDto.Message}<br><br>We will get back to you shortly.";
+                await _emailService.SendEmailAsync(contactUsDto.Email, userEmailSubject, userEmailBody);
 
-        //        return Ok(new { Message = "Contact message sent successfully and emails delivered!" });
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(500, new { Message = $"Message saved, but failed to send email: {ex.Message}" });
-        //    }
-        //}
+                return Ok(new { Message = "Contact message sent successfully and emails delivered!" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = $"Message saved, but failed to send email: {ex.Message}" });
+            }
+        }
+
+
 
     }
 }
