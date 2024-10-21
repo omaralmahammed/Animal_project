@@ -10,15 +10,17 @@ import { CommentComponent } from './Rahaf/comment/comment.component';
 import { ReplyComponent } from './Rahaf/reply/reply.component';
 import { HomeComponent } from './Hadeel/home/home.component';
 import { RouterModule } from '@angular/router';
+import { AdminSideComponent } from './Admin/admin-side/admin-side.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PostComponent,
     CommentComponent,
-    ReplyComponent
+    ReplyComponent,
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    AdminSideComponent
   ],
   imports: [
     FormsModule,
@@ -27,6 +29,7 @@ import { RouterModule } from '@angular/router';
     AppRoutingModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: 'Admin', component: AdminSideComponent }
 
     ])
   ],
