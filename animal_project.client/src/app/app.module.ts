@@ -1,8 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';  // <-- Import FormsModule
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';  
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommentComponent } from './Rahaf/comment/comment.component';
@@ -11,6 +10,7 @@ import { HomeComponent } from './Hadeel/home/home.component';
 import { PostComponent } from './Rahaf/post/post.component';
 import { RouterModule } from '@angular/router';
 import { AdminSideComponent } from './Admin/admin-side/admin-side.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -18,11 +18,12 @@ import { AdminSideComponent } from './Admin/admin-side/admin-side.component';
     PostComponent,
     CommentComponent,
     ReplyComponent,
-    HomeComponent
+    HomeComponent,
     ReplyComponent,
     AppComponent,
     HomeComponent,
-    AdminSideComponent
+    AdminSideComponent,
+    NavBarComponent
   ],
   imports: [
     FormsModule,
