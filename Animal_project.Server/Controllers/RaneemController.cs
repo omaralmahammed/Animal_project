@@ -124,8 +124,8 @@ namespace Animal_project.Server.Controllers
             }
 
             category.Name = request.Name ?? category.Name;
-            category.Description = request.Description;
-            category.Image = request.Image.FileName;
+            category.Description = request.Description ?? category.Description;
+            category.Image = request.Image.FileName ?? category.Image;
 
 
             _db.SaveChanges();
