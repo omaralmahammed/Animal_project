@@ -8,8 +8,6 @@ import { AppComponent } from './app.component';
 import { PostComponent } from './Rahaf/post/post.component';
 import { CommentComponent } from './Rahaf/comment/comment.component';
 import { ReplyComponent } from './Rahaf/reply/reply.component';
-import { FormsModule } from '@angular/forms'; // Keep FormsModule import
-import { RouterModule } from '@angular/router';
 import { HomeComponent } from './Hadeel/home/home.component';
 import { RouterModule } from '@angular/router';
 import { AdminSideComponent } from './Admin/admin-side/admin-side.component';
@@ -28,15 +26,16 @@ import { AdminSideComponent } from './Admin/admin-side/admin-side.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserModule, HttpClientModule,
-    AppRoutingModule, FormsModule,
-    RouterModule.forRoot([
-      { path: 'Posts', component: PostComponent },
-
-    ])
     AppRoutingModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'Admin', component: AdminSideComponent }
+      { path: 'Posts', component: PostComponent },
+      {
+        path: 'Admin', component: AdminSideComponent, children:
+          [
+
+        ]
+    }
 
     ])
   ],
