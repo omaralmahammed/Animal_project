@@ -1,9 +1,10 @@
+﻿
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "animal_project.client": {
+    "angularlecturenew.client": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +24,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/animal_project.client",
+            "outputPath": "dist/angularlecturenew.client",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -31,10 +32,8 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
+              "src/favicon.ico",
+              "src/assets"
             ],
             "styles": [
               "src/styles.css"
@@ -46,13 +45,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kB",
-                  "maximumError": "4kB"
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
                 }
               ],
               "outputHashing": "all"
@@ -69,10 +68,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "animal_project.client:build:production"
+              "buildTarget": "angularlecturenew.client:build:production"
             },
             "development": {
-              "buildTarget": "animal_project.client:build:development"
+              "buildTarget": "angularlecturenew.client:build:development"
             }
           },
           "defaultConfiguration": "development",
@@ -81,7 +80,10 @@
           }
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n"
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "angularlecturenew.client:build"
+          }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
@@ -92,10 +94,8 @@
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
+              "src/favicon.ico",
+              "src/assets"
             ],
             "styles": [
               "src/styles.css"
@@ -108,6 +108,6 @@
     }
   },
   "cli": {
-    "analytics": "45db4ff0-427c-458f-bca5-29bd730ce7e5"
+    "analytics": "81e586b6-1868-44d4-b8fc-afabd2545666"
   }
 }

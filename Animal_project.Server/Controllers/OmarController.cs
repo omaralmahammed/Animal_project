@@ -64,6 +64,28 @@ namespace Animal_project.Server.Controllers
         }
 
 
+        [HttpGet("GetUserInformation/{userId}")]
+        public IActionResult GetUserInformation(int userId)
+        {
+
+            var info = _db.Users.FirstOrDefault(u => u.UserId == userId);
+
+            if (info == null)
+            {
+                NotFound("user not found");
+            }
+
+            return Ok(info);
+        }
+
+
+        [HttpGet("GetAllUsers")]
+        public IActionResult GetAllUsers() { 
+            
+            var allUSers = _db.Users.ToList();
+
+            return Ok(allUSers);
+        }
 
     }
 }
