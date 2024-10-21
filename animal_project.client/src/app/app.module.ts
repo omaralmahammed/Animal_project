@@ -5,35 +5,30 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';  // <-- Impor
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PostComponent } from './Rahaf/post/post.component';
 import { CommentComponent } from './Rahaf/comment/comment.component';
 import { ReplyComponent } from './Rahaf/reply/reply.component';
-import { FormsModule } from '@angular/forms'; // Keep FormsModule import
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './Hadeel/home/home.component';
-import { RouterModule } from '@angular/router';
+import { PostComponent } from './Rahaf/post/post.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PostComponent,
     CommentComponent,
-    ReplyComponent
-    AppComponent,
+    ReplyComponent,
     HomeComponent
   ],
   imports: [
     FormsModule,
     ReactiveFormsModule,
     BrowserModule, HttpClientModule,
-    AppRoutingModule, FormsModule,
-    RouterModule.forRoot([
-      { path: 'Posts', component: PostComponent },
-
-    ])
     AppRoutingModule,
+    FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: 'Posts', component: PostComponent },
+
 
     ])
   ],
