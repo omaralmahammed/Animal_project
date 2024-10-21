@@ -4,10 +4,16 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { PostComponent } from './Rahaf/post/post.component';
+import { CommentComponent } from './Rahaf/comment/comment.component';
+import { ReplyComponent } from './Rahaf/reply/reply.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PostComponent,
+    CommentComponent,
+    ReplyComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
