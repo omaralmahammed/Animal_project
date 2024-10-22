@@ -255,7 +255,7 @@ import { AboutComponent } from './Yousef/about/about.component';
         path: 'Admin', component: AdminSideComponent, children:
           [
 
-          ]
+      ]
       }
 
     ])
