@@ -8,7 +8,10 @@
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\animal_project.client\browser\</BuildOutputFolder>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="src\app\Admin\Posts\" />
+    <None Remove="src\app\Admin\Posts\**" />
+    <TypeScriptConfiguration Remove="src\app\Admin\Posts\**" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="src\app\Hadeel\" />
     <Folder Include="src\app\Rahaf\" />
     <Folder Include="src\app\Suha\" />
