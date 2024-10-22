@@ -90,8 +90,7 @@ import { ProfileComponent } from './Omar/profile/profile.component';
 
 
       //Hadeel
-
-
+      { path: 'UserForm/:id', component: FormComponent },
 
 
 
