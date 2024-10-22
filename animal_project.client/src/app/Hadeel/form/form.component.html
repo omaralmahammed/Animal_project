@@ -1,31 +1,82 @@
-<form>
-  <div class="row g-3">
-    <div class="col-md-6">
-      <div class="form-floating">
-        <input type="text" class="form-control" id="name" placeholder="Your Name">
-        <label for="name">Your Name</label>
+<div class="form-container">
+  <div class="form-wrapper">
+    <form #formSubmit="ngForm" (ngSubmit)="FormSubmitUser(formSubmit.value)">
+      <div class="row g-3">
+        <!-- Animal Info Section -->
+        <p style="text-align:start">Animal Information</p>
+        <div class="col-md-6">
+          <div class="form-floating">
+            <input type="text" class="form-control" name="name" placeholder="name" [(ngModel)]="AnimalArray.name" readonly>
+            <label for="name">Animal Name</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating">
+            <input type="text" class="form-control" name="species" placeholder="species" [(ngModel)]="AnimalArray.species" readonly>
+            <label for="species">Species</label>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-floating">
+            <input type="text" class="form-control" name="breed" placeholder="breed" [(ngModel)]="AnimalArray.breed" readonly>
+            <label for="breed">Breed</label>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-floating">
+            <input type="text" class="form-control" name="age" placeholder="age" [(ngModel)]="AnimalArray.age" readonly>
+            <label for="age">Age</label>
+          </div>
+        </div>
+
+        <!-- User Information Section -->
+        <hr />
+        <p style="text-align:start">Adoption Application</p>
+
+        <div class="col-md-6">
+          <div class="form-floating">
+            <input type="text" class="form-control" name="FullName" placeholder="Full Name" [(ngModel)]="UserInfo.fullName">
+            <label for="FullName">Full Name</label>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-floating">
+            <input type="text" class="form-control" name="PhoneNo" placeholder="Phone Number" [(ngModel)]="UserInfo.phoneNo">
+            <label for="PhoneNo">Phone Number</label>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-floating">
+            <input type="text" class="form-control" name="FinancialStatus" placeholder="Financial Status" [(ngModel)]="UserInfo.financialStatus" required>
+            <label for="FinancialStatus">Financial Status</label>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-floating">
+            <select class="form-control" name="HaveKids" [(ngModel)]="UserInfo.haveKids" required>
+              <option [value]="true">Yes</option>
+              <option [value]="false">No</option>
+            </select>
+            <label>Have Kids</label>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="form-floating">
+            <textarea class="form-control" placeholder="Enter More Details" name="MoreDetails" [(ngModel)]="UserInfo.moreDetails" style="height: 150px"></textarea>
+            <label>More Details</label>
+          </div>
+        </div>
+
+        <div class="col-12 text-center">
+          <button class="btn btn-secondary rounded-pill py-3 px-5" type="submit">Submit</button>
+        </div>
       </div>
-    </div>
-    <div class="col-md-6">
-      <div class="form-floating">
-        <input type="email" class="form-control" id="email" placeholder="Your Email">
-        <label for="email">Your Email</label>
-      </div>
-    </div>
-    <div class="col-12">
-      <div class="form-floating">
-        <input type="text" class="form-control" id="subject" placeholder="Subject">
-        <label for="subject">Subject</label>
-      </div>
-    </div>
-    <div class="col-12">
-      <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 250px"></textarea>
-        <label for="message">Message</label>
-      </div>
-    </div>
-    <div class="col-12">
-      <button class="btn btn-secondary rounded-pill py-3 px-5" type="submit">Send Message</button>
-    </div>
+    </form>
   </div>
-</form>
+</div>

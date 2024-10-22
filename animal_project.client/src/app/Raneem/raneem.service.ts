@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class RaneemService {
 
- staticData = "https://localhost:7119/api";
+ staticData = "https://localhost:44378/api";
   constructor(private http: HttpClient) { }
 
   GetAllCategory(): Observable<any> {
@@ -16,5 +16,24 @@ export class RaneemService {
 
   getAllAnimal(id: any): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Raneem/GetAnimalsByCategoryId/${id}`);
+  }
+
+  getAnimalDetails(id: any): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/Raneem/AnimalById/${id}`);
+  }
+
+  AddCategory(data: any): Observable<any> {
+    return this.http.post<any>(`${this.staticData}/Raneem/CreateCategory`, data)
+  }
+
+
+  Updatecategory(id: any, data: any): Observable<any> {
+
+    return this.http.put(`https://localhost:44378/api/Raneem/UpdateCategory/${id}`, data)
+  }
+
+  deletCategory(id: any): Observable<any> {
+
+    return this.http.delete<any>(`${this.staticData}/Raneem/DeleteCategory/${id}`)
   }
 }

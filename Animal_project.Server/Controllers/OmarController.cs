@@ -60,7 +60,7 @@ namespace Animal_project.Server.Controllers
                 return Unauthorized("Invalid Email or Password.");
             }
 
-            return Ok(new { UserId = user.UserId });
+            return Ok(new { UserId = user.UserId, Flag = user.IsAdmin });
         }
 
 
@@ -79,13 +79,58 @@ namespace Animal_project.Server.Controllers
         }
 
 
+        [HttpPost("UpdateUserInformation/{userId}")]
+        public IActionResult UpdateUserInformation([FromForm] UserInformationRequestDTO editUser, int userId)
+        {
+
+            var user = _db.Users.Find(userId);
+
+            if (user == null)
+            {
+                NotFound("user not found");
+            }
+
+            user.FullName = editUser.FullName ?? user.FullName;
+            user.Email = editUser.Email ?? user.Email;
+            user.PhoneNo = editUser.PhoneNo ?? user.PhoneNo;
+            user.Address = editUser.Address ?? user.Address;
+            user.MedicalStatus = editUser.MedicalStatus ?? user.MedicalStatus;
+            user.FlatType = editUser.FlatType ?? user.FlatType;
+            user.FinancialStatus = editUser.FinancialStatus ?? user.FinancialStatus;
+            user.HaveKids = editUser.HaveKids ?? user.HaveKids;
+            user.MoreDetails = editUser.MoreDetails ?? user.MoreDetails;
+
+
+            if (!string.IsNullOrEmpty(editUser.Password))
+            {
+
+                byte[] passwordHash, passwordSalt;
+                PasswordHashDTO.CreatePasswordHash(editUser.Password, out passwordHash, out passwordSalt);
+                user.PasswordHash = passwordHash;
+                user.PasswordSalt = passwordSalt;
+                user.Password = editUser.Password;
+            }
+
+            _db.Users.Update(user);
+            _db.SaveChanges();
+
+
+            return Ok(user);
+        }
+
+
+
         [HttpGet("GetAllUsers")]
-        public IActionResult GetAllUsers() { 
-            
+        public IActionResult GetAllUsers()
+        {
+
             var allUSers = _db.Users.ToList();
 
             return Ok(allUSers);
         }
+
+
+
 
     }
 }
