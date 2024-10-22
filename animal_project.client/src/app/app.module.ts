@@ -59,6 +59,7 @@ import { AnimalDetailsComponent } from './Raneem/animal-details/animal-details.c
       { path: 'login', component: LoginComponent },
      
       { path: 'login', component: LoginComponent },
+      { path: 'profile', component: ProfileComponent },
 
 
 

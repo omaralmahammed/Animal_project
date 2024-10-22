@@ -1,1 +1,119 @@
-<p>profile works!</p>
+<div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+  <div class="container text-center py-5">
+    <h1 class="display-3 text-white mb-4 animated slideInDown">Profile</h1>
+    <nav aria-label="breadcrumb animated slideInDown">
+      <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Profile</li>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<div class="row justify-content-center ">
+
+  <div class="col-lg-10 wow fadeInUp mx-auto my-5 border border-secondary rounded p-4" data-wow-delay="0.1s">
+
+
+    <form #profileForm="ngForm" (ngSubmit)="updateUserInfo(profileForm.value)">
+      <div class="row g-3">
+        <p style="text-align:start">Contact Informations</p>
+        <div class="col-md-6">
+          <div class="form-floating">
+            <input type="text" class="form-control" name="FullName" placeholder="Full Name" [(ngModel)]="UserInfo.fullName">
+            <label for="name">Full Name</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating">
+            <input type="text" class="form-control" name="PhoneNo" placeholder="Phone Number" [(ngModel)]="UserInfo.phoneNo">
+            <label for="name">Phone Number</label>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="form-floating">
+            <input type="text" class="form-control" name="Email" placeholder="Full Name" [readonly]="true" [(ngModel)]="UserInfo.email">
+            <label for="Email">Email</label>
+          </div>
+        </div>
+
+        <br />
+        <hr />
+        <p style="text-align:start">Change Password</p>
+
+        <div class="col-6">
+          <div class="form-floating">
+            <input type="password" class="form-control" name="Password" placeholder="Password" ngModel #password="ngModel">
+            <label for="Password">Password</label>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-floating">
+            <input type="password" class="form-control" placeholder="Confirm Password" name="ConfirmPassword" ngModel #confirmPassword="ngModel">
+            <label for="Password">Confirm Password</label>
+          </div>
+        </div>
+        <!--<div class="col-12" *ngIf="password.value !== confirmPassword.value">
+          <p class="text-danger" style="text-align:start">Passwords do not match!</p>
+        </div>-->
+
+        <br />
+        <hr />
+
+        <p style="text-align:start">Application Informations</p>
+
+        <div class="col-6">
+          <div class="form-floating">
+            <input type="text" class="form-control" name="Address" placeholder="Address" [(ngModel)]="UserInfo.address">
+            <label>Address</label>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-floating">
+            <input type="text" class="form-control" name="FlatType" placeholder="Flat Type" [(ngModel)]="UserInfo.flatType">
+            <label>Flat Type</label>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-floating">
+            <input type="text" class="form-control" name="MedicalStatus" placeholder="Medical Status" [(ngModel)]="UserInfo.medicalStatus">
+            <label>Medical Status</label>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-floating">
+            <input type="text" class="form-control" name="FinancialStatus" placeholder="Financial Status" [(ngModel)]="UserInfo.financialStatus">
+            <label>Financial Status</label>
+          </div>
+        </div>
+
+
+        <div class="col-6">
+          <div class="form-floating">
+            <select class="form-control" name="HaveKids" [(ngModel)]="UserInfo.haveKids">
+              <option [value]="true">Yes</option>
+              <option [value]="false">No</option>
+            </select>
+            <label>Have Kids</label>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="form-floating">
+            <textarea class="form-control" placeholder="Inter More Details" id="message"
+                      style="height: 250px" name="MoreDetails">{{UserInfo.details}}</textarea>
+            <label for="message">Details</label>
+          </div>
+        </div>
+
+        <div class="col-12 text-center">
+          <button class="btn btn-secondary rounded-pill py-3 px-5" type="submit" >
+            Submit
+          </button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>
