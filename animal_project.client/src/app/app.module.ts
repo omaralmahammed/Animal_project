@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';  
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommentComponent } from './Rahaf/comment/comment.component';
@@ -15,8 +15,9 @@ import { RegistrationComponent } from './Omar/registration/registration.componen
 import { LoginComponent } from './Omar/login/login.component';
 import { CategoryComponent } from './Raneem/category/category.component';
 import { AllAnimalComponent } from './Raneem/all-animal/all-animal.component';
-import { NavBarComponent } from './Hadeel/nav-bar/nav-bar.component';
 import { FormComponent } from './Hadeel/form/form.component';
+//import { ContactComponent } from './Yousef/contact/contact.component';
+//import { AboutComponent } from './Yousef/about/about.component';
 
 @NgModule({
   declarations: [
@@ -29,14 +30,14 @@ import { FormComponent } from './Hadeel/form/form.component';
     AppComponent,
     HomeComponent,
     AdminSideComponent,
-    NavBarComponent,
     RegistrationComponent,
-    LoginComponent,
     CategoryComponent,
-    AllAnimalComponent
+    AllAnimalComponent,
     AdminSideComponent,
     NavBarComponent,
-    FormComponent
+    FormComponent,
+    LoginComponent,
+    /*ContactComponent,*/
   ],
   imports: [
     FormsModule,
@@ -47,17 +48,30 @@ import { FormComponent } from './Hadeel/form/form.component';
     AppRoutingModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'Posts', component: PostComponent },
-      { path: 'registration', component: RegistrationComponent},
+
+      //OMAR
+
+      { path: 'registration', component: RegistrationComponent },
       { path: 'login', component: LoginComponent },
       { path: 'category', component: CategoryComponent },
       { path: 'Animal/:id', component: AllAnimalComponent },
+      { path: 'login', component: LoginComponent },
 
 
+
+
+
+
+
+
+
+
+      //RAHAF
 
       { path: 'posts', component: PostComponent },
       { path: 'reply', component: ReplyComponent },
       { path: 'comments', component: CommentComponent },
+      { path: 'Animal/:id', component: AllAnimalComponent },
 
 
 
@@ -68,11 +82,75 @@ import { FormComponent } from './Hadeel/form/form.component';
 
 
 
-      {path: 'Admin', component: AdminSideComponent, children:
+
+
+
+      //Hadeel
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      //Yousef
+
+      //{ path: 'Contact', component: ContactComponent },
+      //{ path: 'About', component: AboutComponent },
+
+
+
+
+
+
+
+
+
+
+
+
+      //Raneem
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      //SUHA
+
+
+
+
+
+
+
+
+
+
+      {
+        path: 'Admin', component: AdminSideComponent, children:
+
           [
 
-        ]
-    }
+          ]
+      }
 
     ])
   ],
