@@ -62,7 +62,6 @@ import { AboutComponent } from './Yousef/about/about.component';
       { path: 'category', component: CategoryComponent },
       { path: 'Animal/:id', component: AllAnimalComponent },
       { path: 'login', component: LoginComponent},
-      { path: 'profile', component: ProfileComponent },
 
 
 
