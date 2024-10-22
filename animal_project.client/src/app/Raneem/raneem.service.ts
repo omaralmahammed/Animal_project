@@ -29,11 +29,15 @@ export class RaneemService {
 
   Updatecategory(id: any, data: any): Observable<any> {
 
-    return this.http.put(`https://localhost:44378/api/Raneem/UpdateCategory/${id}`, data)
+    return this.http.put(`${this.staticData}/Raneem/UpdateCategory/${id}`, data)
   }
 
   deletCategory(id: any): Observable<any> {
 
     return this.http.delete<any>(`${this.staticData}/Raneem/DeleteCategory/${id}`)
+  }
+
+  getCategorybyID(id: any): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/Raneem/GetcategoryById/${id}`);
   }
 }

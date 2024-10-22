@@ -23,6 +23,9 @@ import { GetAllPostsComponent } from './Admin/get-all-posts/get-all-posts.compon
 import { GetByStoryIdComponent } from './Admin/get-by-story-id/get-by-story-id.component';
 import { AnimalDetailsComponent } from './Raneem/animal-details/animal-details.component';
 import { GetCategoryAdminComponent } from './Admin/get-category-admin/get-category-admin.component';
+import { FooterComponent } from './footer/footer.component';
+import { UpdatCtegoryAdminComponent } from './Admin/updat-ctegory-admin/updat-ctegory-admin.component';
+import { AddCategoryAdminComponent } from './Admin/add-category-admin/add-category-admin.component';
 
 
 @NgModule({
@@ -50,6 +53,9 @@ import { GetCategoryAdminComponent } from './Admin/get-category-admin/get-catego
     
     AnimalDetailsComponent,
     GetCategoryAdminComponent,
+    FooterComponent,
+    UpdatCtegoryAdminComponent,
+    AddCategoryAdminComponent,
   ],
   imports: [
     FormsModule,
@@ -167,6 +173,8 @@ import { GetCategoryAdminComponent } from './Admin/get-category-admin/get-catego
 
 
             { path: 'getCategoryAdmin', component: GetCategoryAdminComponent },
+            { path: 'updatCategoryAdmin/:id', component: UpdatCtegoryAdminComponent },
+            { path: 'AddCategoryAdmin', component: AddCategoryAdminComponent },
           ]
       }
 
