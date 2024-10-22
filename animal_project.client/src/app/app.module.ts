@@ -16,7 +16,6 @@ import { LoginComponent } from './Omar/login/login.component';
 import { CategoryComponent } from './Raneem/category/category.component';
 import { AllAnimalComponent } from './Raneem/all-animal/all-animal.component';
 import { FormComponent } from './Hadeel/form/form.component';
-import { ProfileComponent } from './Omar/profile/profile.component';
 import { ContactComponent } from './Yousef/contact/contact.component';
 import { AboutComponent } from './Yousef/about/about.component';
 
@@ -34,17 +33,11 @@ import { AboutComponent } from './Yousef/about/about.component';
     RegistrationComponent,
     CategoryComponent,
     AllAnimalComponent,
-
-    AllAnimalComponent,
     AdminSideComponent,
-
     NavBarComponent,
     FormComponent,
     LoginComponent,
-    ProfileComponent,
-  
     ContactComponent,
-    ProfileComponent
   ],
   imports: [
     FormsModule,
@@ -58,37 +51,11 @@ import { AboutComponent } from './Yousef/about/about.component';
 
       //OMAR
 
-      { path: 'registration', component: RegistrationComponent},
-      { path: 'login', component: LoginComponent },
-      { path: 'category', component: CategoryComponent },
-      { path: 'Animal/:id', component: AllAnimalComponent },
-      { path: 'login', component: LoginComponent},
-      { path: 'profile', component: ProfileComponent },
-
-
-
-
-
-
-
-
-
-
-
-
-      //RAHAF
-      { path: 'Posts', component: PostComponent },
-      { path: 'Contact', component: ContactComponent }, 
-
-      //OMAR
       { path: 'registration', component: RegistrationComponent },
       { path: 'login', component: LoginComponent },
       { path: 'category', component: CategoryComponent },
       { path: 'Animal/:id', component: AllAnimalComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'profile', component: ProfileComponent },
-
-
 
 
 
@@ -100,22 +67,11 @@ import { AboutComponent } from './Yousef/about/about.component';
 
 
       //RAHAF
+
       { path: 'posts', component: PostComponent },
       { path: 'reply', component: ReplyComponent },
       { path: 'comments', component: CommentComponent },
-      { path: 'Animal/:id', component:AllAnimalComponent },
-
-
-
-
-
-
-
-
-
-
-
-      //Hadeel
+      { path: 'Animal/:id', component: AllAnimalComponent },
 
 
 
@@ -143,33 +99,10 @@ import { AboutComponent } from './Yousef/about/about.component';
 
 
 
-      //Yousef
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       //Yousef
 
-
-
-
-      { path: 'Contact', component: ContactComponent }, 
+      { path: 'Contact', component: ContactComponent },
       { path: 'About', component: AboutComponent },
 
 
@@ -183,30 +116,6 @@ import { AboutComponent } from './Yousef/about/about.component';
 
 
 
-
-
-
-      //Yousef
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       //Raneem
 
 
@@ -228,34 +137,19 @@ import { AboutComponent } from './Yousef/about/about.component';
 
 
 
-     
-
-      //Raneem
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-      //SUHA
 
 
 
       {
         path: 'Admin', component: AdminSideComponent, children:
+
           [
 
-      ]
+          ]
       }
 
     ])
