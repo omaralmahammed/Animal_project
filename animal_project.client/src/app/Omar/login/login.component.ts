@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent {
 
+  animalId = localStorage.getItem("animalId");
   constructor(private _ser: OmarService, private _router: Router) { }
 
 
@@ -29,7 +30,13 @@ export class LoginComponent {
         showConfirmButton: false,
         timer: 2000
       });
-      this._router.navigate(['/'])
+      if (this.animalId !== null) {
+        this._router.navigate([`/AnimalDetails/${this.animalId}`])
+        localStorage.removeItem("animalId");
+      }
+      else {
+        this._router.navigate(['/'])
+      }
     },
       (error) => {
         Swal.fire({

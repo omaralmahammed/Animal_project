@@ -42,7 +42,7 @@ export class FormComponent implements OnInit {
     this._ser.AddAnimal(form, this.animalId, this.userId).subscribe(() => {
       debugger;
       alert("Application submitted successfully!");
-      this._router.navigate(['/UserForm']);
+      this._router.navigate([`/AnimalDetails/${this.animalId}`]);
     }, (error) => {
       alert('Error adding adoption application: ' + error.error);
     });
