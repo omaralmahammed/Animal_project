@@ -63,20 +63,6 @@ import { AllAnimalComponent } from './Raneem/all-animal/all-animal.component';
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       {path: 'Admin', component: AdminSideComponent, children:
           [
 
