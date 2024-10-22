@@ -13,6 +13,10 @@ import { AdminSideComponent } from './Admin/admin-side/admin-side.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { RegistrationComponent } from './Omar/registration/registration.component';
 import { LoginComponent } from './Omar/login/login.component';
+import { CategoryComponent } from './Raneem/category/category.component';
+import { AllAnimalComponent } from './Raneem/all-animal/all-animal.component';
+import { NavBarComponent } from './Hadeel/nav-bar/nav-bar.component';
+import { FormComponent } from './Hadeel/form/form.component';
 import { ProfileComponent } from './Omar/profile/profile.component';
 
 @NgModule({
@@ -29,6 +33,12 @@ import { ProfileComponent } from './Omar/profile/profile.component';
     NavBarComponent,
     RegistrationComponent,
     LoginComponent,
+    CategoryComponent,
+    AllAnimalComponent
+    AdminSideComponent,
+    NavBarComponent,
+    FormComponent
+    LoginComponent,
     ProfileComponent
   ],
   imports: [
@@ -42,27 +52,17 @@ import { ProfileComponent } from './Omar/profile/profile.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'Posts', component: PostComponent },
       { path: 'registration', component: RegistrationComponent},
+      { path: 'login', component: LoginComponent },
+      { path: 'category', component: CategoryComponent },
+      { path: 'Animal/:id', component: AllAnimalComponent },
       { path: 'login', component: LoginComponent},
       { path: 'profile', component: ProfileComponent },
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      { path: 'posts', component: PostComponent },
+      { path: 'reply', component: ReplyComponent },
+      { path: 'comments', component: CommentComponent },
 
 
 

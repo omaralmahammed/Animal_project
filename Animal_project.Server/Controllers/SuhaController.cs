@@ -8,14 +8,13 @@ namespace Animal_project.Server.Controllers
     [ApiController]
     public class SuhaController : ControllerBase
     {
-        public class ProfileController : ControllerBase
-        {
-            private readonly MyDbContext _db;
+        private readonly MyDbContext _db;
 
-            public ProfileController(MyDbContext db)
-            {
-                _db = db;
-            }
+        public SuhaController(MyDbContext db)
+        {
+            _db = db;
+        }
+
             [HttpGet("GetAllPosts")]
             public IActionResult GetAllPosts()
             {
@@ -41,6 +40,6 @@ namespace Animal_project.Server.Controllers
         }
 
     }
-}
+
 
 

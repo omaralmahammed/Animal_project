@@ -24,25 +24,107 @@ namespace Animal_project.Server.Controllers
         [HttpGet("GetAllPosts")]
         public IActionResult GetAllPosts()
         {
-            var posts = _db.Posts.ToList();
+            var posts = _db.Posts
+                .Include(p => p.User)        
+                .Include(p => p.Animal)     
+                .Include(p => p.Comments)   
+                    .ThenInclude(c => c.User) 
+                .Include(p => p.Comments)
+                    .ThenInclude(c => c.Replies) 
+                    .ThenInclude(r => r.User)    
+                .Include(p => p.Likes)       
+                    .ThenInclude(l => l.User) 
+                .Select(p => new
+                {
+                    PostId = p.StoryId,
+                    UserName = p.User.FullName,  
+                    AnimalName = p.Animal != null ? p.Animal.Name : "No Animal", 
+                    StoryText = p.StoryText,
+                    StoryDate = p.StoryDate,
+                    Image1 = p.Image1,
+                    Image2 = p.Image2,
+                    LikeNumber = p.Likes.Count,  
+                    Likes = p.Likes.Select(l => new
+                    {
+                        UserName = l.User.FullName
+                    }),
+                    Comments = p.Comments.Select(c => new
+                    {
+                        c.CommentId,
+                        CommentText = c.Content,
+                        CommentDate = c.Post.StoryDate,
+                        UserName = c.User.FullName, 
+                        Replies = c.Replies.Select(r => new
+                        {
+                            r.ReplyId,
+                            r.Content,
+                            UserName = r.User.FullName 
+                        })
+                    })
+                })
+                .ToList();
+
             if (posts == null || !posts.Any())
             {
                 return NotFound("لا توجد منشورات.");
             }
+
             return Ok(posts);
         }
 
         // GET: api/Posts/5
-        [HttpGet("GetPost")]
+        [HttpGet("GetPost/{id}")]
         public IActionResult GetPost(int id)
         {
-            var post = _db.Posts.FirstOrDefault(p => p.StoryId == id);
+            var post = _db.Posts
+                .Include(p => p.User)         
+                .Include(p => p.Animal)      
+                .Include(p => p.Comments)    
+                    .ThenInclude(c => c.User)  
+                .Include(p => p.Comments)
+                    .ThenInclude(c => c.Replies) 
+                    .ThenInclude(r => r.User)    
+                .Include(p => p.Likes)
+                    .ThenInclude(l => l.User)  
+                .Where(p => p.StoryId == id)
+                .Select(p => new
+                {
+                    PostId = p.StoryId,
+                    UserName = p.User.FullName,  
+                    AnimalName = p.Animal != null ? p.Animal.Name : "No Animal", 
+                    StoryText = p.StoryText,
+                    StoryDate = p.StoryDate,
+                    Image1 = p.Image1,
+                    Image2 = p.Image2,
+                    LikeNumber = p.Likes.Count,  
+                    Likes = p.Likes.Select(l => new
+                    {
+                        UserName = l.User.FullName 
+                    }),
+                    Comments = p.Comments.Select(c => new
+                    {
+                        c.CommentId,
+                        CommentText = c.Content,
+                        CommentDate = c.Post.StoryDate,
+                        UserName = c.User.FullName, 
+                        Replies = c.Replies.Select(r => new
+                        {
+                            r.ReplyId,
+                            r.Content,
+                            UserName = r.User.FullName 
+                        })
+                    })
+                })
+                .FirstOrDefault();
+
             if (post == null)
             {
                 return NotFound("المنشور غير موجود.");
             }
+
             return Ok(post);
         }
+
 
         // POST: api/Posts
         [HttpPost("post")]
