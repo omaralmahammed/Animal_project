@@ -92,8 +92,7 @@ import { AnimalDetailsComponent } from './Raneem/animal-details/animal-details.c
 
 
       //Hadeel
-
-
+      { path: 'UserForm/:id', component: FormComponent },
 
 
 
