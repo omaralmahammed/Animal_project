@@ -12,6 +12,9 @@ import { RouterModule } from '@angular/router';
 import { AdminSideComponent } from './Admin/admin-side/admin-side.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ContactComponent } from './Yousef/contact/contact.component';
+import { RegistrationComponent } from './Omar/registration/registration.component';
+import { LoginComponent } from './Omar/login/login.component';
+import { CategoryComponent } from './Raneem/category/category.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { ContactComponent } from './Yousef/contact/contact.component';
     AppComponent,
     HomeComponent,
     AdminSideComponent,
-    NavBarComponent
+    NavBarComponent,
+    RegistrationComponent,
+    LoginComponent,
+    CategoryComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -36,6 +42,40 @@ import { ContactComponent } from './Yousef/contact/contact.component';
       { path: 'Contact', component: ContactComponent},
       {
         path: 'Admin', component: AdminSideComponent, children:
+      { path: 'registration', component: RegistrationComponent},
+      { path: 'login', component: LoginComponent },
+      { path: 'category', component: CategoryComponent },
+
+
+
+      { path: 'posts', component: PostComponent },
+      { path: 'reply', component: ReplyComponent },
+      { path: 'comments', component: CommentComponent },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      {path: 'Admin', component: AdminSideComponent, children:
           [
 
         ]
