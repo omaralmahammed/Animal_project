@@ -31,6 +31,8 @@ public partial class User
 
     public bool? IsAdmin { get; set; }
 
+    public string? PhoneNo { get; set; }
+
     public virtual ICollection<AdoptionApplication> AdoptionApplications { get; set; } = new List<AdoptionApplication>();
 
     public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
