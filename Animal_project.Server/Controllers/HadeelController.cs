@@ -84,14 +84,16 @@ namespace Animal_project.Server.Controllers
             {
                 return NotFound();
             }
-            else
-            {
-                animal.Status = "Approved";
-                _db.AdoptionApplications.Update(animal);
-                _db.SaveChanges();
-            }
+
+            animal.Status = "Approved";
+            _db.AdoptionApplications.Update(animal);
+            _db.SaveChanges();
 
             var a = _db.Animals.FirstOrDefault(z => z.AnimalId == id);
+            if (a == null)
+            {
+                return NotFound();
+            }
             _db.Animals.Remove(a);
             _db.SaveChanges();
 

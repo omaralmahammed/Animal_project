@@ -176,7 +176,7 @@ import { AddAnimalAdminComponent } from './Admin/add-animal-admin/add-animal-adm
 
           [
             { path: "AllPosts", component: GetAllPostsComponent },
-
+            { path: "PostsByStoryId", component: GetByStoryIdComponent },
 
             { path: 'getCategoryAdmin', component: GetCategoryAdminComponent },
             { path: 'updatCategoryAdmin/:id', component: UpdatCtegoryAdminComponent },
