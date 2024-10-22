@@ -15,7 +15,6 @@ import { RegistrationComponent } from './Omar/registration/registration.componen
 import { LoginComponent } from './Omar/login/login.component';
 import { CategoryComponent } from './Raneem/category/category.component';
 import { AllAnimalComponent } from './Raneem/all-animal/all-animal.component';
-import { NavBarComponent } from './Hadeel/nav-bar/nav-bar.component';
 import { FormComponent } from './Hadeel/form/form.component';
 import { ProfileComponent } from './Omar/profile/profile.component';
 
@@ -34,10 +33,10 @@ import { ProfileComponent } from './Omar/profile/profile.component';
     RegistrationComponent,
     LoginComponent,
     CategoryComponent,
-    AllAnimalComponent
+    AllAnimalComponent,
     AdminSideComponent,
     NavBarComponent,
-    FormComponent
+    FormComponent,
     LoginComponent,
     ProfileComponent
   ],
