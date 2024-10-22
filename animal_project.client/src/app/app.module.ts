@@ -28,17 +28,14 @@ import { ProfileComponent } from './Omar/profile/profile.component';
     AppComponent,
     HomeComponent,
     AdminSideComponent,
-    NavBarComponent,
     RegistrationComponent,
-    LoginComponent,
     CategoryComponent,
     AllAnimalComponent,
-    AdminSideComponent,
     NavBarComponent,
     FormComponent,
     LoginComponent,
-    ProfileComponent
-    CategoryComponent,
+    ProfileComponent,
+  
     ContactComponent,
   ],
   imports: [
@@ -57,7 +54,7 @@ import { ProfileComponent } from './Omar/profile/profile.component';
       { path: 'posts', component: PostComponent },
       { path: 'reply', component: ReplyComponent },
       { path: 'comments', component: CommentComponent },
-
+      { path: 'Animal/:id', component:AllAnimalComponent },
 
 
 
@@ -68,9 +65,8 @@ import { ProfileComponent } from './Omar/profile/profile.component';
 
 
       {path: 'Admin', component: AdminSideComponent, children:
-      {
-        path: 'Admin', component: AdminSideComponent, children:
-          [
+      
+     [
 
           ]
       }
