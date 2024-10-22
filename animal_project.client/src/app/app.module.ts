@@ -15,6 +15,10 @@ import { ContactComponent } from './Yousef/contact/contact.component';
 import { RegistrationComponent } from './Omar/registration/registration.component';
 import { LoginComponent } from './Omar/login/login.component';
 import { CategoryComponent } from './Raneem/category/category.component';
+import { AllAnimalComponent } from './Raneem/all-animal/all-animal.component';
+import { NavBarComponent } from './Hadeel/nav-bar/nav-bar.component';
+import { FormComponent } from './Hadeel/form/form.component';
+import { ProfileComponent } from './Omar/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +32,13 @@ import { CategoryComponent } from './Raneem/category/category.component';
     NavBarComponent,
     RegistrationComponent,
     LoginComponent,
+    CategoryComponent,
+    AllAnimalComponent
+    AdminSideComponent,
+    NavBarComponent,
+    FormComponent
+    LoginComponent,
+    ProfileComponent
     CategoryComponent,
     ContactComponent,
   ],
@@ -47,6 +58,17 @@ import { CategoryComponent } from './Raneem/category/category.component';
       { path: 'posts', component: PostComponent },
       { path: 'reply', component: ReplyComponent },
       { path: 'comments', component: CommentComponent },
+
+
+
+
+
+
+
+
+
+
+      {path: 'Admin', component: AdminSideComponent, children:
       {
         path: 'Admin', component: AdminSideComponent, children:
           [
