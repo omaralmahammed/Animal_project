@@ -18,6 +18,7 @@ import { AllAnimalComponent } from './Raneem/all-animal/all-animal.component';
 import { FormComponent } from './Hadeel/form/form.component';
 import { ContactComponent } from './Yousef/contact/contact.component';
 import { AboutComponent } from './Yousef/about/about.component';
+import { ProfileComponent } from './Omar/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { AboutComponent } from './Yousef/about/about.component';
     FormComponent,
     LoginComponent,
     ContactComponent,
+    ProfileComponent,
   ],
   imports: [
     FormsModule,
