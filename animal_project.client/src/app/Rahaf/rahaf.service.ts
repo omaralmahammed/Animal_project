@@ -11,7 +11,7 @@ export class RahafService {
 
 
 
-  staticData = "https://localhost:7119/api";
+  staticData = "https://localhost:44378/api";
 
   getAllPosts(): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Rahaf/GetAllPosts`);
