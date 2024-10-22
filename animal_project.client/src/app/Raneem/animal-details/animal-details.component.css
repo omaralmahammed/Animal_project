@@ -1,0 +1,71 @@
+/* Container for both animal and shelter details */
+.animal-details-container {
+  display: flex;
+  align-items: flex-start;
+  background-color: #f7f2e3a3;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+/* Image styling */
+.animal-image img {
+  max-width: 300px; /* Adjust image size */
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+/* Animal info styling */
+.animal-info {
+  background-color: #f7f2e3a3;
+  padding: 20px;
+  border-radius: 10px;
+  flex-grow: 1;
+}
+
+  .animal-info h5 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+/* Shelter details styling */
+.shelter-details {
+  background-color: #f6f2e5;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* General Text Styling */
+p {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.rawaa {
+  position: relative;
+  left: 5px;
+  text-align: left;
+}
+
+.rawwa1 {
+  position: relative;
+  left: 20px;
+  text-align: left;
+}
+.shelter-details {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.adoption-call {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #ffffff;
+  border: 1px solid #f7f2e3a3; /* لون أخضر */
+  border-radius: 8px; /* زوايا دائرية */
+  text-align: center;
+}

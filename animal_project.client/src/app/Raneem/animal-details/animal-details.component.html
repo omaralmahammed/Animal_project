@@ -1,0 +1,101 @@
+<!--<div class="container-xxl py-5">
+  <div class="container">
+    <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+      <p class="section-title bg-white text-center text-primary px-3">Animal Details</p>
+      <h1 class="mb-5">{{ Detailsanimal.name }}</h1>
+    </div>
+    <div class="row gx-4">
+      <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="product-item">
+          <div class="position-relative">
+            <img class="img-fluid" [src]="'https://localhost:7119/api/images/getImages/' + Detailsanimal.image1" alt="{{ Detailsanimal.name }}">
+          </div>
+          <div class="text-center p-4">
+            <h5>{{ Detailsanimal.name }}</h5>
+            <p>Species: {{ Detailsanimal.species }}</p>
+            <p>Breed: {{ Detailsanimal.breed }}</p>
+            <p>Age: {{ Detailsanimal.age }}</p>
+            <p>Size: {{ Detailsanimal.size }}</p>
+            <p>Temperament: {{ Detailsanimal.temperament }}</p>
+            <p>Description: {{ Detailsanimal.description }}</p>
+            <p>Status: {{ Detailsanimal.adoptionStatus }}</p>
+          </div>
+        </div>
+      </div>-->
+<!-- Shelter Details -->
+<!--<div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="shelter-details">
+          <h5>Shelter Details</h5>
+          <p><strong>Shelter Name:</strong> {{ Detailsanimal.shelterDetails.shelterName }}</p>
+          <p><strong>Address:</strong> {{ Detailsanimal.shelterDetails.address }}</p>
+          <p><strong>Phone:</strong> {{ Detailsanimal.shelterDetails.phone }}</p>
+          <p><strong>Email:</strong> {{ Detailsanimal.shelterDetails.contactEmail }}</p>
+          <p><strong>Open Days:</strong> {{ Detailsanimal.shelterDetails.openDay }}</p>
+          <p><strong>Opening Hours:</strong> {{ Detailsanimal.shelterDetails.openTime }} - {{ Detailsanimal.shelterDetails.closeTime }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>-->
+<div class="container-xxl py-5">
+  <div class="container">
+    <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+      <p class="section-title bg-white text-center text-primary px-3">Animal Details</p>
+      <h1 class="mb-5">{{ Detailsanimal.name }}</h1>
+    </div>
+    <div class="animal-details-container">
+      <div class="animal-image">
+        <img class="img-fluid" [src]="'https://localhost:7119/api/images/getImages/' + Detailsanimal.image1" alt="{{ Detailsanimal.name }}">
+      </div>
+      <div class="animal-info">
+        <div class="rawaa">
+          <h4>Animal details</h4>
+          <hr />
+          <p><strong>Species:</strong> {{ Detailsanimal.species }}</p>
+          <p><strong>Breed:</strong> {{ Detailsanimal.breed }}</p>
+          <p><strong>Age:</strong> {{ Detailsanimal.age }}</p>
+          <p><strong>Size:</strong> {{ Detailsanimal.size }}</p>
+          <p><strong>Temperament:</strong> {{ Detailsanimal.temperament }}</p>
+          <p><strong>Description:</strong> {{ Detailsanimal.description }}</p>
+          <p><strong>Status:</strong> {{ Detailsanimal.adoptionStatus }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Shelter Details and Adoption Call -->
+    <div class="shelter-details">
+      <div class="rawwa1">
+        <h4>Shelter Details</h4>
+        <hr />
+        <div class="row">
+          <div class="col-md-4">
+            <p><strong>Shelter Name:</strong> {{ Detailsanimal.shelterDetails.shelterName }}</p>
+          </div>
+          <div class="col-md-4">
+            <p><strong>Address:</strong> {{ Detailsanimal.shelterDetails.address }}</p>
+          </div>
+          <div class="col-md-4">
+            <p><strong>Phone:</strong> {{ Detailsanimal.shelterDetails.phone }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <p><strong>Email:</strong> {{ Detailsanimal.shelterDetails.contactEmail }}</p>
+          </div>
+          <div class="col-md-4">
+            <p><strong>Open Days:</strong> {{ Detailsanimal.shelterDetails.openDay }}</p>
+          </div>
+          <div class="col-md-4">
+            <p><strong>Opening Hours:</strong> {{ Detailsanimal.shelterDetails.openTime }} - {{ Detailsanimal.shelterDetails.closeTime }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Encouraging Message with a link next to Shelter Details -->
+      <div class="adoption-call">
+        <p>If you'd like to adopt this lovely pet, click the button below!</p>
+        <a href="/adoption/{{ Detailsanimal.animalId }}" class="btn btn-primary">Adopt Now</a>
+      </div>
+    </div>
+  </div>
+</div>

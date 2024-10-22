@@ -17,4 +17,8 @@ export class RaneemService {
   getAllAnimal(id: any): Observable<any> {
     return this.http.get<any>(`${this.staticData}/Raneem/GetAnimalsByCategoryId/${id}`);
   }
+
+  getAnimalDetails(id: any): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/Raneem/AnimalById/${id}`);
+  }
 }
