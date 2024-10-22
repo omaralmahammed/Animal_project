@@ -17,7 +17,7 @@ import { CategoryComponent } from './Raneem/category/category.component';
 import { AllAnimalComponent } from './Raneem/all-animal/all-animal.component';
 import { FormComponent } from './Hadeel/form/form.component';
 import { ContactComponent } from './Yousef/contact/contact.component';
-//import { AboutComponent } from './Yousef/about/about.component';
+import { AboutComponent } from './Yousef/about/about.component';
 
 @NgModule({
   declarations: [
@@ -51,11 +51,11 @@ import { ContactComponent } from './Yousef/contact/contact.component';
 
       //OMAR
 
-      { path: 'registration', component: RegistrationComponent },
+      { path: 'registration', component: RegistrationComponent},
       { path: 'login', component: LoginComponent },
       { path: 'category', component: CategoryComponent },
       { path: 'Animal/:id', component: AllAnimalComponent },
-      { path: 'login', component: LoginComponent },
+      { path: 'login', component: LoginComponent},
 
 
 
@@ -72,6 +72,8 @@ import { ContactComponent } from './Yousef/contact/contact.component';
       { path: 'reply', component: ReplyComponent },
       { path: 'comments', component: CommentComponent },
       { path: 'Animal/:id', component: AllAnimalComponent },
+
+
 
 
 
@@ -102,8 +104,8 @@ import { ContactComponent } from './Yousef/contact/contact.component';
 
       //Yousef
 
-      { path: 'Contact', component: ContactComponent },
-      //{ path: 'About', component: AboutComponent },
+      { path: 'Contact', component: ContactComponent }, 
+      { path: 'About', component: AboutComponent },
 
 
 
@@ -144,12 +146,11 @@ import { ContactComponent } from './Yousef/contact/contact.component';
 
 
 
-      {
-        path: 'Admin', component: AdminSideComponent, children:
+      {path: 'Admin', component: AdminSideComponent, children:
+      
+      [
 
-          [
-
-          ]
+      ]
       }
 
     ])
