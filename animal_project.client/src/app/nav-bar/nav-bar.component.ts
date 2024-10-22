@@ -7,8 +7,7 @@ import { Router } from '@angular/router';
   styleUrl: './nav-bar.component.css'
 })
 export class NavBarComponent {
-
-  constructor( private _router: Router) { }
+  constructor(private _router: Router) { }
 
 
   get UserId(): any {
@@ -19,5 +18,4 @@ export class NavBarComponent {
     localStorage.removeItem("UserId");
     this._router.navigate(['/'])
   }
-
 }

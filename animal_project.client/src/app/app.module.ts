@@ -11,52 +11,69 @@ import { PostComponent } from './Rahaf/post/post.component';
 import { RouterModule } from '@angular/router';
 import { AdminSideComponent } from './Admin/admin-side/admin-side.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { ContactComponent } from './Yousef/contact/contact.component';
 import { RegistrationComponent } from './Omar/registration/registration.component';
 import { LoginComponent } from './Omar/login/login.component';
 import { CategoryComponent } from './Raneem/category/category.component';
 import { AllAnimalComponent } from './Raneem/all-animal/all-animal.component';
 import { FormComponent } from './Hadeel/form/form.component';
+import { ContactComponent } from './Yousef/contact/contact.component';
+//import { AboutComponent } from './Yousef/about/about.component';
 import { ProfileComponent } from './Omar/profile/profile.component';
 
 @NgModule({
   declarations: [
-
+    AppComponent,
     PostComponent,
     CommentComponent,
+    ReplyComponent,
+    HomeComponent,
     ReplyComponent,
     AppComponent,
     HomeComponent,
     AdminSideComponent,
-    NavBarComponent,
     RegistrationComponent,
-    LoginComponent,
     CategoryComponent,
     AllAnimalComponent,
     AdminSideComponent,
     NavBarComponent,
     FormComponent,
     LoginComponent,
-    ProfileComponent
-    CategoryComponent,
     ContactComponent,
+    ProfileComponent,
   ],
   imports: [
+    FormsModule,
     ReactiveFormsModule,
-    BrowserModule,
-    HttpClientModule,
+    BrowserModule, HttpClientModule,
+    AppRoutingModule,
     FormsModule,
     AppRoutingModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'Posts', component: PostComponent },
-      { path: 'Contact', component: ContactComponent }, 
+
+      //OMAR
+
       { path: 'registration', component: RegistrationComponent },
       { path: 'login', component: LoginComponent },
       { path: 'category', component: CategoryComponent },
+      { path: 'Animal/:id', component: AllAnimalComponent },
+      { path: 'login', component: LoginComponent },
+
+
+
+
+
+
+
+
+
+
+      //RAHAF
+
       { path: 'posts', component: PostComponent },
       { path: 'reply', component: ReplyComponent },
       { path: 'comments', component: CommentComponent },
+      { path: 'Animal/:id', component: AllAnimalComponent },
 
 
 
@@ -67,9 +84,71 @@ import { ProfileComponent } from './Omar/profile/profile.component';
 
 
 
-      {path: 'Admin', component: AdminSideComponent, children:
+
+
+
+      //Hadeel
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      //Yousef
+
+      { path: 'Contact', component: ContactComponent },
+      //{ path: 'About', component: AboutComponent },
+
+
+
+
+
+
+
+
+
+
+
+
+      //Raneem
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      //SUHA
+
+
+
+
+
+
+
+
+
+
       {
         path: 'Admin', component: AdminSideComponent, children:
+
           [
 
           ]
