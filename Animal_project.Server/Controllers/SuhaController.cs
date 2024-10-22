@@ -42,11 +42,10 @@ namespace Animal_project.Server.Controllers
         }
 
         //=====================================
-        [HttpGet("GetAllPostsbyStory/{storyId}")]
-        public IActionResult GetAllPostsbyStoryId(int storyId)
+        [HttpGet("GetAllPostsbyStoryId")]
+        public IActionResult GetAllPostsbyStoryId()
         {
             var posts = _db.Posts
-                .Where(p => p.StoryId == storyId) // Fetch posts for the given StoryId
                 .Select(p => new
                 {
                     p.StoryId,
@@ -56,11 +55,6 @@ namespace Animal_project.Server.Controllers
                     p.Flag // Return the flag from the database
                 })
                 .ToList();
-
-            if (!posts.Any())
-            {
-                return NotFound(new { Message = "No posts found for the specified StoryId." });
-            }
 
             return Ok(posts);
         }
@@ -79,6 +73,21 @@ namespace Animal_project.Server.Controllers
             _db.SaveChanges(); // Save changes to the database
 
             return Ok(post); // Return the updated post or a success message
+        }
+
+
+        [HttpGet("postsImages/{imageName}")]
+        public IActionResult getPostsImage(string imageName)
+        {
+            var pathImage = Path.Combine(Directory.GetCurrentDirectory(), "images", imageName);
+
+            if (System.IO.File.Exists(pathImage))
+            {
+                return PhysicalFile(pathImage, "image/*");
+            }
+
+            return NotFound();
+
         }
     }
 

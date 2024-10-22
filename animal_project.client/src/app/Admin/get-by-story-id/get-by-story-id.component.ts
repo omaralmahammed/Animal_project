@@ -18,8 +18,7 @@ export class GetByStoryIdComponent {
 
   // Load all posts by StoryId
   loadPosts(): void {
-    const storyId = 1; // Replace with actual StoryId
-    this.postService.getAllPosts(storyId).subscribe(
+    this.postService.getAllPosts().subscribe(
       data => {
         console.log('Posts loaded:', data); // Log the retrieved posts
         this.posts = data;

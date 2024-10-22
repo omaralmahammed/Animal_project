@@ -18,9 +18,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let post of posts; let i = index">
-          <td>{{ i + 1 }}</td>
-          <td><img [src]="'https://localhost:7286/api/Images/getImages/' + post.image1" alt="Post Image" class="img-fluid" style="max-width: 80px;"></td>
-          <td><img [src]="'https://localhost:7286/api/Images/getImages/' + post.image2" alt="Post Image" class="img-fluid" style="max-width: 80px;"></td>
+          <td>{{post.storyId }}</td>
+          <td><img [src]="'https://localhost:44378/api/Suha/postsImages/' + post.image1" alt="Image 1" class="img-fluid" style="max-width: 80px;"></td>
+          <td><img [src]="'https://localhost:44378/api/Suha/postsImages/' + post.image2" alt="Post Image" class="img-fluid" style="max-width: 80px;"></td>
           <td>{{ post.storyDate | date:'short' }}</td>
           <td>
             <button (click)="updateFlag(post, true)" class="btn btn-success btn-sm" [disabled]="post.flag">Accept</button>
