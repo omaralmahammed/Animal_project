@@ -20,6 +20,7 @@ import { ContactComponent } from './Yousef/contact/contact.component';
 import { AboutComponent } from './Yousef/about/about.component';
 import { ProfileComponent } from './Omar/profile/profile.component';
 import { AnimalDetailsComponent } from './Raneem/animal-details/animal-details.component';
+import { GetCategoryAdminComponent } from './Admin/get-category-admin/get-category-admin.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { AnimalDetailsComponent } from './Raneem/animal-details/animal-details.c
     ContactComponent,
     ProfileComponent,
     AnimalDetailsComponent,
+    GetCategoryAdminComponent,
   ],
   imports: [
     FormsModule,
@@ -125,8 +127,8 @@ import { AnimalDetailsComponent } from './Raneem/animal-details/animal-details.c
 
  { path: 'category', component: CategoryComponent },
       { path: 'Animal/:id', component: AllAnimalComponent },
-      { path: 'AnimalDetails/:id', component:AnimalDetailsComponent },
-
+      { path: 'AnimalDetails/:id', component: AnimalDetailsComponent },
+      
 
 
 
@@ -155,7 +157,7 @@ import { AnimalDetailsComponent } from './Raneem/animal-details/animal-details.c
         path: 'Admin', component: AdminSideComponent, children:
 
           [
-
+            { path: 'getCategoryAdmin', component: GetCategoryAdminComponent },
           ]
       }
 
