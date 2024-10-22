@@ -13,6 +13,7 @@ import { AdminSideComponent } from './Admin/admin-side/admin-side.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { RegistrationComponent } from './Omar/registration/registration.component';
 import { LoginComponent } from './Omar/login/login.component';
+import { ProfileComponent } from './Omar/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { LoginComponent } from './Omar/login/login.component';
     AdminSideComponent,
     NavBarComponent,
     RegistrationComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent
   ],
   imports: [
     FormsModule,
@@ -41,6 +43,7 @@ import { LoginComponent } from './Omar/login/login.component';
       { path: 'Posts', component: PostComponent },
       { path: 'registration', component: RegistrationComponent},
       { path: 'login', component: LoginComponent},
+      { path: 'profile', component: ProfileComponent },
 
 
 
