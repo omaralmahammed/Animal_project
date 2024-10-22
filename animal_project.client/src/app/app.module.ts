@@ -58,6 +58,7 @@ import { ProfileComponent } from './Omar/profile/profile.component';
       { path: 'category', component: CategoryComponent },
       { path: 'Animal/:id', component: AllAnimalComponent },
       { path: 'login', component: LoginComponent },
+      { path: 'profile', component: ProfileComponent },
 
 
 
