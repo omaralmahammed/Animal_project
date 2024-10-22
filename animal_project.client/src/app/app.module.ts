@@ -11,6 +11,8 @@ import { ReplyComponent } from './Rahaf/reply/reply.component';
 import { HomeComponent } from './Hadeel/home/home.component';
 import { RouterModule } from '@angular/router';
 import { AdminSideComponent } from './Admin/admin-side/admin-side.component';
+import { NavBarComponent } from './Hadeel/nav-bar/nav-bar.component';
+import { FormComponent } from './Hadeel/form/form.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { AdminSideComponent } from './Admin/admin-side/admin-side.component';
     ReplyComponent,
     AppComponent,
     HomeComponent,
-    AdminSideComponent
+    AdminSideComponent,
+    NavBarComponent,
+    FormComponent
   ],
   imports: [
     FormsModule,
