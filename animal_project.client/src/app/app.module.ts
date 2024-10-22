@@ -19,6 +19,7 @@ import { FormComponent } from './Hadeel/form/form.component';
 import { ContactComponent } from './Yousef/contact/contact.component';
 import { AboutComponent } from './Yousef/about/about.component';
 import { ProfileComponent } from './Omar/profile/profile.component';
+import { AnimalDetailsComponent } from './Raneem/animal-details/animal-details.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ProfileComponent } from './Omar/profile/profile.component';
     LoginComponent,
     ContactComponent,
     ProfileComponent,
+    AnimalDetailsComponent,
   ],
   imports: [
     FormsModule,
@@ -55,9 +57,9 @@ import { ProfileComponent } from './Omar/profile/profile.component';
 
       { path: 'registration', component: RegistrationComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'category', component: CategoryComponent },
-      { path: 'Animal/:id', component: AllAnimalComponent },
+     
       { path: 'login', component: LoginComponent },
+      { path: 'profile', component: ProfileComponent },
 
 
 
@@ -121,7 +123,9 @@ import { ProfileComponent } from './Omar/profile/profile.component';
 
       //Raneem
 
-
+ { path: 'category', component: CategoryComponent },
+      { path: 'Animal/:id', component: AllAnimalComponent },
+      { path: 'AnimalDetails/:id', component:AnimalDetailsComponent },
 
 
 
