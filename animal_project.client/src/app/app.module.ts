@@ -51,11 +51,11 @@ import { AboutComponent } from './Yousef/about/about.component';
 
       //OMAR
 
-      { path: 'registration', component: RegistrationComponent},
+      { path: 'registration', component: RegistrationComponent },
       { path: 'login', component: LoginComponent },
       { path: 'category', component: CategoryComponent },
       { path: 'Animal/:id', component: AllAnimalComponent },
-      { path: 'login', component: LoginComponent},
+      { path: 'login', component: LoginComponent },
 
 
 
@@ -79,6 +79,12 @@ import { AboutComponent } from './Yousef/about/about.component';
 
 
 
+
+
+
+
+
+
       //Hadeel
 
 
@@ -89,30 +95,6 @@ import { AboutComponent } from './Yousef/about/about.component';
 
 
 
-      //Yousef
-
-      //{ path: 'Contact', component: ContactComponent },
-      //{ path: 'About', component: AboutComponent },
-
-
-
-
-
-
-
-
-
-
-
-
-      //Raneem
-
-
-
-
-
-
-
 
 
 
@@ -120,7 +102,7 @@ import { AboutComponent } from './Yousef/about/about.component';
 
       //Yousef
 
-      { path: 'Contact', component: ContactComponent }, 
+      { path: 'Contact', component: ContactComponent },
       { path: 'About', component: AboutComponent },
 
 
@@ -162,9 +144,10 @@ import { AboutComponent } from './Yousef/about/about.component';
 
 
 
-      {path: 'Admin', component: AdminSideComponent, children:
-      
-      [
+      {
+        path: 'Admin', component: AdminSideComponent, children:
+
+          [
 
           ]
       }
