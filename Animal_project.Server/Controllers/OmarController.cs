@@ -19,11 +19,11 @@ namespace Animal_project.Server.Controllers
         [HttpPost("Register")]
         public IActionResult Register([FromForm] UserInformationRequestDTO userInfo)
         {
-            var checkEmail = _db.Users.Where(e => e.Email == userInfo.Email).FirstOrDefault();
+            var checkEmail = _db.Users.Where(e => e.Email == userInfo.Email || e.FullName == userInfo.FullName).FirstOrDefault();
 
             if (checkEmail != null)
             {
-                return BadRequest("Email is elready excest use another email.");
+                return BadRequest("Email or Username is elready use!");
             }
 
 
@@ -60,7 +60,7 @@ namespace Animal_project.Server.Controllers
                 return Unauthorized("Invalid Email or Password.");
             }
 
-            return Ok(new { UserId = user.UserId });
+            return Ok(new { UserId = user.UserId, UserName = user.FullName, Flag = user.FlatType});
         }
 
 
@@ -79,9 +79,51 @@ namespace Animal_project.Server.Controllers
         }
 
 
+
+        [HttpPost("UpdateUserInfo/{userId}")]
+        public IActionResult updateUserInfo([FromForm] UserInformationRequestDTO userInfo,  int userId)
+        {
+
+            var user = _db.Users.Find(userId);
+
+            if (user == null)
+            {
+                return NotFound("User not found");
+            }
+
+
+            user.FullName = userInfo.FullName ?? user.FullName;
+            user.Email = userInfo.Email ?? user.Email;
+            user.Address = userInfo.Address ?? user.Address;
+            user.MedicalStatus = userInfo.MedicalStatus ?? user.MedicalStatus;
+            user.FlatType = userInfo.FlatType ?? user.FlatType;
+            user.FinancialStatus = userInfo.FinancialStatus ?? user.FinancialStatus;
+            user.HaveKids = userInfo.HaveKids ?? user.HaveKids;
+            user.MoreDetails = userInfo.MoreDetails ?? user.MoreDetails;
+
+
+            if (!string.IsNullOrEmpty(userInfo.Password))
+            {
+
+                byte[] passwordHash, passwordSalt;
+                PasswordHashDTO.CreatePasswordHash(userInfo.Password, out passwordHash, out passwordSalt);
+                user.PasswordHash = passwordHash;
+                user.PasswordSalt = passwordSalt;
+                user.Password = userInfo.Password;
+            }
+
+            _db.Users.Update(user);
+            _db.SaveChanges();
+
+            return Ok(user);
+        }
+
+
+
         [HttpGet("GetAllUsers")]
-        public IActionResult GetAllUsers() { 
-            
+        public IActionResult GetAllUsers()
+        {
+
             var allUSers = _db.Users.ToList();
 
             return Ok(allUSers);
