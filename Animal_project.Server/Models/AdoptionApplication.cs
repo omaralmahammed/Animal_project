@@ -8,7 +8,7 @@ public partial class AdoptionApplication
     public int ApplicationId { get; set; }
 
     public int? UserId { get; set; }
-    
+
     public int? AnimalId { get; set; }
 
     public DateTime? ApplicationDate { get; set; }
