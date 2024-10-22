@@ -68,13 +68,16 @@ namespace Animal_project.Server.Controllers
                 }
                 var imageFile = Path.Combine(folder, request.Image.FileName);
 
-                using (var stream = new FileStream(imageFile, FileMode.Create))
+                if (!System.IO.File.Exists(imageFile))
                 {
-                    request.Image.CopyToAsync(stream);
+                    using (var stream = new FileStream(imageFile, FileMode.Create))
+                    {
+                        request.Image.CopyToAsync(stream);
+                    }
                 }
             }
 
-            var newCategory = new Category
+                var newCategory = new Category
             {
                 Name = request.Name,
                 Description = request.Description,
@@ -117,12 +120,13 @@ namespace Animal_project.Server.Controllers
 
                 var imageFile = Path.Combine(folder, request.Image.FileName);
 
-                // تحميل الصورة الجديدة
-                using (var stream = new FileStream(imageFile, FileMode.Create))
+                if (!System.IO.File.Exists(imageFile))
                 {
-                    request.Image.CopyTo(stream);
+                    using (var stream = new FileStream(imageFile, FileMode.Create))
+                    {
+                        request.Image.CopyToAsync(stream);
+                    }
                 }
-
                 // تحديث الحقل Image1
                 category.Image = request.Image.FileName ?? category.Image;
             }
@@ -225,10 +229,12 @@ namespace Animal_project.Server.Controllers
                     Directory.CreateDirectory(folder);
                 }
                 var imageFile = Path.Combine(folder, request.Image1.FileName);
-
-                using (var stream = new FileStream(imageFile, FileMode.Create))
+                if (!System.IO.File.Exists(imageFile))
                 {
-                    request.Image1.CopyToAsync(stream);
+                    using (var stream = new FileStream(imageFile, FileMode.Create))
+                    {
+                        request.Image1.CopyToAsync(stream);
+                    }
                 }
             }
 
@@ -283,9 +289,12 @@ namespace Animal_project.Server.Controllers
 
                 var imageFile = Path.Combine(folder, request.Image1.FileName);
 
-                using (var stream = new FileStream(imageFile, FileMode.Create))
+                if (!System.IO.File.Exists(imageFile))
                 {
-                    request.Image1.CopyTo(stream);
+                    using (var stream = new FileStream(imageFile, FileMode.Create))
+                    {
+                        request.Image1.CopyToAsync(stream);
+                    }
                 }
 
                 Animal.Image1 = request.Image1.FileName ??Animal.Image1;

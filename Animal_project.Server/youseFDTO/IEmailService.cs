@@ -1,4 +1,6 @@
-﻿namespace Animal_project.Server.youseFDTO
+﻿using MimeKit;
+using MailKit.Net.Smtp;
+namespace Animal_project.Server.youseFDTO
 {
     public interface IEmailService
     {
@@ -10,6 +12,6 @@
             // other services
         }
 
-        Task SendEmailAsync(string? email, string userEmailSubject, string userEmailBody);
+        Task SendEmailAsync(string? Email, string userEmailSubject, string userEmailBody);
     }
 }

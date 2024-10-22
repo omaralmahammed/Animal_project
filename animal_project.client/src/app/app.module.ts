@@ -16,8 +16,8 @@ import { LoginComponent } from './Omar/login/login.component';
 import { CategoryComponent } from './Raneem/category/category.component';
 import { AllAnimalComponent } from './Raneem/all-animal/all-animal.component';
 import { FormComponent } from './Hadeel/form/form.component';
-//import { ContactComponent } from './Yousef/contact/contact.component';
-//import { AboutComponent } from './Yousef/about/about.component';
+import { ContactComponent } from './Yousef/contact/contact.component';
+import { AboutComponent } from './Yousef/about/about.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,7 @@ import { FormComponent } from './Hadeel/form/form.component';
     NavBarComponent,
     FormComponent,
     LoginComponent,
-    /*ContactComponent,*/
+    ContactComponent,
   ],
   imports: [
     FormsModule,
@@ -51,11 +51,11 @@ import { FormComponent } from './Hadeel/form/form.component';
 
       //OMAR
 
-      { path: 'registration', component: RegistrationComponent },
+      { path: 'registration', component: RegistrationComponent},
       { path: 'login', component: LoginComponent },
       { path: 'category', component: CategoryComponent },
       { path: 'Animal/:id', component: AllAnimalComponent },
-      { path: 'login', component: LoginComponent },
+      { path: 'login', component: LoginComponent},
 
 
 
@@ -71,7 +71,7 @@ import { FormComponent } from './Hadeel/form/form.component';
       { path: 'posts', component: PostComponent },
       { path: 'reply', component: ReplyComponent },
       { path: 'comments', component: CommentComponent },
-      { path: 'Animal/:id', component: AllAnimalComponent },
+      { path: 'Animal/:id', component:AllAnimalComponent },
 
 
 
@@ -95,6 +95,30 @@ import { FormComponent } from './Hadeel/form/form.component';
 
 
 
+      //Yousef
+
+      //{ path: 'Contact', component: ContactComponent },
+      //{ path: 'About', component: AboutComponent },
+
+
+
+
+
+
+
+
+
+
+
+
+      //Raneem
+
+
+
+
+
+
+
 
 
 
@@ -102,8 +126,8 @@ import { FormComponent } from './Hadeel/form/form.component';
 
       //Yousef
 
-      //{ path: 'Contact', component: ContactComponent },
-      //{ path: 'About', component: AboutComponent },
+      { path: 'Contact', component: ContactComponent }, 
+      { path: 'About', component: AboutComponent },
 
 
 
@@ -144,12 +168,11 @@ import { FormComponent } from './Hadeel/form/form.component';
 
 
 
-      {
-        path: 'Admin', component: AdminSideComponent, children:
+      {path: 'Admin', component: AdminSideComponent, children:
+      
+      [
 
-          [
-
-          ]
+      ]
       }
 
     ])

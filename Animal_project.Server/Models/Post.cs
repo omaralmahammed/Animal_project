@@ -21,8 +21,6 @@ public partial class Post
 
     public int? LikeNumber { get; set; }
 
-    public bool? Flag { get; set; }
-
     public virtual Animal? Animal { get; set; }
 
     public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
