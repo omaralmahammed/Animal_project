@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';  
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommentComponent } from './Rahaf/comment/comment.component';
@@ -18,7 +18,7 @@ import { CategoryComponent } from './Raneem/category/category.component';
 
 @NgModule({
   declarations: [
-    
+
     PostComponent,
     CommentComponent,
     ReplyComponent,
@@ -28,7 +28,8 @@ import { CategoryComponent } from './Raneem/category/category.component';
     NavBarComponent,
     RegistrationComponent,
     LoginComponent,
-    CategoryComponent
+    CategoryComponent,
+    ContactComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -39,47 +40,19 @@ import { CategoryComponent } from './Raneem/category/category.component';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'Posts', component: PostComponent },
-      { path: 'Contact', component: ContactComponent},
-      {
-        path: 'Admin', component: AdminSideComponent, children:
-      { path: 'registration', component: RegistrationComponent},
+      { path: 'Contact', component: ContactComponent }, 
+      { path: 'registration', component: RegistrationComponent },
       { path: 'login', component: LoginComponent },
       { path: 'category', component: CategoryComponent },
-
-
-
       { path: 'posts', component: PostComponent },
       { path: 'reply', component: ReplyComponent },
       { path: 'comments', component: CommentComponent },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      {path: 'Admin', component: AdminSideComponent, children:
+      {
+        path: 'Admin', component: AdminSideComponent, children:
           [
 
-        ]
-    }
+          ]
+      }
 
     ])
   ],
