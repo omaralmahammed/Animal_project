@@ -10,6 +10,7 @@ export class NavBarComponent {
   constructor(private _router: Router) { }
 
 
+
   get UserId(): any {
     return localStorage.getItem("UserId");
   }

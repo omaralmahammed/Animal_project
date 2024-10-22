@@ -1,23 +1,28 @@
-<div class="container mt-5 mb-5">
+<!--<div class="container mt-5 mb-5">
   <div class="row d-flex align-items-center justify-content-center">
     <div class="col-md-6">
       <div class="card" *ngFor="let post of posts">
         <div class="d-flex justify-content-between p-2 px-3">
           <div class="d-flex flex-row align-items-center">
-            <img [src]="'https://localhost:7280/api/Rahaf/getImages/' + post.Image1" width="50" class="rounded-circle">
             <div class="d-flex flex-column ml-2">
-              <span class="font-weight-bold">{{ post.UserName }}</span>
-              <small class="text-primary">{{ post.AnimalName }}</small>
+              <span class="font-weight-bold">{{ post.userName }}</span>
+              <small class="text-primary">{{ post.animalName }}</small>
             </div>
           </div>
           <div class="d-flex flex-row mt-1 ellipsis">
-            <small class="mr-2">{{ post.StoryDate | date:'short' }}</small>
+            <small class="mr-2">{{ post.storyDate | date:'short' }}</small>
             <i class="fa fa-ellipsis-h"></i>
           </div>
         </div>
-        <img [src]="'https://localhost:7280/api/Rahaf/getImages/' + post.Image2" class="img-fluid" *ngIf="post.Image2">
         <div class="p-2">
-          <p class="text-justify">{{ post.StoryText }}</p>
+          <p class="text-justify">{{ post.storyText }}</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <img src="https://localhost:44378/api/Rahaf/getImages/{{post.image1}}" class="img-fluid" style="width: 48%; object-fit: cover;">
+            <img src="https://localhost:44378/api/Rahaf/getImages/{{post.image2}}" class="img-fluid" style="width: 48%; object-fit: cover;" *ngIf="post.image2">
+          </div>
+        </div>
+
+        <div class="p-2">
           <hr>
           <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex flex-row icons d-flex align-items-center">
@@ -25,34 +30,142 @@
               <i class="fa fa-smile-o ml-2"></i>
             </div>
             <div class="d-flex flex-row muted-color">
-              <span>{{ post.LikeNumber }} likes</span>
-              <span class="ml-2">{{ post.Comments.length }} comments</span>
+              <span>{{ post.likeNumber }} likes</span>
+              <span class="ml-2">{{ post.comments?.length || 0 }} comments</span>
+              <span class="ml-2">Share</span>
+            </div>
+          </div>
+          <hr>-->
+<!-- مساحة إضافة تعليق جديد -->
+<!--<div class="comment-input mb-3">
+  <input type="text" class="form-control" placeholder="Add a comment..." [(ngModel)]="newComment" (keyup.enter)="addComment(post)">
+  <button (click)="addComment(post)" class="btn btn-primary mt-2">Comment</button>
+</div>
+
+<div *ngIf="post.comments.length > 0">
+  <h4>Comments:</h4>
+  <div *ngFor="let comment of post.comments" class="d-flex flex-row mb-2">
+    <div class="comment-content">
+      <span class="name">{{ comment.userName }}</span>
+      <small class="comment-text">{{ comment.commentText }}</small>-->
+<!-- زر رد -->
+<!--<button (click)="comment.replying = !comment.replying" class="btn btn-link">Reply</button>-->
+<!-- حقل إدخال الرد -->
+<!--<div *ngIf="comment.replying" class="comment-input mb-3">
+  <input type="text" class="form-control" placeholder="Add a reply..." [(ngModel)]="newReply" (keyup.enter)="addReply(comment)">
+  <button (click)="addReply(comment)" class="btn btn-primary mt-2">Reply</button>
+</div>-->
+<!-- عرض الردود إذا كانت موجودة -->
+<!--<div *ngIf="comment.replies.length > 0">
+                  <h5>Replies:</h5>
+                  <div *ngFor="let reply of comment.replies" class="reply-content">
+                    <span class="reply-user">{{ reply.userName }}:</span>
+                    <small class="reply-text">{{ reply.content }}</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="post.comments.length === 0">
+              <h4>No comments yet.</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>-->
+
+
+<div class="container mt-5 mb-5">
+  <div class="row d-flex align-items-center justify-content-center">
+    <div class="col-md-6">
+      <div class="card" *ngFor="let post of posts">
+        <div class="d-flex justify-content-between p-2 px-3">
+          <div class="d-flex flex-row align-items-center">
+            <div class="d-flex flex-column ml-2">
+              <span class="font-weight-bold">{{ post.userName }}</span>
+              <small class="text-primary">{{ post.animalName }}</small>
+            </div>
+          </div>
+          <div class="d-flex flex-row mt-1 ellipsis">
+            <small class="mr-2">{{ post.storyDate | date:'short' }}</small>
+            <i class="fa fa-ellipsis-h"></i>
+          </div>
+        </div>
+        <div class="p-2">
+          <p class="text-justify">{{ post.storyText }}</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <img src="https://localhost:44378/api/Rahaf/getImages/{{post.image1}}" class="img-fluid" style="width: 48%; object-fit: cover;">
+            <img src="https://localhost:44378/api/Rahaf/getImages/{{post.image2}}" class="img-fluid" style="width: 48%; object-fit: cover;" *ngIf="post.image2">
+          </div>
+        </div>
+
+        <div class="p-2">
+          <hr>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex flex-row icons d-flex align-items-center">
+              <i class="fa fa-heart"></i>
+              <i class="fa fa-smile-o ml-2"></i>
+            </div>
+            <div class="d-flex flex-row muted-color">
+              <span>{{ post.likeNumber }} likes</span>
+              <span class="ml-2">{{ post.comments?.length || 0 }} comments</span>
               <span class="ml-2">Share</span>
             </div>
           </div>
           <hr>
-          <div class="comments">
-            <div *ngFor="let comment of post.Comments | slice:0:commentsToShow" class="d-flex flex-row mb-2">
-              <img src="https://i.imgur.com/9AZ2QX1.jpg" width="40" class="rounded-image">
-              <div class="d-flex flex-column ml-2">
-                <span class="name">{{ comment.UserName }}</span>
-                <small class="comment-text">{{ comment.CommentText }}</small>
-                <div class="d-flex flex-row align-items-center status">
-                  <small>Like</small>
-                  <small>Reply</small>
-                  <small>{{ comment.CommentDate | date:'short' }}</small>
+
+          <!-- زر لتبديل عرض التعليقات -->
+          <button (click)="post.showComments = !post.showComments" class="btn btn-link mt-2">
+            {{ post.showComments ? 'Hide Comments' : 'Show Comments' }}
+          </button>
+
+          <!-- مساحة إضافة تعليق جديد -->
+          <div class="comment-input mb-3">
+            <input type="text" class="form-control" placeholder="Add a comment..." [(ngModel)]="newComment" (keyup.enter)="addComment(post)">
+            <button (click)="addComment(post)" class="btn btn-primary mt-2">Comment</button>
+          </div>
+
+          <div *ngIf="post.showComments">
+            <!-- تحقق من حالة عرض التعليقات -->
+            <h4>Comments:</h4>
+            <div *ngFor="let comment of post.comments" class="d-flex flex-row mb-2">
+              <div class="comment-content">
+                <span class="name">{{ comment.userName }}</span>
+                <small class="comment-text">{{ comment.commentText }}</small>
+
+                <!-- زر رد -->
+                <button (click)="comment.replying = !comment.replying" class="btn btn-link">Reply</button>
+
+                <!-- حقل إدخال الرد -->
+                <div *ngIf="comment.replying" class="comment-input mb-3">
+                  <input type="text" class="form-control" placeholder="Add a reply..." [(ngModel)]="newReply" (keyup.enter)="addReply(comment)">
+                  <button (click)="addReply(comment)" class="btn btn-primary mt-2">Reply</button>
+                </div>
+
+                <!-- زر لتبديل عرض الردود -->
+                <button (click)="comment.showReplies = !comment.showReplies" class="btn btn-link mt-2">
+                  {{ comment.showReplies ? 'Hide Replies' : 'Show Replies' }}
+                </button>
+
+                <!-- عرض الردود إذا كانت موجودة -->
+                <div *ngIf="comment.showReplies && comment.replies.length > 0">
+                  <h5>Replies:</h5>
+                  <div *ngFor="let reply of comment.replies" class="reply-content">
+                    <span class="reply-user">{{ reply.userName }}:</span>
+                    <small class="reply-text">{{ reply.content }}</small>
+                  </div>
                 </div>
               </div>
             </div>
-            <!-- زر "عرض المزيد" -->
-            <div *ngIf="post.Comments.length > commentsToShow">
-              <button (click)="showMoreComments(post)" class="btn btn-link">Show All Comments</button>
-            </div>
-            <div class="comment-input">
-              <input type="text" class="form-control" placeholder="Add a comment...">
-              <div class="fonts">
-                <i class="fa fa-camera"></i>
-              </div>
+
+            <!-- عرض زر "Show More" إذا كانت التعليقات أكثر من 2 -->
+            <button *ngIf="post.comments.length > 2 && !post.showAllComments" (click)="showMoreComments(post)" class="btn btn-link mt-2">Show More</button>
+            <button *ngIf="post.showAllComments" (click)="hideComments(post)" class="btn btn-link mt-2">Show Less</button>
+
+            <div *ngIf="post.comments.length === 0">
+              <h4>No comments yet.</h4>
             </div>
           </div>
         </div>

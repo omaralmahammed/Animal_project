@@ -23,6 +23,7 @@ import { GetAllPostsComponent } from './Admin/get-all-posts/get-all-posts.compon
 import { GetByStoryIdComponent } from './Admin/get-by-story-id/get-by-story-id.component';
 import { AnimalDetailsComponent } from './Raneem/animal-details/animal-details.component';
 import { GetCategoryAdminComponent } from './Admin/get-category-admin/get-category-admin.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { GetCategoryAdminComponent } from './Admin/get-category-admin/get-catego
     
     AnimalDetailsComponent,
     GetCategoryAdminComponent,
+    FooterComponent,
   ],
   imports: [
     FormsModule,
