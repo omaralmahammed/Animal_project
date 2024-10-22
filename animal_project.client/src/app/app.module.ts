@@ -34,7 +34,9 @@ import { ProfileComponent } from './Omar/profile/profile.component';
     LoginComponent,
     CategoryComponent,
     AllAnimalComponent,
+
     AdminSideComponent,
+
     NavBarComponent,
     FormComponent,
     LoginComponent,
@@ -51,6 +53,27 @@ import { ProfileComponent } from './Omar/profile/profile.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
 
       //OMAR
+      { path: 'registration', component: RegistrationComponent},
+      { path: 'login', component: LoginComponent },
+      { path: 'category', component: CategoryComponent },
+      { path: 'Animal/:id', component: AllAnimalComponent },
+      { path: 'login', component: LoginComponent},
+      { path: 'profile', component: ProfileComponent },
+
+
+
+
+
+
+
+
+
+
+
+
+      //RAHAF
+      { path: 'Posts', component: PostComponent },
+      { path: 'Contact', component: ContactComponent }, 
       { path: 'registration', component: RegistrationComponent },
       { path: 'login', component: LoginComponent },
       { path: 'category', component: CategoryComponent },
@@ -137,7 +160,65 @@ import { ProfileComponent } from './Omar/profile/profile.component';
 
 
 
+
+
+
+
+      //Hadeel
+
+
+
+
+
+
+
+
+
+
+
+
       //SUHA
+
+      //Yousef
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      //Raneem
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      //SUHA
+
 
 
 
