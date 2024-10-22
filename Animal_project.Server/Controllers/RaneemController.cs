@@ -81,7 +81,7 @@ namespace Animal_project.Server.Controllers
             {
                 Name = request.Name,
                 Description = request.Description,
-                Image =request.Image.FileName
+                Image = request.Image.FileName
             };
 
             _db.Categories.Add(newCategory);
