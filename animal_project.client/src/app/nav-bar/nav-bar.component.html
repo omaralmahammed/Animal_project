@@ -1,20 +1,40 @@
 <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top px-4 px-lg-5">
-  <a href="index.html" class="navbar-brand d-flex align-items-center">
+  <a routerLink="/" class="navbar-brand d-flex align-items-center">
     <h1 class="m-0">Milky</h1>
   </a>
-  <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+
   <div class="collapse navbar-collapse" id="navbarCollapse">
+    <div class="navbar-nav mx-auto p-4 p-lg-0">
+      <a routerLink="/" class="nav-item nav-link">Home</a>
+      <a routerLink="/" class="nav-item nav-link">Donation</a>
+      <a routerLink="/" class="nav-item nav-link">Animals</a>
+      <a routerLink="/" class="nav-item nav-link">Shelters</a>
+      <a routerLink="/" class="nav-item nav-link">About</a>
+      <a routerLink="/" class="nav-item nav-link">Contact Us</a>
+    </div>
     <div class="navbar-nav ms-auto p-4 p-lg-0">
       <a href="index.html" class="nav-item nav-link active">Home</a>
       <a routerLink="/category" class="nav-item nav-link ">Our Animals</a>
       <a routerLink="/Admin" class="nav-item nav-link ">Admin</a>
 
-      <a href="about.html" class="nav-item nav-link">About</a>
-      <a href="service.html" class="nav-item nav-link">Services</a>
-      <a href="product.html" class="nav-item nav-link">Products</a>
+    <div class="navbar-nav ms-auto p-4 p-lg-0" *ngIf="UserId == null">
+      <a routerLink="login" class="nav-item nav-link btn btn-secondary rounded-pill py-3 px-4">Login</a>
+      <a routerLink="registration" class="nav-item nav-link btn btn-primary rounded-pill py-3 px-3">Sign up</a>
+    </div>
+
+    <div class="navbar-nav ms-auto p-4 p-lg-0" *ngIf="UserId != null">
       <div class="nav-item dropdown">
+        <a><i class="fas fa-user"></i></a>
+        <div class="dropdown-menu bg-light m-0" style="right:-40px">
+          <a routerLink="/profile" class="dropdown-item">Profile</a>
+          <a class="dropdown-item">My Application</a>
+          <a class="dropdown-item" (click)="logout()">Log out</a>
+        </div>
+      </div>
         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
         <div class="dropdown-menu bg-light m-0">
           <a href="gallery.html" class="dropdown-item">Gallery</a>
@@ -30,5 +50,6 @@
     <div class="border-start ps-4 d-none d-lg-block">
       <button type="button" class="btn btn-sm p-0"><i class="fa fa-search"></i></button>
     </div>
+
   </div>
 </nav>

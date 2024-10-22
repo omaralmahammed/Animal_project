@@ -1,10 +1,10 @@
 <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
   <div class="container text-center py-5">
-    <h1 class="display-3 text-white mb-4 animated slideInDown">Log In</h1>
+    <h1 class="display-3 text-white mb-4 animated slideInDown">Profile</h1>
     <nav aria-label="breadcrumb animated slideInDown">
       <ol class="breadcrumb justify-content-center mb-0">
         <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Log in</li>
+        <li class="breadcrumb-item active" aria-current="page">Profile</li>
       </ol>
     </nav>
   </div>
@@ -13,27 +13,47 @@
 <div class="row justify-content-center ">
 
   <div class="col-lg-5 wow fadeInUp mx-auto my-5 border border-secondary rounded p-4" data-wow-delay="0.1s">
-    <h2 class="mb-4 text-center">Login Now</h2>
-    <br />
+  
 
-    <form #loginForm="ngForm" (ngSubmit)="checkUser(loginForm.value)">
+    <form #profileForm="ngForm" (ngSubmit)="updateUserInfo(profileForm.value)">
       <div class="row g-3">
+        <div class="col-md-6">
+          <div class="form-floating">
+            <input type="text" class="form-control" name="FullName" placeholder="Full Name" ngModel>
+            <label for="name">Full Name</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating">
+            <input type="text" class="form-control" name="PhoneNumber" placeholder="Phone Number" ngModel>
+            <label for="name">Phone Number</label>
+          </div>
+        </div>
+
         <div class="col-12">
           <div class="form-floating">
             <input type="text" class="form-control" name="Email" placeholder="Email" ngModel>
             <label for="Email">Email</label>
           </div>
         </div>
+
+        <div class="col-12">
+          <div class="form-floating">
+            <input type="text" class="form-control" name="Address" placeholder="Address" ngModel>
+            <label for="Email">Address</label>
+          </div>
+        </div>
+
         <div class="col-12">
           <div class="form-floating">
             <input type="password" class="form-control" name="Password" placeholder="Password" ngModel>
             <label for="Password">Password</label>
           </div>
         </div>
-        
+
         <div class="col-12 text-center">
-          <button class="btn btn-secondary rounded-pill py-3 px-5" type="submit" >
-            Login in
+          <button class="btn btn-secondary rounded-pill py-3 px-5" type="submit">
+            login Up
           </button>
         </div>
       </div>
