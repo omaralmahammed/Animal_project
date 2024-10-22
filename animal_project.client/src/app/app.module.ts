@@ -17,6 +17,8 @@ import { CategoryComponent } from './Raneem/category/category.component';
 import { AllAnimalComponent } from './Raneem/all-animal/all-animal.component';
 import { FormComponent } from './Hadeel/form/form.component';
 import { ProfileComponent } from './Omar/profile/profile.component';
+import { ContactComponent } from './Yousef/contact/contact.component';
+import { AboutComponent } from './Yousef/about/about.component';
 
 @NgModule({
   declarations: [
@@ -146,6 +148,28 @@ import { ProfileComponent } from './Omar/profile/profile.component';
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      //Yousef
+
+
+
+
+      { path: 'Contact', component: ContactComponent }, 
+      { path: 'About', component: AboutComponent },
 
 
 
