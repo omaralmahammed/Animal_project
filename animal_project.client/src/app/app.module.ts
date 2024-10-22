@@ -29,6 +29,7 @@ import { AddCategoryAdminComponent } from './Admin/add-category-admin/add-catego
 import { GetAnimalAdminComponent } from './Admin/get-animal-admin/get-animal-admin.component';
 import { UpdatAnimalAdminComponent } from './Admin/updat-animal-admin/updat-animal-admin.component';
 import { AddAnimalAdminComponent } from './Admin/add-animal-admin/add-animal-admin.component';
+import { GetShelterAdminComponent } from './Admin/get-shelter-admin/get-shelter-admin.component';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { AddAnimalAdminComponent } from './Admin/add-animal-admin/add-animal-adm
     GetAnimalAdminComponent,
     UpdatAnimalAdminComponent,
     AddAnimalAdminComponent,
+    GetShelterAdminComponent,
   ],
   imports: [
     FormsModule,
@@ -184,6 +186,7 @@ import { AddAnimalAdminComponent } from './Admin/add-animal-admin/add-animal-adm
             { path: 'getAnimalAdmin', component: GetAnimalAdminComponent },
             { path: 'updatAnimalAdmin/:id', component: UpdatAnimalAdminComponent },
             { path: 'AddAnimalAdmin', component: AddAnimalAdminComponent },
+            { path: 'getSheltersAdmin', component: GetShelterAdminComponent },
 
           ]
       }

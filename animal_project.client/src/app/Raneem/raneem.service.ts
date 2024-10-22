@@ -73,5 +73,23 @@ export class RaneemService {
     return this.http.get<any>(`${this.staticData}/Raneem/Shelters`);
   }
 
+  getShelterById(id: any): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/Raneem/ShelterById/${id}`);
+  }
 
+
+  AddShelter(data: any): Observable<any> {
+    return this.http.post<any>(`${this.staticData}Raneem/CreateShelter`, data)
+  }
+
+
+  UpdateShelter(id: any, data: any): Observable<any> {
+
+    return this.http.put(`${this.staticData}/Raneem/UpdateShelter/${id}`, data)
+  }
+
+  deletShelter(id: any): Observable<any> {
+
+    return this.http.delete<any>(`${this.staticData}/Raneem/DeleteShelter/${id}`)
+  }
 }
