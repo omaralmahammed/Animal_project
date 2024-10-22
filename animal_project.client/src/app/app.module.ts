@@ -148,9 +148,9 @@ import { ProfileComponent } from './Omar/profile/profile.component';
 
       {path: 'Admin', component: AdminSideComponent, children:
       
-     [
+      [
 
-          ]
+      ]
       }
 
     ])
