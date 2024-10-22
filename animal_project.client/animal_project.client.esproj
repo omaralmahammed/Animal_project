@@ -8,8 +8,8 @@
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\animal_project.client\browser\</BuildOutputFolder>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="src\app\Admin\Posts\" />
     <Folder Include="src\app\Hadeel\" />
-    <Folder Include="src\app\Admin\" />
     <Folder Include="src\app\Rahaf\" />
     <Folder Include="src\app\Suha\" />
     <Folder Include="src\app\Yousef\" />

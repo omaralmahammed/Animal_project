@@ -1,0 +1,4 @@
+.table img {
+  max-width: 80px; /* Ensures images don't exceed specified size */
+  height: auto; /* Maintains aspect ratio */
+}

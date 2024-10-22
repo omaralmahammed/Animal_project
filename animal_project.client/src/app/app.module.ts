@@ -19,7 +19,12 @@ import { FormComponent } from './Hadeel/form/form.component';
 import { ContactComponent } from './Yousef/contact/contact.component';
 import { AboutComponent } from './Yousef/about/about.component';
 import { ProfileComponent } from './Omar/profile/profile.component';
+import { GetAllPostsComponent } from './Admin/get-all-posts/get-all-posts.component';
+import { GetByStoryIdComponent } from './Admin/get-by-story-id/get-by-story-id.component';
+import { AnimalDetailsComponent } from './Raneem/animal-details/animal-details.component';
+import { GetCategoryAdminComponent } from './Admin/get-category-admin/get-category-admin.component';
 import { FooterComponent } from './footer/footer.component';
+
 
 @NgModule({
   declarations: [
@@ -41,6 +46,11 @@ import { FooterComponent } from './footer/footer.component';
     LoginComponent,
     ContactComponent,
     ProfileComponent,
+    GetAllPostsComponent,
+    GetByStoryIdComponent,
+    
+    AnimalDetailsComponent,
+    GetCategoryAdminComponent,
     FooterComponent,
   ],
   imports: [
@@ -57,8 +67,7 @@ import { FooterComponent } from './footer/footer.component';
 
       { path: 'registration', component: RegistrationComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'category', component: CategoryComponent },
-      { path: 'Animal/:id', component: AllAnimalComponent },
+     
       { path: 'login', component: LoginComponent },
       { path: 'profile', component: ProfileComponent },
 
@@ -93,8 +102,7 @@ import { FooterComponent } from './footer/footer.component';
 
 
       //Hadeel
-
-
+      { path: 'UserForm/:id', component: FormComponent },
 
 
 
@@ -125,8 +133,10 @@ import { FooterComponent } from './footer/footer.component';
 
       //Raneem
 
-
-
+ { path: 'category', component: CategoryComponent },
+      { path: 'Animal/:id', component: AllAnimalComponent },
+      { path: 'AnimalDetails/:id', component: AnimalDetailsComponent },
+      
 
 
 
@@ -155,7 +165,10 @@ import { FooterComponent } from './footer/footer.component';
         path: 'Admin', component: AdminSideComponent, children:
 
           [
+            { path: "AllPosts", component: GetAllPostsComponent },
 
+
+            { path: 'getCategoryAdmin', component: GetCategoryAdminComponent },
           ]
       }
 

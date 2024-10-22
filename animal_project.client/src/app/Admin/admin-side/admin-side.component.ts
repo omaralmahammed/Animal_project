@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './admin-side.component.css'
 })
 export class AdminSideComponent {
-
+  toggleDropdown(element: any) {
+    element.classList.toggle('active');
+  }
 }
