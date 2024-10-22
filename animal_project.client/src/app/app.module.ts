@@ -57,6 +57,7 @@ import { AboutComponent } from './Yousef/about/about.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
 
       //OMAR
+
       { path: 'registration', component: RegistrationComponent},
       { path: 'login', component: LoginComponent },
       { path: 'category', component: CategoryComponent },
