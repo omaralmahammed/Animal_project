@@ -2,26 +2,26 @@ import { Component } from '@angular/core';
 import { RaneemService } from '../../Raneem/raneem.service';
 
 @Component({
-  selector: 'app-get-category-admin',
-  templateUrl: './get-category-admin.component.html',
-  styleUrl: './get-category-admin.component.css'
+  selector: 'app-get-animal-admin',
+  templateUrl: './get-animal-admin.component.html',
+  styleUrl: './get-animal-admin.component.css'
 })
-export class GetCategoryAdminComponent {
+export class GetAnimalAdminComponent {
 
   searchTerm: string = '';
-  categoryArray: any[] = [];
+  AnimalArray: any[] = [];
   filteredRecipeArray: any[] = [];
   constructor(private _ser: RaneemService) { }
 
   ngOnInit() {
-    this.Getcategory();
+    this.GetAlllAnimal();
   }
 
-  Getcategory() {
-    this._ser.GetAllCategory().subscribe((data) => {
-      this.categoryArray = data;
+  GetAlllAnimal() {
+    this._ser.Getanimal().subscribe((data) => {
+      this.AnimalArray = data;
       //this.filteredRecipeArray = this.RecipeArray;
-      console.log("All category: ", this.categoryArray);
+      console.log("All animal: ", this.AnimalArray);
     });
   }
 
@@ -37,10 +37,10 @@ export class GetCategoryAdminComponent {
   //  }
   //}
 
-  deletCategoryId(id: any) {
-    this._ser.deletCategory(id).subscribe(() => {
-      alert("category deleted successfully");
-      this.Getcategory();
+  deletAnimalId(id: any) {
+    this._ser.deletAnimal(id).subscribe(() => {
+      alert("Animal deleted successfully");
+      this.GetAlllAnimal();
     });
   }
 }

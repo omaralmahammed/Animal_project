@@ -1,0 +1,54 @@
+<hr />
+<h2>Animal</h2>
+<hr />
+
+
+<button class="btn btn-success mb-0" [routerLink]="['/Admin/AddAnimalAdmin']">Add Animal</button>
+
+<table class="table table-striped table-hover text-center" style="margin-top: 20px;">
+  <thead>
+    <tr>
+      <th scope="col">Image</th>
+      <th scope="col">Name</th>
+      <th scope="col">description</th>
+      <th scope="col">species</th>
+      <th scope="col">breed</th>
+      <th scope="col">age</th>
+      <th scope="col">size</th>
+      <th scope="col">temperament</th>
+      <th scope="col">specialNeeds</th>
+      <th scope="col">adoptionStatus</th>
+
+
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of AnimalArray">
+      <td>
+        <a class="postcard__img_link">
+          <img class="postcard__img"
+               [src]="'https://localhost:44378/api/images/getImages/' + item.image1"
+               [alt]="item.image1"
+               style="width: 100px; height: 100px;" />
+        </a>
+      </td>
+      <td>{{item.name}}</td>
+      <td>{{item.description}}</td>
+      <td>{{item.species}}</td>
+      <td>{{item.breed}}</td>
+      <td>{{item.age}}</td>
+      <td>{{item.size}}</td>
+      <td>{{item.temperament}}</td>
+      <td>{{item.specialNeeds}}</td>
+      <td>{{item.adoptionStatus}}</td>
+      
+
+      <td>
+        <button class="btn btn-secondary me-2" style="width: 80px;" [routerLink]="['/Admin/updatAnimalAdmin', item.animalId]">Edit</button>
+
+        <button class="btn btn-danger" style="width: 80px;" (click)="deletAnimalId(item.animalId)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
