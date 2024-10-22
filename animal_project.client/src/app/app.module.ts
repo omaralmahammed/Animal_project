@@ -31,15 +31,19 @@ import { AboutComponent } from './Yousef/about/about.component';
     AppComponent,
     HomeComponent,
     AdminSideComponent,
-    NavBarComponent,
     RegistrationComponent,
-    LoginComponent,
     CategoryComponent,
     AllAnimalComponent,
+
+    AllAnimalComponent,
     AdminSideComponent,
+
     NavBarComponent,
     FormComponent,
     LoginComponent,
+    ProfileComponent,
+  
+    ContactComponent,
     ProfileComponent
   ],
   imports: [
@@ -51,6 +55,29 @@ import { AboutComponent } from './Yousef/about/about.component';
     AppRoutingModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
+
+      //OMAR
+      { path: 'registration', component: RegistrationComponent},
+      { path: 'login', component: LoginComponent },
+      { path: 'category', component: CategoryComponent },
+      { path: 'Animal/:id', component: AllAnimalComponent },
+      { path: 'login', component: LoginComponent},
+      { path: 'profile', component: ProfileComponent },
+
+
+
+
+
+
+
+
+
+
+
+
+      //RAHAF
+      { path: 'Posts', component: PostComponent },
+      { path: 'Contact', component: ContactComponent }, 
 
       //OMAR
       { path: 'registration', component: RegistrationComponent },
@@ -75,6 +102,20 @@ import { AboutComponent } from './Yousef/about/about.component';
       { path: 'posts', component: PostComponent },
       { path: 'reply', component: ReplyComponent },
       { path: 'comments', component: CommentComponent },
+      { path: 'Animal/:id', component:AllAnimalComponent },
+
+
+
+
+
+
+
+
+
+
+
+      //Hadeel
+
 
 
 
@@ -121,6 +162,53 @@ import { AboutComponent } from './Yousef/about/about.component';
 
 
 
+
+
+      //Yousef
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      //Raneem
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      //SUHA
+
+
+
+      {path: 'Admin', component: AdminSideComponent, children:
+      
+     [
 
 
 
