@@ -19,6 +19,9 @@ import { FormComponent } from './Hadeel/form/form.component';
 import { ContactComponent } from './Yousef/contact/contact.component';
 import { AboutComponent } from './Yousef/about/about.component';
 import { ProfileComponent } from './Omar/profile/profile.component';
+import { GetAllPostsComponent } from './Admin/get-all-posts/get-all-posts.component';
+import { GetByStoryIdComponent } from './Admin/get-by-story-id/get-by-story-id.component';
+
 
 @NgModule({
   declarations: [
@@ -40,6 +43,9 @@ import { ProfileComponent } from './Omar/profile/profile.component';
     LoginComponent,
     ContactComponent,
     ProfileComponent,
+    GetAllPostsComponent,
+    GetByStoryIdComponent,
+    
   ],
   imports: [
     FormsModule,
@@ -152,6 +158,8 @@ import { ProfileComponent } from './Omar/profile/profile.component';
         path: 'Admin', component: AdminSideComponent, children:
 
           [
+            { path: "AllPosts", component: GetAllPostsComponent },
+
 
           ]
       }
