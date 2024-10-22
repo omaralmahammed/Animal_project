@@ -11,19 +11,22 @@ import { PostComponent } from './Rahaf/post/post.component';
 import { RouterModule } from '@angular/router';
 import { AdminSideComponent } from './Admin/admin-side/admin-side.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { ContactComponent } from './Yousef/contact/contact.component';
 import { RegistrationComponent } from './Omar/registration/registration.component';
 import { LoginComponent } from './Omar/login/login.component';
 import { CategoryComponent } from './Raneem/category/category.component';
 import { AllAnimalComponent } from './Raneem/all-animal/all-animal.component';
 import { FormComponent } from './Hadeel/form/form.component';
 import { ProfileComponent } from './Omar/profile/profile.component';
+import { ContactComponent } from './Yousef/contact/contact.component';
+import { AboutComponent } from './Yousef/about/about.component';
 
 @NgModule({
   declarations: [
-
+    AppComponent,
     PostComponent,
     CommentComponent,
+    ReplyComponent,
+    HomeComponent,
     ReplyComponent,
     AppComponent,
     HomeComponent,
@@ -32,6 +35,7 @@ import { ProfileComponent } from './Omar/profile/profile.component';
     CategoryComponent,
     AllAnimalComponent,
 
+    AllAnimalComponent,
     AdminSideComponent,
 
     NavBarComponent,
@@ -40,11 +44,13 @@ import { ProfileComponent } from './Omar/profile/profile.component';
     ProfileComponent,
   
     ContactComponent,
+    ProfileComponent
   ],
   imports: [
+    FormsModule,
     ReactiveFormsModule,
-    BrowserModule,
-    HttpClientModule,
+    BrowserModule, HttpClientModule,
+    AppRoutingModule,
     FormsModule,
     AppRoutingModule,
     RouterModule.forRoot([
@@ -72,9 +78,27 @@ import { ProfileComponent } from './Omar/profile/profile.component';
       //RAHAF
       { path: 'Posts', component: PostComponent },
       { path: 'Contact', component: ContactComponent }, 
+
+      //OMAR
       { path: 'registration', component: RegistrationComponent },
       { path: 'login', component: LoginComponent },
       { path: 'category', component: CategoryComponent },
+      { path: 'Animal/:id', component: AllAnimalComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'profile', component: ProfileComponent },
+
+
+
+
+
+
+
+
+
+
+
+
+      //RAHAF
       { path: 'posts', component: PostComponent },
       { path: 'reply', component: ReplyComponent },
       { path: 'comments', component: CommentComponent },
@@ -91,6 +115,63 @@ import { ProfileComponent } from './Omar/profile/profile.component';
 
 
       //Hadeel
+
+
+
+
+
+
+
+
+
+
+
+
+
+      //Hadeel
+
+
+
+
+
+
+
+
+
+
+
+
+
+      //Yousef
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      //Yousef
+
+
+
+
+      { path: 'Contact', component: ContactComponent }, 
+      { path: 'About', component: AboutComponent },
+
+
 
 
 
@@ -146,9 +227,32 @@ import { ProfileComponent } from './Omar/profile/profile.component';
 
 
 
-      {path: 'Admin', component: AdminSideComponent, children:
-      
-      [
+     
+
+      //Raneem
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      //SUHA
+
+
+
+      {
+        path: 'Admin', component: AdminSideComponent, children:
+          [
 
       ]
       }

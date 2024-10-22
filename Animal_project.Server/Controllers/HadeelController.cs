@@ -20,32 +20,46 @@ namespace Animal_project.Server.Controllers
         [HttpPost("AddUserForm")]
         public IActionResult adduserform(int id, hadeelFormDTO dTO)
         {
-            var user = _db.Users.Where(x => x.UserId == id);
-            var u = new User
+            var animal = _db.Animals.Where(x => x.AnimalId == id);
+            if (animal == null)
             {
-                UserId = dTO.UserId,
-                FullName = dTO.FullName,
-                Email = dTO.Email,
-                Address = dTO.Address,
-                MedicalStatus = dTO.MedicalStatus,
-                FlatType = dTO.FlatType,
-                FinancialStatus = dTO.FinancialStatus,
-                HaveKids = dTO.HaveKids,
-                MoreDetails = dTO.MoreDetails,
-                PhoneNo = dTO.PhoneNumber,
-            };
-            _db.Users.Add(u);
-            _db.SaveChanges();
-
-            var f = new AdoptionApplication
+                return NotFound();
+            }
+            else
             {
-                AnimalId =dTO.AnimalId,
-                ApplicationDate = dTO.ApplicationDate,
-                Status = dTO.Status,
-            };
+                var f = new AdoptionApplication
+                {
+                    ApplicationId = dTO.ApplicationId,
+                    UserId = dTO.UserId,
+                    AnimalId = dTO.AnimalId,
+                    ApplicationDate = dTO.ApplicationDate,
+                    Status = "pending",
 
-            _db.AdoptionApplications.Add(f);
-            _db.SaveChanges();
+                };
+
+                _db.AdoptionApplications.Add(f);
+                _db.SaveChanges();
+            }
+            return Ok();
+        }
+
+
+        [HttpPut("AdminApproved")]
+        public IActionResult adminapproved(int id, hadeelFormDTO dTO)
+        {
+            var animal = _db.AdoptionApplications.Where(x => x.AnimalId == id);
+
+            if (animal == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                
+            }
+            //_db.AdoptionApplications;
+            //_db.SaveChanges();
+
 
             return Ok();
         }
