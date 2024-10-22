@@ -13,9 +13,9 @@ namespace Animal_project.Server.DTO
 
         public DateTime? StoryDate { get; set; }
 
-        public string? Image1 { get; set; }
+        public IFormFile? Image1 { get; set; }
 
-        public string? Image2 { get; set; }
+        public IFormFile? Image2 { get; set; }
 
     }
 }

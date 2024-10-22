@@ -53,11 +53,11 @@ import { ProfileComponent } from './Omar/profile/profile.component';
 
       //OMAR
 
-      { path: 'registration', component: RegistrationComponent},
+      { path: 'registration', component: RegistrationComponent },
       { path: 'login', component: LoginComponent },
       { path: 'category', component: CategoryComponent },
       { path: 'Animal/:id', component: AllAnimalComponent },
-      { path: 'login', component: LoginComponent},
+      { path: 'login', component: LoginComponent },
 
 
 
@@ -73,7 +73,7 @@ import { ProfileComponent } from './Omar/profile/profile.component';
       { path: 'posts', component: PostComponent },
       { path: 'reply', component: ReplyComponent },
       { path: 'comments', component: CommentComponent },
-      { path: 'Animal/:id', component:AllAnimalComponent },
+      { path: 'Animal/:id', component: AllAnimalComponent },
 
 
 
@@ -104,7 +104,7 @@ import { ProfileComponent } from './Omar/profile/profile.component';
 
       //Yousef
 
-      { path: 'Contact', component: ContactComponent }, 
+      { path: 'Contact', component: ContactComponent },
       { path: 'About', component: AboutComponent },
 
 
@@ -146,11 +146,12 @@ import { ProfileComponent } from './Omar/profile/profile.component';
 
 
 
-      {path: 'Admin', component: AdminSideComponent, children:
-      
-      [
+      {
+        path: 'Admin', component: AdminSideComponent, children:
 
-      ]
+          [
+
+          ]
       }
 
     ])
