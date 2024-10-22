@@ -31,7 +31,9 @@ import { ProfileComponent } from './Omar/profile/profile.component';
     RegistrationComponent,
     CategoryComponent,
     AllAnimalComponent,
+
     AdminSideComponent,
+
     NavBarComponent,
     FormComponent,
     LoginComponent,
@@ -68,6 +70,11 @@ import { ProfileComponent } from './Omar/profile/profile.component';
 
 
       //RAHAF
+      { path: 'Posts', component: PostComponent },
+      { path: 'Contact', component: ContactComponent }, 
+      { path: 'registration', component: RegistrationComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'category', component: CategoryComponent },
       { path: 'posts', component: PostComponent },
       { path: 'reply', component: ReplyComponent },
       { path: 'comments', component: CommentComponent },
