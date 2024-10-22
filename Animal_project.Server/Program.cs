@@ -1,4 +1,5 @@
 using Animal_project.Server.Models;
+using Animal_project.Server.youseFDTO;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +23,10 @@ builder.Services.AddCors(options =>
         options.AllowAnyOrigin();
     });
 });
+
+builder.Services.AddScoped<IEmailService, EmailService>(); // yousef add this for sending email
+
+
 var app = builder.Build();
 
 app.UseDefaultFiles();
