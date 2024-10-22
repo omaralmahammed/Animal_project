@@ -37,10 +37,10 @@ export class GetCategoryAdminComponent {
   //  }
   //}
 
-  //deletrecipe(id: any) {
-  //  this._ser.deletCategory(id).subscribe(() => {
-  //    alert("category deleted successfully");
-  //    this.Getcategory();
-  //  });
-  //}
+  deletCategoryId(id: any) {
+    this._ser.deletCategory(id).subscribe(() => {
+      alert("category deleted successfully");
+      this.Getcategory();
+    });
+  }
 }
