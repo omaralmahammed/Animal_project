@@ -31,7 +31,10 @@ export class RahafService {
     return this.http.post<any>(`${this.staticData}/Rahaf/CreateReply`, data)
 
   }
+  CreatePost(data: any): Observable<any> {
+    return this.http.post<any>(`${this.staticData}/Rahaf/post`, data)
 
+  }
   //filter(name: any): Observable<any> {
   //  return this.http.get<any>(`${this.staticData}/Classes/filter?Name=${name}`);
   //}
