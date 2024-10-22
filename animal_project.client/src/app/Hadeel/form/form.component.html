@@ -1,31 +1,117 @@
-<form>
-  <div class="row g-3">
-    <div class="col-md-6">
-      <div class="form-floating">
-        <input type="text" class="form-control" id="name" placeholder="Your Name">
-        <label for="name">Your Name</label>
+<br />
+<br />
+
+<style>
+  .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .form-wrapper {
+    width: 100%;
+    max-width: 600px; /* Adjust the max-width as needed */
+  }
+</style>
+
+<div class="form-container">
+  <div class="form-wrapper">
+    <div class="row g-3">
+
+      <div class="col-12">
+        <div class="form-floating">
+          <input type="text" class="form-control" id="name" value="" placeholder="Name" readonly>
+          <label for="name">{{AnimalAraay.name}}</label>
+        </div>
       </div>
-    </div>
-    <div class="col-md-6">
-      <div class="form-floating">
-        <input type="email" class="form-control" id="email" placeholder="Your Email">
-        <label for="email">Your Email</label>
+
+      <div class="col-12">
+        <div class="form-floating">
+          <input type="text" class="form-control" id="species" value="" placeholder="Species" readonly>
+          <label for="species">{{AnimalAraay.species}}</label>
+        </div>
       </div>
-    </div>
-    <div class="col-12">
-      <div class="form-floating">
-        <input type="text" class="form-control" id="subject" placeholder="Subject">
-        <label for="subject">Subject</label>
+
+      <div class="col-12">
+        <div class="form-floating">
+          <input type="text" class="form-control" id="breed" value="" placeholder="Breed" readonly>
+          <label for="breed">{{AnimalAraay.breed}}</label>
+        </div>
       </div>
-    </div>
-    <div class="col-12">
-      <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 250px"></textarea>
-        <label for="message">Message</label>
+
+      <div class="col-12">
+        <div class="form-floating">
+          <input type="text" class="form-control" id="age" value="" placeholder="Age" readonly>
+          <label for="age">{{AnimalAraay.age}}</label>
+        </div>
       </div>
-    </div>
-    <div class="col-12">
-      <button class="btn btn-secondary rounded-pill py-3 px-5" type="submit">Send Message</button>
+
+      <div class="col-12">
+        <div class="form-floating">
+          <input type="text" class="form-control" id="size" value="" placeholder="Size" readonly>
+          <label for="size">{{AnimalAraay.specialNeeds}}</label>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="form-floating">
+          <input type="text" class="form-control" id="temperament" value="" placeholder="Temperament" readonly>
+          <label for="temperament">{{AnimalAraay.description}}</label>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="form-floating">
+          <input type="text" class="form-control" id="specialNeeds" value="" placeholder="Special Needs" readonly>
+          <label for="specialNeeds">{{AnimalAraay.adoptionStatus}}</label>
+        </div>
+      </div>
+
+      <!--<div class="col-12">
+    <div class="form-floating">
+      <textarea class="form-control" id="description" placeholder="Description" readonly>@Model.Description</textarea>
+      <label for="description">Description</label>
     </div>
   </div>
-</form>
+
+  <div class="col-12">
+    <div class="form-floating">
+      <input type="text" class="form-control" id="adoptionStatus" value="" placeholder="Adoption Status" readonly>
+      <label for="adoptionStatus">Adoption Status</label>
+    </div>
+  </div>-->
+      <form #formSubmit="ngForm" (ngSubmit)="FormSubmitUser(formSubmit.value)">
+
+        <div class="col-12">
+          <div class="form-floating">
+            <select class="form-control" id="haveKids" aria-label="Have Kids" ngModel required>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+            <label for="haveKids">Have Kids</label>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="form-floating">
+            <input type="text" class="form-control" id="financialStatus" placeholder="Financial Status" ngModel required>
+            <label for="financialStatus">Financial Status</label>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="form-floating">
+            <input type="text" class="form-control" id="moreDetails" placeholder="More Details" ngModel required>
+            <label for="moreDetails">More Details</label>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <button class="btn btn-secondary rounded-pill py-3 px-5" type="submit">Adopt</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>

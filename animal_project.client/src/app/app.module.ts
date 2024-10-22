@@ -21,6 +21,8 @@ import { AboutComponent } from './Yousef/about/about.component';
 import { ProfileComponent } from './Omar/profile/profile.component';
 import { GetAllPostsComponent } from './Admin/get-all-posts/get-all-posts.component';
 import { GetByStoryIdComponent } from './Admin/get-by-story-id/get-by-story-id.component';
+import { AnimalDetailsComponent } from './Raneem/animal-details/animal-details.component';
+import { GetCategoryAdminComponent } from './Admin/get-category-admin/get-category-admin.component';
 
 
 @NgModule({
@@ -46,6 +48,8 @@ import { GetByStoryIdComponent } from './Admin/get-by-story-id/get-by-story-id.c
     GetAllPostsComponent,
     GetByStoryIdComponent,
     
+    AnimalDetailsComponent,
+    GetCategoryAdminComponent,
   ],
   imports: [
     FormsModule,
@@ -61,9 +65,9 @@ import { GetByStoryIdComponent } from './Admin/get-by-story-id/get-by-story-id.c
 
       { path: 'registration', component: RegistrationComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'category', component: CategoryComponent },
-      { path: 'Animal/:id', component: AllAnimalComponent },
+     
       { path: 'login', component: LoginComponent },
+      { path: 'profile', component: ProfileComponent },
 
 
 
@@ -96,8 +100,7 @@ import { GetByStoryIdComponent } from './Admin/get-by-story-id/get-by-story-id.c
 
 
       //Hadeel
-
-
+      { path: 'UserForm/:id', component: FormComponent },
 
 
 
@@ -128,8 +131,10 @@ import { GetByStoryIdComponent } from './Admin/get-by-story-id/get-by-story-id.c
 
       //Raneem
 
-
-
+ { path: 'category', component: CategoryComponent },
+      { path: 'Animal/:id', component: AllAnimalComponent },
+      { path: 'AnimalDetails/:id', component: AnimalDetailsComponent },
+      
 
 
 
@@ -161,6 +166,7 @@ import { GetByStoryIdComponent } from './Admin/get-by-story-id/get-by-story-id.c
             { path: "AllPosts", component: GetAllPostsComponent },
 
 
+            { path: 'getCategoryAdmin', component: GetCategoryAdminComponent },
           ]
       }
 

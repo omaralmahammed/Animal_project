@@ -81,7 +81,7 @@ namespace Animal_project.Server.Controllers
             {
                 Name = request.Name,
                 Description = request.Description,
-                Image =request.Image.FileName
+                Image = request.Image.FileName
             };
 
             _db.Categories.Add(newCategory);
@@ -181,7 +181,32 @@ namespace Animal_project.Server.Controllers
             {
                 return BadRequest("Invalid category ID");
             }
-            var recipe = _db.Animals.Where(p => p.AnimalId == id).FirstOrDefault();
+            var recipe = _db.Animals.Where(p => p.AnimalId == id).Select(a => new
+            {
+                AnimalId = a.AnimalId,
+                Name = a.Name,
+                Species = a.Species,
+                Breed = a.Breed,
+                Age = a.Age,
+                Size = a.Size,
+                Temperament = a.Temperament,
+                SpecialNeeds = a.SpecialNeeds,
+                Description = a.Description,
+                AdoptionStatus = a.AdoptionStatus,
+                Image1 = a.Image1,
+                ShelterDetails = new
+                {
+                    ShelterId = a.Shelter.ShelterId,
+                    ShelterName = a.Shelter.ShelterName,
+                    ShelterDescription = a.Shelter.Description,
+                    ContactEmail = a.Shelter.ContactEmail,
+                    Phone = a.Shelter.Phone,
+                    OpenTime = a.Shelter.OpenTime,
+                    CloseTime = a.Shelter.CloseTime,
+                    OpenDay = a.Shelter.OpenDay,
+                    Address = a.Shelter.Address
+                }
+            }).FirstOrDefault();
             if (recipe == null)
             {
                 return NotFound("No category found for the given category ID");

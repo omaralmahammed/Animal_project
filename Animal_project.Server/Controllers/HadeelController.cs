@@ -17,6 +17,28 @@ namespace Animal_project.Server.Controllers
             _db = db;
         }
 
+        [HttpGet("GetAnimalDetails")]
+        public IActionResult GetAnimalDetails(int id)
+        {
+            var animal = _db.Animals
+                 .Where(x => x.AnimalId == id) 
+                 .Select(x => new
+                 {
+                     x.Size,
+                     x.Name,
+                     x.Species,
+                     x.Breed,
+                     x.Age,
+                     x.SpecialNeeds,
+                     x.Description,
+                     x.AdoptionStatus
+                 })
+                 .FirstOrDefault();
+
+
+            return Ok(animal);
+        }
+
         [HttpPost("AddUserForm")]
         public IActionResult adduserform(int id, hadeelFormDTO dTO)
         {
