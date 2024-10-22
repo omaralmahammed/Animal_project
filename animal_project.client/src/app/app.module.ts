@@ -19,6 +19,7 @@ import { FormComponent } from './Hadeel/form/form.component';
 import { ContactComponent } from './Yousef/contact/contact.component';
 import { AboutComponent } from './Yousef/about/about.component';
 import { ProfileComponent } from './Omar/profile/profile.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ProfileComponent } from './Omar/profile/profile.component';
     LoginComponent,
     ContactComponent,
     ProfileComponent,
+    FooterComponent,
   ],
   imports: [
     FormsModule,
