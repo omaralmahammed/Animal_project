@@ -164,7 +164,7 @@ import { GetCategoryAdminComponent } from './Admin/get-category-admin/get-catego
 
           [
             { path: "AllPosts", component: GetAllPostsComponent },
-
+            { path: "PostsByStoryId", component: GetByStoryIdComponent },
 
             { path: 'getCategoryAdmin', component: GetCategoryAdminComponent },
           ]
