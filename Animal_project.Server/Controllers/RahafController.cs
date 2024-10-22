@@ -127,27 +127,60 @@ namespace Animal_project.Server.Controllers
 
 
         // POST: api/Posts
+        // POST: api/Posts
+        // POST: api/Posts
         [HttpPost("post")]
-        public IActionResult CreatePost([FromBody] PostRequestDTO dto)
+        public IActionResult CreatePost([FromForm] PostRequestDTO dto) // لا تغيير هنا
         {
             var post = new Post
             {
                 UserId = dto.UserId,
                 AnimalId = dto.AnimalId,
                 StoryText = dto.StoryText,
-                StoryDate = dto.StoryDate ?? DateTime.Now,
-                Image1 = dto.Image1,
-                Image2 = dto.Image2
+                StoryDate = dto.StoryDate ?? DateTime.Now
             };
 
+            var folder = Path.Combine(Directory.GetCurrentDirectory(), "images");
+
+            // تأكد من وجود المجلد
+            if (!Directory.Exists(folder))
+            {
+                Directory.CreateDirectory(folder);
+            }
+
+            // تحميل الصورة الأولى
+            if (dto.Image1 != null)
+            {
+                var imageFile1 = Path.Combine(folder, dto.Image1.FileName);
+                using (var stream = new FileStream(imageFile1, FileMode.Create))
+                {
+                    dto.Image1.CopyTo(stream); // هنا بدون await
+                }
+                post.Image1 = dto.Image1.FileName; // تخزين اسم الصورة في المشاركة
+            }
+
+            // تحميل الصورة الثانية
+            if (dto.Image2 != null)
+            {
+                var imageFile2 = Path.Combine(folder, dto.Image2.FileName);
+                using (var stream = new FileStream(imageFile2, FileMode.Create))
+                {
+                    dto.Image2.CopyTo(stream); // هنا بدون await
+                }
+                post.Image2 = dto.Image2.FileName; // تخزين اسم الصورة في المشاركة
+            }
+
+            // إضافة المشاركة إلى قاعدة البيانات
             _db.Posts.Add(post);
-            _db.SaveChanges(); // Ensure changes are saved to the database
+            _db.SaveChanges(); // استخدم SaveChanges للتأكد من أن التغييرات تم حفظها
+
             return CreatedAtAction(nameof(GetPost), new { id = post.StoryId }, post);
         }
 
+
         // PUT: api/Posts/5
         [HttpPut("UpdatePost")]
-        public IActionResult UpdatePost(int id, [FromBody] PostRequestDTO dto)
+        public IActionResult UpdatePost(int id, [FromForm] PostRequestDTO dto) // تعديل هنا من [FromBody] إلى [FromForm]
         {
             var post = _db.Posts.FirstOrDefault(p => p.StoryId == id);
             if (post == null)
@@ -155,12 +188,48 @@ namespace Animal_project.Server.Controllers
                 return NotFound("المنشور غير موجود.");
             }
 
+            // استخدم القيم الجديدة فقط إذا كانت موجودة، وإلا استخدم القيم القديمة
             post.StoryText = dto.StoryText ?? post.StoryText;
             post.StoryDate = dto.StoryDate ?? post.StoryDate;
-            post.Image1 = dto.Image1 ?? post.Image1;
-            post.Image2 = dto.Image2 ?? post.Image2;
 
-            _db.SaveChanges(); // Ensure changes are saved to the database
+            // تحميل الصورة الأولى إذا كانت موجودة
+            if (dto.Image1 != null)
+            {
+                var folder = Path.Combine(Directory.GetCurrentDirectory(), "images");
+
+                // تأكد من وجود المجلد
+                if (!Directory.Exists(folder))
+                {
+                    Directory.CreateDirectory(folder);
+                }
+
+                var imageFile1 = Path.Combine(folder, dto.Image1.FileName);
+                using (var stream = new FileStream(imageFile1, FileMode.Create))
+                {
+                    dto.Image1.CopyTo(stream); // هنا بدون await
+                }
+                post.Image1 = dto.Image1.FileName; // تخزين اسم الصورة في المشاركة
+            }
+
+            if (dto.Image2 != null)
+            {
+                var folder = Path.Combine(Directory.GetCurrentDirectory(), "images");
+
+                // تأكد من وجود المجلد
+                if (!Directory.Exists(folder))
+                {
+                    Directory.CreateDirectory(folder);
+                }
+
+                var imageFile2 = Path.Combine(folder, dto.Image2.FileName);
+                using (var stream = new FileStream(imageFile2, FileMode.Create))
+                {
+                    dto.Image2.CopyTo(stream); // هنا بدون await
+                }
+                post.Image2 = dto.Image2.FileName; // تخزين اسم الصورة في المشاركة
+            }
+
+            _db.SaveChanges(); // تأكد من حفظ التغييرات في قاعدة البيانات
             return NoContent();
         }
 
