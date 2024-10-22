@@ -47,7 +47,7 @@ namespace Animal_project.Server.Controllers
         [HttpPut("AdminApproved")]
         public IActionResult adminapproved(int id, hadeelFormDTO dTO)
         {
-            var animal = _db.AdoptionApplications.Where(x => x.AnimalId == id);
+            var animal = _db.AdoptionApplications.FirstOrDefault(x => x.AnimalId == id);
 
             if (animal == null)
             {
@@ -55,11 +55,14 @@ namespace Animal_project.Server.Controllers
             }
             else
             {
-                
+                animal.Status = "Approved";
+                _db.AdoptionApplications.Update(animal);
+                _db.SaveChanges();
             }
-            //_db.AdoptionApplications;
-            //_db.SaveChanges();
 
+            var a = _db.Animals.FirstOrDefault(z => z.AnimalId == id);
+            _db.Animals.Remove(a);
+            _db.SaveChanges();
 
             return Ok();
         }
