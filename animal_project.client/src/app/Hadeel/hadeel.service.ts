@@ -17,4 +17,8 @@ export class HadeelService {
     return this.http.get<any>(`${this.staticData}/Hadeel/GetAnimalDetails?id=${id}`);
   }
 
+  AddAnimal(data: any, animalId: any, userId: any): Observable<any> {
+    return this.http.post<any>(`${this.staticData}/Hadeel/AddUserForm/${userId}/${animalId}`, data)
+  }
+
 }
