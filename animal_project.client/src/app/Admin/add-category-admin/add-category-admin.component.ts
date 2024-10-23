@@ -19,10 +19,9 @@ export class AddCategoryAdminComponent {
   AddNewCategory(data: any) {
     var form = new FormData();
 
-    // التحقق من تعبئة جميع الحقول المطلوبة
     if (!data.name || !data.description || !this.image) {
       alert("Please fill in all required fields.");
-      return; // إيقاف العملية إذا كانت الحقول غير مكتملة
+      return; 
     }
 
     for (let key in data) {
