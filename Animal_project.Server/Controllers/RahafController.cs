@@ -45,7 +45,7 @@ namespace Animal_project.Server.Controllers
                     Image1 = p.Image1,
                     Image2 = p.Image2,
                     Flag = p.Flag,
-                    LikeNumber = p.Likes.Count,  
+                    LikeNumber = p.Likes.Where(l => l.Flag == true).Count(),
                     Likes = p.Likes.Select(l => new
                     {
                         UserName = l.User.FullName
@@ -73,7 +73,7 @@ namespace Animal_project.Server.Controllers
 
             return Ok(posts);
         }
-
+       
         // GET: api/Posts/5
         [HttpGet("GetPost/{id}")]
         public IActionResult GetPost(int id)
@@ -414,44 +414,50 @@ namespace Animal_project.Server.Controllers
         ///////
         ///
 
-        [HttpPost("like/{postId}")]
-        public IActionResult LikePost(int postId)
+        [HttpPost("addLike")]
+        public IActionResult LikePost([FromBody] LikeDto likeDto)
         {
-            Console.WriteLine($"LikePost called with postId: {postId}"); // Log for debugging
-            var userId = 2;
+            // تحقق إذا كان الإعجاب موجودًا بالفعل
+            var existingLike = _db.Likes
+                .FirstOrDefault(l => l.PostId == likeDto.PostId && l.UserId == likeDto.UserId);
 
-            var post = _db.Posts.Find(postId);
-            if (post == null)
-            {
-                return NotFound(new { Message = "Post not found." });
-            }
-
-            var existingLike = _db.Likes.FirstOrDefault(l => l.PostId == postId && l.UserId == userId);
             if (existingLike != null)
             {
-                _db.Likes.Remove(existingLike);
-                post.LikeNumber -= 1;
+                // إذا كان موجودًا، عكس حالة الإعجاب
+                existingLike.Flag = existingLike.Flag == true ? false : true; // عكس الحالة
+                _db.SaveChanges();
+                return Ok(existingLike);
             }
             else
             {
-                var like = new Like { UserId = userId, PostId = postId };
+                // إذا لم يكن موجودًا، أضف إعجاب جديد
+                var like = new Like
+                {
+                    PostId = likeDto.PostId,
+                    UserId = likeDto.UserId,
+                    Flag = true // تعيين الفلاغ إلى true
+                };
                 _db.Likes.Add(like);
-                post.LikeNumber += 1;
+                _db.SaveChanges();
+                return Ok(like);
             }
-
-            _db.SaveChanges();
-            return Ok(new { Message = "Success", LikeCount = post.LikeNumber });
         }
 
-        //private int GetCurrentUserId()
-        //{
-        //    var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        //    if (int.TryParse(userIdClaim, out int userId))
-        //    {
-        //        return userId;
-        //    }
-        //    throw new UnauthorizedAccessException("User is not authenticated.");
-        //}
+
+
+        // GET: api/likes/{postId}
+        [HttpGet("countLikes/{postId}")]
+        public IActionResult GetLikesForPost(int postId)
+        {
+            var likeCount = _db.Likes
+                .Where(l => l.PostId == postId && l.Flag == true)
+                .Count();
+
+            return Ok(likeCount);
+        }
+
+
+
     }
 }
 
