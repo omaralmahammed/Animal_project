@@ -1,0 +1,97 @@
+<form #updateAnimalform="ngForm" (ngSubmit)="UpdateAnimalAdmin(updateAnimalform.value)" style="max-width: 80%; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: gainsboro;">
+  <input type="hidden" name="__RequestVerificationToken" value="TOKEN_VALUE">
+
+  <h2 style="text-align: center; margin-bottom: 20px;">Update animal</h2>
+
+  <div class="form-container">
+    <div class="row">
+
+      <div class="col-md-6 mb-3">
+        <label for="recipeId" class="form-label" style="font-weight: bold;">Category</label>
+        <select id="recipeId" name="categoryId" class="form-control" required="required" ngModel>
+          <option value="" disabled selected>Select a category</option>
+          <option *ngFor="let item of CategoryArray" [value]="item.categoryId">{{ item.name }}</option>
+        </select>
+        <span class="text-danger" id="recipeId-error" style="color: red; font-size: 0.875em;"></span>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="recipeId" class="form-label" style="font-weight: bold;">Shelter</label>
+        <select id="recipeId" name="shelterId" class="form-control" required="required" ngModel>
+          <option value="" disabled selected>Select a Shelter</option>
+          <option *ngFor="let item of shelterArray" [value]="item.shelterId">{{ item.shelterName }}</option>
+        </select>
+        <span class="text-danger" id="recipeId-error" style="color: red; font-size: 0.875em;"></span>
+      </div>
+
+
+      <div class="col-md-6 mb-3">
+        <label for="subRecipeName" class="form-label" style="font-weight: bold;">Animal Name</label>
+        <input type="text" id="subRecipeName" name="name" class="form-control" required="required" [(ngModel)]="DetailsArray.name">
+        <span class="text-danger" id="subRecipeName-error" style="color: red; font-size: 0.875em;"></span>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="benefits" class="form-label" style="font-weight: bold;">description</label>
+        <input type="text" id="benefits" name="description" class="form-control" required="required" [(ngModel)]="DetailsArray.description">
+        <span class="text-danger" id="benefits-error" style="color: red; font-size: 0.875em;"></span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="preparationSteps" class="form-label" style="font-weight: bold;">species</label>
+        <input type="text" id="preparationSteps" name="species" class="form-control" required="required" [(ngModel)]="DetailsArray.species">
+        <span class="text-danger" id="preparationSteps-error" style="color: red; font-size: 0.875em;"></span>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="preparationTime" class="form-label" style="font-weight: bold;">breed</label>
+        <input type="text" id="preparationTime" name="breed" class="form-control" required="required" [(ngModel)]="DetailsArray.breed">
+        <span class="text-danger" id="preparationTime-error" style="color: red; font-size: 0.875em;"></span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="benefits" class="form-label" style="font-weight: bold;">age</label>
+        <input type="text" id="benefits" name="age" class="form-control" required="required" [(ngModel)]="DetailsArray.age">
+        <span class="text-danger" id="benefits-error" style="color: red; font-size: 0.875em;"></span>
+      </div>
+
+
+      <div class="col-md-6 mb-3">
+        <label for="benefits" class="form-label" style="font-weight: bold;">size</label>
+        <input type="text" id="benefits" name="size" class="form-control" required="required" [(ngModel)]="DetailsArray.size">
+        <span class="text-danger" id="benefits-error" style="color: red; font-size: 0.875em;"></span>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="benefits" class="form-label" style="font-weight: bold;">temperament</label>
+        <input type="text" id="benefits" name="temperament" class="form-control" required="required" [(ngModel)]="DetailsArray.temperament">
+        <span class="text-danger" id="benefits-error" style="color: red; font-size: 0.875em;"></span>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="benefits" class="form-label" style="font-weight: bold;">specialNeeds</label>
+        <input type="text" id="benefits" name="specialNeeds" class="form-control" required="required" [(ngModel)]="DetailsArray.specialNeeds">
+        <span class="text-danger" id="benefits-error" style="color: red; font-size: 0.875em;"></span>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="benefits" class="form-label" style="font-weight: bold;">adoptionStatus</label>
+        <input type="text" id="benefits" name="adoptionStatus" class="form-control" required="required" [(ngModel)]="DetailsArray.adoptionStatus">
+        <span class="text-danger" id="benefits-error" style="color: red; font-size: 0.875em;"></span>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label for="subRecipeImage" class="form-label" style="font-weight: bold;"> Image</label>
+        <input type="file" id="subRecipeImage" name="image1" class="form-control" required="required" [(ngModel)]="DetailsArray.image1" (change)="changeimageevevnt($event)">
+        <span class="text-danger" id="subRecipeImage-error" style="color: red; font-size: 0.875em;"></span>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn w-25" style="background-color: #e955fc;">Submit</button>
+    </div>
+  </div>
+</form>

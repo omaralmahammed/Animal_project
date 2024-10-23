@@ -1,48 +1,30 @@
-<!--<div class="container mt-4">
+<div class="container mt-4">
   <h2 class="text-center mb-4">Post List</h2>
 
-   Display error message if exists 
   <div *ngIf="errorMessage" class="alert alert-danger">
     {{ errorMessage }}
   </div>
 
-   Make the table responsive 
   <div class="table-responsive">
     <table class="table table-bordered table-striped table-sm">
       <thead class="thead-dark">
         <tr>
-          <th scope="col">Story ID</th>
-          <th scope="col">User Name</th>
+          <th scope="col">#</th>
           <th scope="col">Image 1</th>
           <th scope="col">Image 2</th>
-          <th scope="col">Story Text</th>
           <th scope="col">Story Date</th>
-          <th scope="col">Flag</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let post of posts">
-          <td>{{ post.storyId }}</td>
-          <td>{{ post.userName }}</td>
-          <td>
-            <img [src]="'https://localhost:7286/api/Images/getImages/' + post.image1"
-                 [alt]="post.storyText" class="img-fluid" style="max-width: 80px;">
-          </td>
-          <td>
-            <img [src]="'https://localhost:7286/api/Images/getImages/' + post.image2"
-                 [alt]="post.storyText" class="img-fluid" style="max-width: 80px;">
-          </td>
-          <td>{{ post.storyText }}</td>
+        <tr *ngFor="let post of posts; let i = index">
+          <td>{{post.storyId }}</td>
+          <td><img [src]="'https://localhost:44378/api/Suha/postsImages/' + post.image1" alt="Image 1" class="img-fluid" style="max-width: 80px;"></td>
+          <td><img [src]="'https://localhost:44378/api/Suha/postsImages/' + post.image2" alt="Post Image" class="img-fluid" style="max-width: 80px;"></td>
           <td>{{ post.storyDate | date:'short' }}</td>
           <td>
-            <span [ngClass]="{'text-success': post.flag, 'text-danger': !post.flag}">
-              {{ post.flag ? 'Accept' : 'Reject' }}
-            </span>
-          </td>
-          <td>
-            <a [routerLink]="'/dash/updatepost/' + post.storyId" class="btn btn-primary btn-sm">Edit</a>
-            <button (click)="deletePost(post.storyId)" class="btn btn-danger btn-sm">Delete</button>
+            <button (click)="updateFlag(post, true)" class="btn btn-success btn-sm" [disabled]="post.flag">Accept</button>
+            <button (click)="updateFlag(post, false)" class="btn btn-danger btn-sm" [disabled]="!post.flag">Reject</button>
           </td>
         </tr>
       </tbody>
@@ -52,4 +34,4 @@
   <div *ngIf="posts.length === 0 && !errorMessage" class="alert alert-info">
     No posts found.
   </div>
-</div>-->
+</div>
