@@ -26,6 +26,7 @@ import { GetCategoryAdminComponent } from './Admin/get-category-admin/get-catego
 import { FooterComponent } from './footer/footer.component';
 import { UpdatCtegoryAdminComponent } from './Admin/updat-ctegory-admin/updat-ctegory-admin.component';
 import { AddCategoryAdminComponent } from './Admin/add-category-admin/add-category-admin.component';
+import { OrderFormComponent } from './Admin/order-form/order-form.component';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { AddCategoryAdminComponent } from './Admin/add-category-admin/add-catego
     FooterComponent,
     UpdatCtegoryAdminComponent,
     AddCategoryAdminComponent,
+    OrderFormComponent,
   ],
   imports: [
     FormsModule,
@@ -175,6 +177,7 @@ import { AddCategoryAdminComponent } from './Admin/add-category-admin/add-catego
             { path: 'getCategoryAdmin', component: GetCategoryAdminComponent },
             { path: 'updatCategoryAdmin/:id', component: UpdatCtegoryAdminComponent },
             { path: 'AddCategoryAdmin', component: AddCategoryAdminComponent },
+            { path: 'AllOrder', component: OrderFormComponent },
           ]
       }
 
