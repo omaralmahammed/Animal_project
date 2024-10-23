@@ -29,5 +29,7 @@ export class HadeelService {
     return this.http.get<any>(`${this.staticData}/Hadeel/GetDetailsAllOrder?id=${id}`)
   }
 
-
+  ApprovedAdoption(id: any , data:any): Observable<any> {
+    return this.http.put<any>(`${this.staticData}/Hadeel/AdminApproved?id=${id}`,data)
+  }
 }

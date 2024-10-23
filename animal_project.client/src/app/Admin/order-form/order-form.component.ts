@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HadeelService } from '../../Hadeel/hadeel.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-order-form',
@@ -8,13 +9,14 @@ import Swal from 'sweetalert2';
   styleUrl: './order-form.component.css'
 })
 export class OrderFormComponent {
+  data : any
   OrderArray: any[] = [];
   selectedApplication: any = null;
   isModalOpen: boolean = false;
   ngOnInit() {
     this.GetOrder();
   }
-  constructor(private _ser: HadeelService) { }
+  constructor(private _ser: HadeelService, private _router: Router) { }
 
   GetOrder() {
     this._ser.GetAllOrder().subscribe((data) => {
@@ -43,11 +45,14 @@ export class OrderFormComponent {
     this.selectedApplication = null; // Clear selected application
   }
 
-  Reject() {
+  //Reject() {
+  
+  //}
 
-  }
-
-  Approve() {
-
+  Approve(id: any) {
+    this._ser.ApprovedAdoption(id,this.data).subscribe((data) => {
+      alert("Successfully !");
+      this._router.navigate(['/Admin/AllOrder']);
+    })
   }
 }
