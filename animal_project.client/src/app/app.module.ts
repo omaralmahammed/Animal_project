@@ -26,6 +26,11 @@ import { GetCategoryAdminComponent } from './Admin/get-category-admin/get-catego
 import { FooterComponent } from './footer/footer.component';
 import { UpdatCtegoryAdminComponent } from './Admin/updat-ctegory-admin/updat-ctegory-admin.component';
 import { AddCategoryAdminComponent } from './Admin/add-category-admin/add-category-admin.component';
+import { GetAnimalAdminComponent } from './Admin/get-animal-admin/get-animal-admin.component';
+import { UpdatAnimalAdminComponent } from './Admin/updat-animal-admin/updat-animal-admin.component';
+import { AddAnimalAdminComponent } from './Admin/add-animal-admin/add-animal-admin.component';
+import { GetShelterAdminComponent } from './Admin/get-shelter-admin/get-shelter-admin.component';
+import { OrderFormComponent } from './Admin/order-form/order-form.component';
 
 
 @NgModule({
@@ -56,6 +61,11 @@ import { AddCategoryAdminComponent } from './Admin/add-category-admin/add-catego
     FooterComponent,
     UpdatCtegoryAdminComponent,
     AddCategoryAdminComponent,
+    GetAnimalAdminComponent,
+    UpdatAnimalAdminComponent,
+    AddAnimalAdminComponent,
+    GetShelterAdminComponent,
+    OrderFormComponent,
   ],
   imports: [
     FormsModule,
@@ -170,11 +180,17 @@ import { AddCategoryAdminComponent } from './Admin/add-category-admin/add-catego
 
           [
             { path: "AllPosts", component: GetAllPostsComponent },
-
+            { path: "PostsByStoryId", component: GetByStoryIdComponent },
 
             { path: 'getCategoryAdmin', component: GetCategoryAdminComponent },
             { path: 'updatCategoryAdmin/:id', component: UpdatCtegoryAdminComponent },
             { path: 'AddCategoryAdmin', component: AddCategoryAdminComponent },
+            { path: 'getAnimalAdmin', component: GetAnimalAdminComponent },
+            { path: 'updatAnimalAdmin/:id', component: UpdatAnimalAdminComponent },
+            { path: 'AddAnimalAdmin', component: AddAnimalAdminComponent },
+            { path: 'getSheltersAdmin', component: GetShelterAdminComponent },
+
+            { path: 'AllOrder', component: OrderFormComponent },
           ]
       }
 

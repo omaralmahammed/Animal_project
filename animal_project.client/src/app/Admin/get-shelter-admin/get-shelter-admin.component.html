@@ -1,0 +1,43 @@
+<hr />
+<h2>shelter </h2>
+<hr />
+
+
+<button class="btn btn-success mb-0" [routerLink]="['/Admin/AddCategoryAdmin']">Add shelter</button>
+
+<table class="table table-striped table-hover text-center" style="margin-top: 20px;">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">description</th>
+      <th scope="col">contactEmail</th>
+      <th scope="col">phone</th>
+      <th scope="col">openTime</th>
+      <th scope="col">closeTime</th>
+      <th scope="col">openDay</th>
+      <th scope="col">address</th>
+
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of shelterArray">
+
+      <td>{{item.shelterName}}</td>
+      <td>{{item.description}}</td>
+      <td>{{item.contactEmail}}</td>
+      <td>{{item.phone}}</td>
+      <td>{{item.openTime}}</td>
+      <td>{{item.closeTime}}</td>
+      <td>{{item.openDay}}</td>
+      <td>{{item.address}}</td>
+
+
+      <td>
+        <button class="btn btn-secondary me-2" style="width: 80px;" [routerLink]="['/Admin/updatCategoryAdmin', item.shelterId]">Edit</button>
+
+        <button class="btn btn-danger" style="width: 80px;" (click)="deletshelterId(item.shelterId)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

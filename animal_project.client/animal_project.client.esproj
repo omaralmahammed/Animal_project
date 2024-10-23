@@ -17,6 +17,5 @@
     <Folder Include="src\app\Suha\" />
     <Folder Include="src\app\Yousef\" />
     <Folder Include="src\app\Omar\" />
-    <Folder Include="src\assets\Admin\" />
   </ItemGroup>
 </Project>

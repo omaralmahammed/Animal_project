@@ -21,4 +21,13 @@ export class HadeelService {
     return this.http.post<any>(`${this.staticData}/Hadeel/AddUserForm/${userId}/${animalId}`, data)
   }
 
+  GetAllOrder(): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/Hadeel/GetAllOrder`)
+  }
+
+  GetAllOrderDetails(id : any): Observable<any> {
+    return this.http.get<any>(`${this.staticData}/Hadeel/GetDetailsAllOrder?id=${id}`)
+  }
+
+
 }
