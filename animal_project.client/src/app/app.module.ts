@@ -26,6 +26,8 @@ import { GetCategoryAdminComponent } from './Admin/get-category-admin/get-catego
 import { FooterComponent } from './footer/footer.component';
 import { UpdatCtegoryAdminComponent } from './Admin/updat-ctegory-admin/updat-ctegory-admin.component';
 import { AddCategoryAdminComponent } from './Admin/add-category-admin/add-category-admin.component';
+import { GetAllContactsComponent } from './Admin/get-all-contacts/get-all-contacts.component';
+import { ReplyMessegesAdminComponent } from './Admin/reply-messeges-admin/reply-messeges-admin.component';
 
 
 @NgModule({
@@ -35,14 +37,10 @@ import { AddCategoryAdminComponent } from './Admin/add-category-admin/add-catego
     CommentComponent,
     ReplyComponent,
     HomeComponent,
-    ReplyComponent,
-    AppComponent,
-    HomeComponent,
     AdminSideComponent,
     RegistrationComponent,
     CategoryComponent,
     AllAnimalComponent,
-    AdminSideComponent,
     NavBarComponent,
     FormComponent,
     LoginComponent,
@@ -50,12 +48,13 @@ import { AddCategoryAdminComponent } from './Admin/add-category-admin/add-catego
     ProfileComponent,
     GetAllPostsComponent,
     GetByStoryIdComponent,
-    
     AnimalDetailsComponent,
     GetCategoryAdminComponent,
     FooterComponent,
     UpdatCtegoryAdminComponent,
     AddCategoryAdminComponent,
+    GetAllContactsComponent,
+    ReplyMessegesAdminComponent,
   ],
   imports: [
     FormsModule,
@@ -175,6 +174,8 @@ import { AddCategoryAdminComponent } from './Admin/add-category-admin/add-catego
             { path: 'getCategoryAdmin', component: GetCategoryAdminComponent },
             { path: 'updatCategoryAdmin/:id', component: UpdatCtegoryAdminComponent },
             { path: 'AddCategoryAdmin', component: AddCategoryAdminComponent },
+            { path: 'AllContactsAdmin', component: GetAllContactsComponent },
+            { path: 'ReplyContactAdmin/:id', component: ReplyMessegesAdminComponent },
           ]
       }
 
