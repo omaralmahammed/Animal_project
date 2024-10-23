@@ -3,6 +3,7 @@ using Animal_project.Server.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace Animal_project.Server.Controllers
 {
@@ -43,6 +44,7 @@ namespace Animal_project.Server.Controllers
                     StoryDate = p.StoryDate,
                     Image1 = p.Image1,
                     Image2 = p.Image2,
+                    Flag = p.Flag,
                     LikeNumber = p.Likes.Count,  
                     Likes = p.Likes.Select(l => new
                     {
@@ -130,52 +132,54 @@ namespace Animal_project.Server.Controllers
         // POST: api/Posts
         // POST: api/Posts
         [HttpPost("post")]
-        public IActionResult CreatePost([FromForm] PostRequestDTO dto) // لا تغيير هنا
+        public IActionResult CreatePost([FromForm] PostRequestDTO dto) // No changes here
         {
             var post = new Post
             {
                 UserId = dto.UserId,
                 AnimalId = dto.AnimalId,
                 StoryText = dto.StoryText,
-                StoryDate = dto.StoryDate ?? DateTime.Now
+                StoryDate = dto.StoryDate ?? DateTime.Now,
+                Flag = dto.Flag ?? false
             };
 
             var folder = Path.Combine(Directory.GetCurrentDirectory(), "images");
 
-            // تأكد من وجود المجلد
+            // Ensure the folder exists
             if (!Directory.Exists(folder))
             {
                 Directory.CreateDirectory(folder);
             }
 
-            // تحميل الصورة الأولى
+            // Handle Image1 upload
             if (dto.Image1 != null)
             {
                 var imageFile1 = Path.Combine(folder, dto.Image1.FileName);
                 using (var stream = new FileStream(imageFile1, FileMode.Create))
                 {
-                    dto.Image1.CopyTo(stream); // هنا بدون await
+                    dto.Image1.CopyTo(stream); // No await here
                 }
-                post.Image1 = dto.Image1.FileName; // تخزين اسم الصورة في المشاركة
+                post.Image1 = dto.Image1.FileName; // Save image name in the post
             }
 
-            // تحميل الصورة الثانية
+            // Handle Image2 upload
             if (dto.Image2 != null)
             {
                 var imageFile2 = Path.Combine(folder, dto.Image2.FileName);
                 using (var stream = new FileStream(imageFile2, FileMode.Create))
                 {
-                    dto.Image2.CopyTo(stream); // هنا بدون await
+                    dto.Image2.CopyTo(stream); // No await here
                 }
-                post.Image2 = dto.Image2.FileName; // تخزين اسم الصورة في المشاركة
+                post.Image2 = dto.Image2.FileName; // Save image name in the post
             }
 
-            // إضافة المشاركة إلى قاعدة البيانات
+            // Add the post to the database
             _db.Posts.Add(post);
-            _db.SaveChanges(); // استخدم SaveChanges للتأكد من أن التغييرات تم حفظها
+            _db.SaveChanges(); // Use SaveChanges to save the changes
 
             return CreatedAtAction(nameof(GetPost), new { id = post.StoryId }, post);
         }
+
 
 
         // PUT: api/Posts/5
@@ -406,5 +410,48 @@ namespace Animal_project.Server.Controllers
             return NotFound();
 
         }
+
+        ///////
+        ///
+
+        [HttpPost("like/{postId}")]
+        public IActionResult LikePost(int postId)
+        {
+            Console.WriteLine($"LikePost called with postId: {postId}"); // Log for debugging
+            var userId = 2;
+
+            var post = _db.Posts.Find(postId);
+            if (post == null)
+            {
+                return NotFound(new { Message = "Post not found." });
+            }
+
+            var existingLike = _db.Likes.FirstOrDefault(l => l.PostId == postId && l.UserId == userId);
+            if (existingLike != null)
+            {
+                _db.Likes.Remove(existingLike);
+                post.LikeNumber -= 1;
+            }
+            else
+            {
+                var like = new Like { UserId = userId, PostId = postId };
+                _db.Likes.Add(like);
+                post.LikeNumber += 1;
+            }
+
+            _db.SaveChanges();
+            return Ok(new { Message = "Success", LikeCount = post.LikeNumber });
+        }
+
+        //private int GetCurrentUserId()
+        //{
+        //    var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        //    if (int.TryParse(userIdClaim, out int userId))
+        //    {
+        //        return userId;
+        //    }
+        //    throw new UnauthorizedAccessException("User is not authenticated.");
+        //}
     }
 }
+

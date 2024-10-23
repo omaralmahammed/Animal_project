@@ -35,21 +35,10 @@ export class RahafService {
     return this.http.post<any>(`${this.staticData}/Rahaf/post`, data)
 
   }
-  //filter(name: any): Observable<any> {
-  //  return this.http.get<any>(`${this.staticData}/Classes/filter?Name=${name}`);
-  //}
-
-  //getInstructorDetails(id: number): Observable<any> {
-  //  return this.http.get<any>(`${this.staticData}/Classes/getInstructorByclassID?id=${id}`);
-  //}
-
-  //getJadwal(): Observable<any> {
-  //  return this.http.get<any>(`${this.staticData}/Classes/GetAllClassSchedules`);
-  //}
-  //postCreatePayment(data: any): Observable<any> {
-  //  console.log("data is :", data)
-  //  return this.http.post<any>(`${this.staticData}/Classes/checkout`, data)
-
-  //}
+  toggleLike(postId: number): Observable<any> {
+    const url = `${this.staticData}/Rahaf/like/${postId}`;
+    console.log('Calling API:', url); // Log the API URL
+    return this.http.post(url, {});
+  }
 
 }

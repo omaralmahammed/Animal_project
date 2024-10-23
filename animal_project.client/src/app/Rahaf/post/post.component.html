@@ -58,71 +58,76 @@
         <div class="p-2">
           <hr>
           <div class="d-flex justify-content-between align-items-center">
-            <div class="d-flex flex-row icons d-flex align-items-center">
-              <i class="fa fa-heart"></i>
-              <i class="fa fa-smile-o ml-2"></i>
+            <!--<div class="d-flex flex-row icons d-flex align-items-center">
+    <i class="fa fa-heart"></i>
+    <i class="fa fa-smile-o ml-2"></i>
+  </div>-->
+            <div class="d-flex flex-row icons d-flex align-items-center" (click)="toggleLike(post.postId, post)">
+              <i class="fa" [ngClass]="{'fa-heart': post.likeStatus, 'fa-heart-o': !post.likeStatus}"
+                 [style.color]="post.likeStatus ? 'red' : 'black'"></i>
             </div>
+
             <div class="d-flex flex-row muted-color">
               <span>{{ post.likeNumber }} likes</span>
               <span class="ml-2">{{ post.comments?.length || 0 }} comments</span>
               <span (click)="shareOnX(post)" class="fa fa-share"></span>
             </div>
           </div>
-          <hr>
-       
-          <!-- زر لتبديل عرض التعليقات -->
-          <button (click)="post.showComments = !post.showComments" class="btn btn-link mt-2">
-            {{ post.showComments ? 'Hide Comments' : 'Show Comments' }}
-          </button>
+            <hr>
 
-          <!-- مساحة إضافة تعليق جديد -->
-          <div class="comment-input mb-3">
-            <input type="text" class="form-control" placeholder="Add a comment..." [(ngModel)]="newComment" (keyup.enter)="addComment(post)">
-            <button (click)="addComment(post)" class="btn btn-primary mt-2">Comment</button>
-          </div>
+            <!-- زر لتبديل عرض التعليقات -->
+            <button (click)="post.showComments = !post.showComments" class="btn btn-link mt-2">
+              {{ post.showComments ? 'Hide Comments' : 'Show Comments' }}
+            </button>
 
-          <div *ngIf="post.showComments">
-            <!-- تحقق من حالة عرض التعليقات -->
-            <h4>Comments:</h4>
-            <div *ngFor="let comment of post.comments" class="d-flex flex-row mb-2">
-              <div class="comment-content">
-                <span class="name">{{ comment.userName }}</span>
-                <small class="comment-text">{{ comment.commentText }}</small>
+            <!-- مساحة إضافة تعليق جديد -->
+            <div class="comment-input mb-3">
+              <input type="text" class="form-control" placeholder="Add a comment..." [(ngModel)]="newComment" (keyup.enter)="addComment(post)">
+              <button (click)="addComment(post)" class="btn btn-primary mt-2">Comment</button>
+            </div>
 
-                <!-- زر رد -->
-                <button (click)="comment.replying = !comment.replying" class="btn btn-link">Reply</button>
+            <div *ngIf="post.showComments">
+              <!-- تحقق من حالة عرض التعليقات -->
+              <h4>Comments:</h4>
+              <div *ngFor="let comment of post.comments" class="d-flex flex-row mb-2">
+                <div class="comment-content">
+                  <span class="name">{{ comment.userName }}</span>
+                  <small class="comment-text">{{ comment.commentText }}</small>
 
-                <!-- حقل إدخال الرد -->
-                <div *ngIf="comment.replying" class="comment-input mb-3">
-                  <input type="text" class="form-control" placeholder="Add a reply..." [(ngModel)]="newReply" (keyup.enter)="addReply(comment)">
-                  <button (click)="addReply(comment)" class="btn btn-primary mt-2">Reply</button>
-                </div>
+                  <!-- زر رد -->
+                  <button (click)="comment.replying = !comment.replying" class="btn btn-link">Reply</button>
 
-                <!-- زر لتبديل عرض الردود -->
-                <button (click)="comment.showReplies = !comment.showReplies" class="btn btn-link mt-2">
-                  {{ comment.showReplies ? 'Hide Replies' : 'Show Replies' }}
-                </button>
+                  <!-- حقل إدخال الرد -->
+                  <div *ngIf="comment.replying" class="comment-input mb-3">
+                    <input type="text" class="form-control" placeholder="Add a reply..." [(ngModel)]="newReply" (keyup.enter)="addReply(comment)">
+                    <button (click)="addReply(comment)" class="btn btn-primary mt-2">Reply</button>
+                  </div>
 
-                <!-- عرض الردود إذا كانت موجودة -->
-                <div *ngIf="comment.showReplies && comment.replies.length > 0">
-                  <h5>Replies:</h5>
-                  <div *ngFor="let reply of comment.replies" class="reply-content">
-                    <span class="reply-user">{{ reply.userName }}:</span>
-                    <small class="reply-text">{{ reply.content }}</small>
+                  <!-- زر لتبديل عرض الردود -->
+                  <button (click)="comment.showReplies = !comment.showReplies" class="btn btn-link mt-2">
+                    {{ comment.showReplies ? 'Hide Replies' : 'Show Replies' }}
+                  </button>
+
+                  <!-- عرض الردود إذا كانت موجودة -->
+                  <div *ngIf="comment.showReplies && comment.replies.length > 0">
+                    <h5>Replies:</h5>
+                    <div *ngFor="let reply of comment.replies" class="reply-content">
+                      <span class="reply-user">{{ reply.userName }}:</span>
+                      <small class="reply-text">{{ reply.content }}</small>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <!-- عرض زر "Show More" إذا كانت التعليقات أكثر من 2 -->
-            <button *ngIf="post.comments.length > 2 && !post.showAllComments" (click)="showMoreComments(post)" class="btn btn-link mt-2">Show More</button>
-            <button *ngIf="post.showAllComments" (click)="hideComments(post)" class="btn btn-link mt-2">Show Less</button>
+              <!-- عرض زر "Show More" إذا كانت التعليقات أكثر من 2 -->
+              <button *ngIf="post.comments.length > 2 && !post.showAllComments" (click)="showMoreComments(post)" class="btn btn-link mt-2">Show More</button>
+              <button *ngIf="post.showAllComments" (click)="hideComments(post)" class="btn btn-link mt-2">Show Less</button>
 
-            <div *ngIf="post.comments.length === 0">
-              <h4>No comments yet.</h4>
+              <div *ngIf="post.comments.length === 0">
+                <h4>No comments yet.</h4>
+              </div>
             </div>
           </div>
-        </div>
       </div>
     </div>
   </div>
