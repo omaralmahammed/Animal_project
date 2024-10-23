@@ -2,51 +2,77 @@
 <h2>All Applications</h2>
 <hr />
 
-<table class="table table-striped table-hover text-center" style="margin-top: 20px;">
-  <thead>
-    <tr>
-      <th scope="col">Application Id</th>
-      <th scope="col">Application Date</th>
-      <th scope="col">Status</th>
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of OrderArray">
-      <td>{{item.applicationId}}</td>
-      <td>{{item.applicationDate}}</td>
-      <td>{{item.status}}</td>
-      <td>
-       
-        <!-- Button to trigger the modal -->
-        <button class="btn btn-info" style="width: 80px;" (click)="openDetailsModal(item.applicationId)">Details</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<!-- Filter Section -->
+<!--<div class="d-flex justify-content-between align-items-center mb-3">
+  <div class="filter-group">
+    <label for="filterCategory" class="form-label"><strong>Filter by Category:</strong></label>
+    <select class="form-select form-select-lg w-auto" [(ngModel)]="selectedCategory" (change)="filterApplications()">
+      <option value="">All</option>
+      <option value="Approved">Approved</option>
+      <option value="Pending">Pending</option>
+      <option value="Rejected">Rejected</option>
+    </select>
+  </div>
+  </div>-->
 
-<!-- Modal for showing details -->
-<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true" [ngClass]="{'show': isModalOpen}" *ngIf="isModalOpen" style="display: block;">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="detailsModalLabel">Application Details</h5>
-        <button type="submit" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p><strong>Application ID:</strong> {{selectedApplication?.applicationId}}</p>
-        <p><strong>Application Date:</strong> {{selectedApplication?.applicationDate}}</p>
-        <p><strong>User Name:</strong> {{selectedApplication?.userName}}</p>
-        <p><strong>User Email:</strong> {{selectedApplication?.userEmail}}</p>
-        <p><strong>Animal Name:</strong> {{selectedApplication?.animalName}}</p>
-        <p><strong>Animal Type:</strong> {{selectedApplication?.animalType}}</p>
-        <!-- Add more details as needed -->
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-success" style="width: 80px;" (click)="Approve()">Approve</button>
-        <button class="btn btn-danger me-2" style="width: 80px;" (click)="Reject()">Reject</button>
-        <button type="submit" class="btn btn-secondary" (click)="closeModal()">Close</button>
+    <table class="table table-striped table-hover text-center" style="margin-top: 20px;">
+      <thead>
+        <tr>
+          <th scope="col">Application Id</th>
+          <th scope="col">Animal Id</th>
+
+          <th scope="col">Application Date</th>
+          <th scope="col">Status</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of OrderArray">
+          <td>{{item.applicationId}}</td>
+          <td>{{item.animalId}}</td>
+
+          <td>{{item.applicationDate}}</td>
+          <td>{{item.status}}</td>
+          <td>
+
+            <!-- Button to trigger the modal -->
+            <button class="btn btn-info" style="width: 80px;" (click)="openDetailsModal(item.applicationId)">Details</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Modal for showing details -->
+    <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true" [ngClass]="{'show': isModalOpen}" *ngIf="isModalOpen" style="display: block;">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="detailsModalLabel">Application Details</h5>
+            <button type="submit" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p><strong>Application ID:</strong> {{selectedApplication?.applicationId}}</p>
+            <p><strong>Application Date:</strong> {{selectedApplication?.applicationDate}}</p>
+            <p><strong>User Name:</strong> {{selectedApplication?.userName}}</p>
+            <p><strong>User Email:</strong> {{selectedApplication?.userEmail}}</p>
+
+            <p><strong>PhoneNo:</strong> {{selectedApplication?.userPhone}}</p>
+            <p><strong>User Address:</strong> {{selectedApplication?.address}}</p>
+            <p><strong>medical Status:</strong> {{selectedApplication?.medicalStatus}}</p>
+            <p><strong>flat Type:</strong> {{selectedApplication?.flatType}}</p>
+            <p><strong>financial Status:</strong> {{selectedApplication?.financialStatus}}</p>
+            <p><strong>have Kids:</strong> {{selectedApplication?.haveKids}}</p>
+            <p><strong>more Details:</strong> {{selectedApplication?.moreDetails}}</p>
+
+            <p><strong>Animal Name:</strong> {{selectedApplication?.animalName}}</p>
+            <p><strong>Animal Type:</strong> {{selectedApplication?.animalType}}</p>
+            <!-- Add more details as needed -->
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-success" style="width: 80px;" (click)="Approve(selectedApplication.applicationId)">Approve</button>
+            <!--<button class="btn btn-danger me-2" style="width: 80px;" (click)="Reject()">Reject</button>-->
+            <button type="submit" class="btn btn-secondary" (click)="closeModal()">Close</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
