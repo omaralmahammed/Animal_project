@@ -31,6 +31,8 @@ import { UpdatAnimalAdminComponent } from './Admin/updat-animal-admin/updat-anim
 import { AddAnimalAdminComponent } from './Admin/add-animal-admin/add-animal-admin.component';
 import { GetShelterAdminComponent } from './Admin/get-shelter-admin/get-shelter-admin.component';
 import { OrderFormComponent } from './Admin/order-form/order-form.component';
+import { UpdateShelterAdminComponent } from './Admin/update-shelter-admin/update-shelter-admin.component';
+import { AddShelterAdminComponent } from './Admin/add-shelter-admin/add-shelter-admin.component';
 
 
 @NgModule({
@@ -66,6 +68,8 @@ import { OrderFormComponent } from './Admin/order-form/order-form.component';
     AddAnimalAdminComponent,
     GetShelterAdminComponent,
     OrderFormComponent,
+    UpdateShelterAdminComponent,
+    AddShelterAdminComponent,
   ],
   imports: [
     FormsModule,
@@ -189,6 +193,8 @@ import { OrderFormComponent } from './Admin/order-form/order-form.component';
             { path: 'updatAnimalAdmin/:id', component: UpdatAnimalAdminComponent },
             { path: 'AddAnimalAdmin', component: AddAnimalAdminComponent },
             { path: 'getSheltersAdmin', component: GetShelterAdminComponent },
+            { path: 'UpdateShelterAdmin/:id', component: UpdateShelterAdminComponent },
+            { path: 'AddShelterAdmin', component: AddShelterAdminComponent },
 
             { path: 'AllOrder', component: OrderFormComponent },
           ]

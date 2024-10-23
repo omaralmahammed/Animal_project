@@ -79,7 +79,7 @@ export class RaneemService {
 
 
   AddShelter(data: any): Observable<any> {
-    return this.http.post<any>(`${this.staticData}Raneem/CreateShelter`, data)
+    return this.http.post<any>(`${this.staticData}/Raneem/CreateShelter`, data)
   }
 
 
