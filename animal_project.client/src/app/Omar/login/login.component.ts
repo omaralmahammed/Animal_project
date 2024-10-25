@@ -14,7 +14,6 @@ export class LoginComponent {
   constructor(private _ser: OmarService, private _router: Router) { }
 
 
-  isAdmin: any;
 
   checkUser(data: any) {
 
@@ -40,11 +39,10 @@ export class LoginComponent {
         
 
         if (data.flag === false) {
-          this.isAdmin = data.flag
           this._router.navigate(['/'])
         } else {
-          this.isAdmin = data.flag
-          this._router.navigate(['/Admin'])
+          localStorage.setItem("IsAdmin", "yes");
+          window.open('/Admin', '_blank');
         }
       }
     },

@@ -1,6 +1,5 @@
-<app-nav-bar></app-nav-bar>
-
+<app-nav-bar *ngIf="isAdmin !== 'yes'"></app-nav-bar>
 
 <router-outlet></router-outlet>
 
-<app-footer></app-footer>
+<app-footer *ngIf="isAdmin !== 'yes'"></app-footer>
