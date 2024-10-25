@@ -3,6 +3,7 @@ using Animal_project.Server.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Animal_project.Server.Controllers
 {
@@ -75,10 +76,55 @@ namespace Animal_project.Server.Controllers
         }
 
 
-        [HttpPut("AdminApproved")]
-        public IActionResult adminapproved(int id, hadeelFormDTO dTO)
+        [HttpGet("GetDetailsAllOrder")]
+        public IActionResult GetDetailsAllOrder(int id)
         {
-            var animal = _db.AdoptionApplications.FirstOrDefault(x => x.AnimalId == id);
+            var adoptionApplication = _db.AdoptionApplications
+                .Where(x => x.ApplicationId == id)
+                .Include(x => x.User)  // Include related User data
+                .Include(x => x.Animal)  // Include related Animal data
+                .Select(x => new
+                {
+                    ApplicationId = x.ApplicationId,
+                    ApplicationDate = x.ApplicationDate,
+                    // User information
+                    UserName = x.User.FullName,
+                    UserEmail = x.User.Email,
+                    UserPhone = x.User.PhoneNo,
+                    Address = x.User.Address,
+                    MedicalStatus = x.User.MedicalStatus,
+                    FlatType = x.User.FlatType,
+                    FinancialStatus = x.User.FinancialStatus,
+                    HaveKids = x.User.HaveKids,
+                    MoreDetails = x.User.MoreDetails,
+
+                    // Animal information
+                    AnimalName = x.Animal.Name,
+                    AnimalType = x.Animal.Species,
+                    AnimalBreed = x.Animal.Breed,
+                    Description = x.Animal.Description,
+                })
+                .FirstOrDefault();
+
+            if (adoptionApplication == null)
+            {
+                return BadRequest("Application not found.");
+            }
+
+            return Ok(adoptionApplication);
+        }
+
+        [HttpGet("GetAllOrder")]
+        public IActionResult GetAllOrder()
+        {
+            var app = _db.AdoptionApplications.ToList();
+            return Ok(app);
+        }
+
+        [HttpPut("AdminApproved")]
+        public IActionResult adminapproved(int id)
+        {
+            var animal = _db.AdoptionApplications.FirstOrDefault(x => x.ApplicationId == id);
 
             if (animal == null)
             {
@@ -89,7 +135,7 @@ namespace Animal_project.Server.Controllers
             _db.AdoptionApplications.Update(animal);
             _db.SaveChanges();
 
-            var a = _db.Animals.FirstOrDefault(z => z.AnimalId == id);
+            var a = _db.Animals.FirstOrDefault(z => z.AnimalId == animal.AnimalId);
             if (a == null)
             {
                 return NotFound();

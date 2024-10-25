@@ -26,6 +26,15 @@ import { GetCategoryAdminComponent } from './Admin/get-category-admin/get-catego
 import { FooterComponent } from './footer/footer.component';
 import { UpdatCtegoryAdminComponent } from './Admin/updat-ctegory-admin/updat-ctegory-admin.component';
 import { AddCategoryAdminComponent } from './Admin/add-category-admin/add-category-admin.component';
+import { GetAllContactsComponent } from './Admin/get-all-contacts/get-all-contacts.component';
+import { ReplyMessegesAdminComponent } from './Admin/reply-messeges-admin/reply-messeges-admin.component';
+import { GetAnimalAdminComponent } from './Admin/get-animal-admin/get-animal-admin.component';
+import { UpdatAnimalAdminComponent } from './Admin/updat-animal-admin/updat-animal-admin.component';
+import { AddAnimalAdminComponent } from './Admin/add-animal-admin/add-animal-admin.component';
+import { GetShelterAdminComponent } from './Admin/get-shelter-admin/get-shelter-admin.component';
+import { OrderFormComponent } from './Admin/order-form/order-form.component';
+import { UpdateShelterAdminComponent } from './Admin/update-shelter-admin/update-shelter-admin.component';
+import { AddShelterAdminComponent } from './Admin/add-shelter-admin/add-shelter-admin.component';
 
 
 @NgModule({
@@ -35,14 +44,10 @@ import { AddCategoryAdminComponent } from './Admin/add-category-admin/add-catego
     CommentComponent,
     ReplyComponent,
     HomeComponent,
-    ReplyComponent,
-    AppComponent,
-    HomeComponent,
     AdminSideComponent,
     RegistrationComponent,
     CategoryComponent,
     AllAnimalComponent,
-    AdminSideComponent,
     NavBarComponent,
     FormComponent,
     LoginComponent,
@@ -50,12 +55,20 @@ import { AddCategoryAdminComponent } from './Admin/add-category-admin/add-catego
     ProfileComponent,
     GetAllPostsComponent,
     GetByStoryIdComponent,
-    
     AnimalDetailsComponent,
     GetCategoryAdminComponent,
     FooterComponent,
     UpdatCtegoryAdminComponent,
     AddCategoryAdminComponent,
+    GetAllContactsComponent,
+    ReplyMessegesAdminComponent,
+    GetAnimalAdminComponent,
+    UpdatAnimalAdminComponent,
+    AddAnimalAdminComponent,
+    GetShelterAdminComponent,
+    OrderFormComponent,
+    UpdateShelterAdminComponent,
+    AddShelterAdminComponent,
   ],
   imports: [
     FormsModule,
@@ -175,6 +188,16 @@ import { AddCategoryAdminComponent } from './Admin/add-category-admin/add-catego
             { path: 'getCategoryAdmin', component: GetCategoryAdminComponent },
             { path: 'updatCategoryAdmin/:id', component: UpdatCtegoryAdminComponent },
             { path: 'AddCategoryAdmin', component: AddCategoryAdminComponent },
+            { path: 'AllContactsAdmin', component: GetAllContactsComponent },
+            { path: 'ReplyContactAdmin/:id', component: ReplyMessegesAdminComponent },
+            { path: 'getAnimalAdmin', component: GetAnimalAdminComponent },
+            { path: 'updatAnimalAdmin/:id', component: UpdatAnimalAdminComponent },
+            { path: 'AddAnimalAdmin', component: AddAnimalAdminComponent },
+            { path: 'getSheltersAdmin', component: GetShelterAdminComponent },
+            { path: 'UpdateShelterAdmin/:id', component: UpdateShelterAdminComponent },
+            { path: 'AddShelterAdmin', component: AddShelterAdminComponent },
+
+            { path: 'AllOrder', component: OrderFormComponent },
           ]
       }
 

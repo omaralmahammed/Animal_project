@@ -3,6 +3,7 @@ using Animal_project.Server.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace Animal_project.Server.Controllers
 {
@@ -43,7 +44,8 @@ namespace Animal_project.Server.Controllers
                     StoryDate = p.StoryDate,
                     Image1 = p.Image1,
                     Image2 = p.Image2,
-                    LikeNumber = p.Likes.Count,  
+                    Flag = p.Flag,
+                    LikeNumber = p.Likes.Where(l => l.Flag == true).Count(),
                     Likes = p.Likes.Select(l => new
                     {
                         UserName = l.User.FullName
@@ -71,7 +73,7 @@ namespace Animal_project.Server.Controllers
 
             return Ok(posts);
         }
-
+       
         // GET: api/Posts/5
         [HttpGet("GetPost/{id}")]
         public IActionResult GetPost(int id)
@@ -130,52 +132,54 @@ namespace Animal_project.Server.Controllers
         // POST: api/Posts
         // POST: api/Posts
         [HttpPost("post")]
-        public IActionResult CreatePost([FromForm] PostRequestDTO dto) // لا تغيير هنا
+        public IActionResult CreatePost([FromForm] PostRequestDTO dto) // No changes here
         {
             var post = new Post
             {
                 UserId = dto.UserId,
                 AnimalId = dto.AnimalId,
                 StoryText = dto.StoryText,
-                StoryDate = dto.StoryDate ?? DateTime.Now
+                StoryDate = dto.StoryDate ?? DateTime.Now,
+                Flag = dto.Flag ?? false
             };
 
             var folder = Path.Combine(Directory.GetCurrentDirectory(), "images");
 
-            // تأكد من وجود المجلد
+            // Ensure the folder exists
             if (!Directory.Exists(folder))
             {
                 Directory.CreateDirectory(folder);
             }
 
-            // تحميل الصورة الأولى
+            // Handle Image1 upload
             if (dto.Image1 != null)
             {
                 var imageFile1 = Path.Combine(folder, dto.Image1.FileName);
                 using (var stream = new FileStream(imageFile1, FileMode.Create))
                 {
-                    dto.Image1.CopyTo(stream); // هنا بدون await
+                    dto.Image1.CopyTo(stream); // No await here
                 }
-                post.Image1 = dto.Image1.FileName; // تخزين اسم الصورة في المشاركة
+                post.Image1 = dto.Image1.FileName; // Save image name in the post
             }
 
-            // تحميل الصورة الثانية
+            // Handle Image2 upload
             if (dto.Image2 != null)
             {
                 var imageFile2 = Path.Combine(folder, dto.Image2.FileName);
                 using (var stream = new FileStream(imageFile2, FileMode.Create))
                 {
-                    dto.Image2.CopyTo(stream); // هنا بدون await
+                    dto.Image2.CopyTo(stream); // No await here
                 }
-                post.Image2 = dto.Image2.FileName; // تخزين اسم الصورة في المشاركة
+                post.Image2 = dto.Image2.FileName; // Save image name in the post
             }
 
-            // إضافة المشاركة إلى قاعدة البيانات
+            // Add the post to the database
             _db.Posts.Add(post);
-            _db.SaveChanges(); // استخدم SaveChanges للتأكد من أن التغييرات تم حفظها
+            _db.SaveChanges(); // Use SaveChanges to save the changes
 
             return CreatedAtAction(nameof(GetPost), new { id = post.StoryId }, post);
         }
+
 
 
         // PUT: api/Posts/5
@@ -406,5 +410,54 @@ namespace Animal_project.Server.Controllers
             return NotFound();
 
         }
+
+        ///////
+        ///
+
+        [HttpPost("addLike")]
+        public IActionResult LikePost([FromBody] LikeDto likeDto)
+        {
+            // تحقق إذا كان الإعجاب موجودًا بالفعل
+            var existingLike = _db.Likes
+                .FirstOrDefault(l => l.PostId == likeDto.PostId && l.UserId == likeDto.UserId);
+
+            if (existingLike != null)
+            {
+                // إذا كان موجودًا، عكس حالة الإعجاب
+                existingLike.Flag = existingLike.Flag == true ? false : true; // عكس الحالة
+                _db.SaveChanges();
+                return Ok(existingLike);
+            }
+            else
+            {
+                // إذا لم يكن موجودًا، أضف إعجاب جديد
+                var like = new Like
+                {
+                    PostId = likeDto.PostId,
+                    UserId = likeDto.UserId,
+                    Flag = true // تعيين الفلاغ إلى true
+                };
+                _db.Likes.Add(like);
+                _db.SaveChanges();
+                return Ok(like);
+            }
+        }
+
+
+
+        // GET: api/likes/{postId}
+        [HttpGet("countLikes/{postId}")]
+        public IActionResult GetLikesForPost(int postId)
+        {
+            var likeCount = _db.Likes
+                .Where(l => l.PostId == postId && l.Flag == true)
+                .Count();
+
+            return Ok(likeCount);
+        }
+
+
+
     }
 }
+
