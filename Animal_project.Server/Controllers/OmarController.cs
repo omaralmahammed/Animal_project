@@ -53,14 +53,14 @@ namespace Animal_project.Server.Controllers
         [HttpPost("Login")]
         public IActionResult Login([FromForm] UserInformationRequestDTO userInfo)
         {
-            var user = _db.Users.FirstOrDefault(e => e.Email == userInfo.Email);
+            var user = _db.Users.Where(e => e.Email == userInfo.Email).FirstOrDefault();
 
             if (user == null || !PasswordHashDTO.VerifyPasswordHash(userInfo.Password, user.PasswordHash, user.PasswordSalt))
             {
                 return Unauthorized("Invalid Email or Password.");
             }
 
-            return Ok(new { UserId = user.UserId, Flag = user.IsAdmin });
+            return Ok(new { UserId = user.UserId, Flag = user.IsAdmin, userName = user.FullName });
         }
 
 

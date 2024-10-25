@@ -14,6 +14,8 @@ export class LoginComponent {
   constructor(private _ser: OmarService, private _router: Router) { }
 
 
+  isAdmin: any;
+
   checkUser(data: any) {
 
     var form = new FormData();
@@ -35,7 +37,15 @@ export class LoginComponent {
         localStorage.removeItem("animalId");
       }
       else {
-        this._router.navigate(['/'])
+        
+
+        if (data.flag === false) {
+          this.isAdmin = data.flag
+          this._router.navigate(['/'])
+        } else {
+          this.isAdmin = data.flag
+          this._router.navigate(['/Admin'])
+        }
       }
     },
       (error) => {
