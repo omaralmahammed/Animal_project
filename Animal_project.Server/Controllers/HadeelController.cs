@@ -146,5 +146,22 @@ namespace Animal_project.Server.Controllers
             return Ok();
         }
 
+        //[HttpGet("GetAdoptionAnimalsByCategoryId/{categoryId}")]
+        //public IActionResult AnimalsByCategoryId(int categoryId)
+        //{
+        //    if (categoryId <= 0)
+        //    {
+        //        return BadRequest("Invalid category ID");
+        //    }
+
+        //    var animals = _db.Animals.Where(a => a.CategoryId == categoryId).ToList();
+
+        //    if (animals == null || !animals.Any())
+        //    {
+        //        return NotFound("No animals found for the given category ID");
+        //    }
+
+        //    return Ok(animals);
+        //}
     }
 }

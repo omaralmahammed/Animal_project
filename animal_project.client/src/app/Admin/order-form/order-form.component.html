@@ -3,17 +3,14 @@
 <hr />
 
 <!-- Filter Section -->
-<!--<div class="d-flex justify-content-between align-items-center mb-3">
-  <div class="filter-group">
-    <label for="filterCategory" class="form-label"><strong>Filter by Category:</strong></label>
-    <select class="form-select form-select-lg w-auto" [(ngModel)]="selectedCategory" (change)="filterApplications()">
-      <option value="">All</option>
-      <option value="Approved">Approved</option>
-      <option value="Pending">Pending</option>
-      <option value="Rejected">Rejected</option>
-    </select>
-  </div>
-  </div>-->
+    <!--<div class="col-md-6 mb-3">
+      <label for="recipeId" class="form-label" style="font-weight: bold;">Category</label>
+      <select id="recipeId" name="categoryId" class="form-control" required="required" (change)="onCategoryChange($event)">
+        <option value="" disabled selected>Select a category</option>
+        <option *ngFor="let item of CategoryArray" [value]="item.categoryId">{{ item.name }}</option>
+      </select>
+      <span class="text-danger" id="recipeId-error" style="color: red; font-size: 0.875em;"></span>
+    </div>-->
 
     <table class="table table-striped table-hover text-center" style="margin-top: 20px;">
       <thead>

@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class HadeelService {
 
   staticData = "https://localhost:44378/api";
+
   constructor(private http: HttpClient) { }
 
   
@@ -32,4 +33,8 @@ export class HadeelService {
   ApprovedAdoption(id: any , data:any): Observable<any> {
     return this.http.put<any>(`${this.staticData}/Hadeel/AdminApproved?id=${id}`,data)
   }
+
+  //getAllAdoptionAnimal(id: any): Observable<any> {
+
+  //}
 }
