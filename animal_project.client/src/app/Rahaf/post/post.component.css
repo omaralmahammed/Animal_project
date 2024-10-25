@@ -87,3 +87,126 @@ hr {
   outline: 0;
   box-shadow: none
 }
+.comment-content {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 12px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+  .comment-content .name {
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 4px;
+  }
+
+  .comment-content .comment-text {
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 6px;
+  }
+
+.btn-link {
+  border: none;
+  background: none;
+  padding: 0;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 12px;
+  margin-right: 5px;
+}
+
+  .btn-link:hover {
+    text-decoration: underline;
+  }
+
+.reply-content {
+  margin-left: 20px;
+  background-color: #f1f1f1;
+  padding: 6px 10px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.reply-user {
+  font-weight: bold;
+  font-size: 12px;
+  color: #333;
+}
+
+.reply-text {
+  font-size: 12px;
+  color: #555;
+}
+
+.comment-input {
+  margin-top: 10px;
+}
+
+  .comment-input input {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    margin-bottom: 6px;
+  }
+
+  .comment-input button {
+    background-color: #28a745;
+    color: #fff;
+    border-radius: 8px;
+    padding: 6px 12px;
+  }
+
+.icons {
+  display: flex;
+  gap: 10px;
+}
+
+  .icons i {
+    font-size: 16px;
+    cursor: pointer;
+    color: #6c757d;
+  }
+
+    .icons i:hover {
+      color: #343a40;
+    }
+.comment-content {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.comment-input input {
+  border: 1px solid #c3e6cb;
+  border-radius: 8px;
+}
+
+.comment-input button {
+  border-radius: 8px;
+}
+
+.reply-content {
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 5px;
+  margin-top: 5px;
+}
+
+.btn-link {
+  color: #28a745;
+}
+
+  .btn-link:hover {
+    color: #218838;
+  }
+.muted-color span {
+  margin-right: 15px; /* يمكنك تغيير القيمة حسب المسافة المطلوبة */
+}
+

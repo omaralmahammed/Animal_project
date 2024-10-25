@@ -12,6 +12,7 @@
     <TypeScriptConfiguration Remove="src\app\Admin\Posts\**" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="src\app\Admin\get-all-contacts\yousefUrlAdmin\" />
     <Folder Include="src\app\Hadeel\" />
     <Folder Include="src\app\Rahaf\" />
     <Folder Include="src\app\Suha\" />
