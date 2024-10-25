@@ -130,7 +130,40 @@ namespace Animal_project.Server.Controllers
         }
 
 
+        [HttpGet("GetRandomFourAnimals")]
+        public IActionResult GetRandomFourAnimals()
+        {
+
+            var animals = _db.Animals
+                .OrderBy(a => Guid.NewGuid())
+                .Take(4)
+                .ToList();
+            return Ok(animals);
+        }
 
 
+        [HttpGet("GetRandomFourCategory")]
+        public IActionResult GetRandomFourCategory()
+        {
+
+            var categories = _db.Categories
+                .OrderBy(a => Guid.NewGuid())
+                .Take(4)
+                .ToList();
+            return Ok(categories);
+        }
+
+
+
+        [HttpGet("GetRandomFourPost")]
+        public IActionResult GetRandomFourPost()
+        {
+
+            var posts = _db.Posts
+                .OrderBy(a => Guid.NewGuid())
+                .Take(4)
+                .ToList();
+            return Ok(posts);
+        }
     }
 }

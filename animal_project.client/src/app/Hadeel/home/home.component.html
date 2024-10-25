@@ -172,52 +172,19 @@
       </h1>
     </div>
     <div class="row gy-5 gx-4">
-      <div class="col-lg-4 col-md-6 pt-5 wow fadeInUp" data-wow-delay="0.1s">
+      <div class="col-lg-4 col-md-6 pt-5 wow fadeInUp" data-wow-delay="0.1s" *ngFor="let item of Category">
         <div class="service-item d-flex h-100">
           <div class="service-img">
-            <img class="img-fluid" src="assets/img/service-1.jpg" alt="">
-          </div>
-          <div class="service-text p-5 pt-0">
-            <div class="service-icon">
-              <img class="img-fluid rounded-circle" src="assets/img/service-1.jpg" alt="">
-            </div>
-            <h5 class="mb-3">
-              Best Animal Selection
-            </h5>
-            <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
-            <a class="btn btn-square rounded-circle" href=""><i class="bi bi-chevron-double-right"></i></a>
-          </div>
-        </div>
-      </div>
+            <img class="img-fluid" [src]="'https://localhost:44378/api/images/getImages/'  + item.image" alt="">
 
-
-      <div class="col-lg-4 col-md-6 pt-5 wow fadeInUp" data-wow-delay="0.3s">
-        <div class="service-item d-flex h-100">
-          <div class="service-img">
-            <img class="img-fluid" src="assets/img/service-2.jpg" alt="">
           </div>
           <div class="service-text p-5 pt-0">
             <div class="service-icon">
-              <img class="img-fluid rounded-circle" src="assets/img/service-2.jpg" alt="">
+              <img class="img-fluid rounded-circle" [src]="'https://localhost:44378/api/images/getImages/'  + item.image" alt="">
             </div>
-            <h5 class="mb-3">Breeding & Veterinary</h5>
-            <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
-            <a class="btn btn-square rounded-circle" href=""><i class="bi bi-chevron-double-right"></i></a>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6 pt-5 wow fadeInUp" data-wow-delay="0.5s">
-        <div class="service-item d-flex h-100">
-          <div class="service-img">
-            <img class="img-fluid" src="assets/img/service-3.jpg" alt="">
-          </div>
-          <div class="service-text p-5 pt-0">
-            <div class="service-icon">
-              <img class="img-fluid rounded-circle" src="assets/img/service-3.jpg" alt="">
-            </div>
-            <h5 class="mb-3">Care & Milking</h5>
-            <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
-            <a class="btn btn-square rounded-circle" href=""><i class="bi bi-chevron-double-right"></i></a>
+            <h5 class="mb-3">{{item.name}}</h5>
+            <p class="mb-4">{{item.description}}</p>
+            <a class="btn btn-square rounded-circle" [routerLink]="['/Animal', item.categoryId]"><i class="bi bi-chevron-double-right"></i></a>
           </div>
         </div>
       </div>
@@ -294,67 +261,15 @@
       <h1 class="mb-5">Explore the different animals available for adoption.</h1>
     </div>
     <div class="row gx-4">
-      <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
+      <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s" *ngFor="let animal of Animals">
         <div class="product-item">
           <div class="position-relative">
-            <img class="img-fluid" src="assets/img/product-1.jpg" alt="">
-            <div class="product-overlay">
-              <a class="btn btn-square btn-secondary rounded-circle m-1" href=""><i class="bi bi-link"></i></a>
-              <a class="btn btn-square btn-secondary rounded-circle m-1" href=""><i class="bi bi-cart"></i></a>
-            </div>
+
+            <img class="img-fluid" [src]="'https://localhost:44378/api/images/getImages/' + animal.image1" alt="{{ animal.name }}">
+
           </div>
           <div class="text-center p-4">
-            <a class="d-block h5" href="">Pure Milk</a>
-            <span class="text-primary me-1">$19.00</span>
-            <span class="text-decoration-line-through">$29.00</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
-        <div class="product-item">
-          <div class="position-relative">
-            <img class="img-fluid" src="assets//src/assets/img/product-2.jpg" alt="">
-            <div class="product-overlay">
-              <a class="btn btn-square btn-secondary rounded-circle m-1" href=""><i class="bi bi-link"></i></a>
-              <a class="btn btn-square btn-secondary rounded-circle m-1" href=""><i class="bi bi-cart"></i></a>
-            </div>
-          </div>
-          <div class="text-center p-4">
-            <a class="d-block h5" href="">Fresh Meat</a>
-            <span class="text-primary me-1">$19.00</span>
-            <span class="text-decoration-line-through">$29.00</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
-        <div class="product-item">
-          <div class="position-relative">
-            <img class="img-fluid" src="assets//src/assets/img/product-3.jpg" alt="">
-            <div class="product-overlay">
-              <a class="btn btn-square btn-secondary rounded-circle m-1" href=""><i class="bi bi-link"></i></a>
-              <a class="btn btn-square btn-secondary rounded-circle m-1" href=""><i class="bi bi-cart"></i></a>
-            </div>
-          </div>
-          <div class="text-center p-4">
-            <a class="d-block h5" href="">Dairy Products</a>
-            <span class="text-primary me-1">$19.00</span>
-            <span class="text-decoration-line-through">$29.00</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.7s">
-        <div class="product-item">
-          <div class="position-relative">
-            <img class="img-fluid" src="assets//src/assets/img/product-4.jpg" alt="">
-            <div class="product-overlay">
-              <a class="btn btn-square btn-secondary rounded-circle m-1" href=""><i class="bi bi-link"></i></a>
-              <a class="btn btn-square btn-secondary rounded-circle m-1" href=""><i class="bi bi-cart"></i></a>
-            </div>
-          </div>
-          <div class="text-center p-4">
-            <a class="d-block h5" href="">Organic Food</a>
-            <span class="text-primary me-1">$19.00</span>
-            <span class="text-decoration-line-through">$29.00</span>
+            <a class="d-block h5" [routerLink]="['/AnimalDetails', animal.animalId]">{{ animal.name }}</a>
           </div>
         </div>
       </div>
