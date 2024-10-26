@@ -36,17 +36,17 @@ export class HadeelService {
 
 
   RandomAnimals(): Observable<any> {
-    return this.http.get<any>(`https://localhost:7119/api/Omar/GetRandomFourAnimals`)
+    return this.http.get<any>(`https://localhost:44378/api/Omar/GetRandomFourAnimals`)
   }
 
 
   RandomCategory(): Observable<any> {
-    return this.http.get<any>(`https://localhost:7119/api/Omar/GetRandomFourCategory`)
+    return this.http.get<any>(`https://localhost:44378/api/Omar/GetRandomFourCategory`)
   }
 
 
   RandomPosts(): Observable<any> {
-    return this.http.get<any>(`https://localhost:7119/api/Omar/GetRandomFourPost`)
+    return this.http.get<any>(`https://localhost:44378/api/Omar/GetRandomFourPost`)
   }
 
 }
