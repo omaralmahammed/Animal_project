@@ -32,7 +32,7 @@ export class OrderFormComponent {
   }
 
   openDetailsModal(applicationId: number) {
-    debugger
+    
     this._ser.GetAllOrderDetails(applicationId).subscribe((data) => {
       this.selectedApplication = data;
 

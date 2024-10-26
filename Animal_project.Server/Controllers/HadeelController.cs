@@ -142,7 +142,8 @@ namespace Animal_project.Server.Controllers
             application.IsReceived = true;
 
             _db.AdoptionApplications.Update(application);
-            //await _db.SaveChangesAsync();
+            await _db.SaveChangesAsync();
+
 
             var animal = await _db.Animals.FirstOrDefaultAsync(z => z.AnimalId == application.AnimalId);
 
@@ -151,56 +152,60 @@ namespace Animal_project.Server.Controllers
                 return NotFound();
             }
 
-            // Find rejected applications
-            var rejectedApplications = await _db.AdoptionApplications
-                .Where(z => z.AnimalId == application.AnimalId && z.ApplicationId != id && application.Status != "Approved")
-                .ToListAsync();
-
-            if (rejectedApplications != null)
-            {
-
-
-
-                foreach (var rejectedApplication in rejectedApplications)
-                {
-                    rejectedApplication.Status = "Rejected";
-                }
-
-                // Send email to rejected applicants
-                foreach (var rejectedApplication in rejectedApplications)
-                {
-
-                    string subject = "Sorry ..!!";
-                    string approvalBodyR = $@"
-            <p>Dear Customer,</p>
-            <p>Thank you for using our service. Your Adoption Application for <b>{animal.Name}</b> is rejected:</p>
-            <br>
-            <p>Best Regards,</p>
-            <p>The Admin</p>
-        ";
-
-                    await _emailServices.SendEmailRAsync(rejectedApplication.User.Email, subject, approvalBodyR);
-                }
-            }
             // Update the animal's status
             animal.AdoptionStatus = "Not Available";
             _db.Animals.Update(animal);
             await _db.SaveChangesAsync();
 
+            // Find rejected applications
+            var rejectedApplications = await _db.AdoptionApplications
+                .Include(u => u.User)
+                .Where(z => z.AnimalId == application.AnimalId && z.ApplicationId != id )
+                .ToListAsync();
+
             // Send email to approved applicant
             string approvalSubject = "Congratulations ..!!";
             string approvalBody = $@"
-        <p>Dear {application.User.FullName},</p>
-        <p>Thank you for using our service. Your Adoption Application for <b>{animal.Name}</b> is completed successfully:</p>
-        <br>
-        <p>Best Regards,</p>
-        <p>The Admin</p>
-    ";
+                            <p>Dear {application.User.FullName},</p>
+                            <p>Thank you for using our service. Your Adoption Application for <b>{animal.Name}</b> is completed successfully:</p>
+                            <br>
+                            <p>Best Regards,</p>
+                            <p>The Admin</p>
+                        ";
 
             await _emailServices.SendEmailRAsync(application.User.Email, approvalSubject, approvalBody);
 
+            // Handle rejected applications
+            if (rejectedApplications != null && rejectedApplications.Any())
+            {
+                foreach (var rejectedApplication in rejectedApplications)
+                {
+                    rejectedApplication.Status = "Rejected";
+                    _db.AdoptionApplications.Update(rejectedApplication);
+                }
+                await _db.SaveChangesAsync(); // Save the status update for rejected applications
+
+                // Send rejection emails
+                var emailTasks = rejectedApplications.Select(async rejectedApplication =>
+                {
+                    string subject = "Sorry ..!!";
+                    string rejectionBody = $@"
+                                    <p>Dear {rejectedApplication.User.FullName},</p>
+                                    <p>Thank you for using our service. Your Adoption Application for <b>{animal.Name}</b> is rejected:</p>
+                                    <br>
+                                    <p>Best Regards,</p>
+                                    <p>The Admin</p>
+                                ";
+
+                    await _emailServices.SendEmailRAsync(rejectedApplication.User.Email, subject, rejectionBody);
+                });
+
+                await Task.WhenAll(emailTasks); 
+            }
+
             return Ok();
         }
+
 
 
     }

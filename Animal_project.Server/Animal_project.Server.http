@@ -1,4 +1,5 @@
-@Animal_project.Server_HostAddress = http://localhost:5233
+@Animal_project.Server_Host
+= http://localhost:5233
 
 GET {{Animal_project.Server_HostAddress}}/weatherforecast/
 Accept: application/json
