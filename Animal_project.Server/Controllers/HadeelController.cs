@@ -1,5 +1,7 @@
 ﻿using Animal_project.Server.DTO;
 using Animal_project.Server.Models;
+using Animal_project.Server.Service;
+using Animal_project.Server.youseFDTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -12,10 +14,12 @@ namespace Animal_project.Server.Controllers
     public class HadeelController : ControllerBase
     {
         private readonly MyDbContext _db;
+        private readonly EmailServices _emailServices;
 
-        public HadeelController(MyDbContext db)
+        public HadeelController(MyDbContext db, EmailServices emailService)
         {
             _db = db;
+            _emailServices = emailService;
         }
 
         [HttpGet("GetAnimalDetails")]
@@ -122,49 +126,82 @@ namespace Animal_project.Server.Controllers
         }
 
         [HttpPut("AdminApproved")]
-        public IActionResult adminapproved(int id)
+        public async Task<IActionResult> adminapproved(int id)
         {
-            var animal = _db.AdoptionApplications.FirstOrDefault(x => x.ApplicationId == id);
+            var application = await _db.AdoptionApplications
+                .Include(u => u.User)
+                .FirstOrDefaultAsync(x => x.ApplicationId == id);
+
+            if (application == null)
+            {
+                return NotFound();
+            }
+
+            // Approve the application
+            application.Status = "Approved";
+            application.IsReceived = true;
+
+            _db.AdoptionApplications.Update(application);
+            //await _db.SaveChangesAsync();
+
+            var animal = await _db.Animals.FirstOrDefaultAsync(z => z.AnimalId == application.AnimalId);
 
             if (animal == null)
             {
                 return NotFound();
             }
 
-            animal.Status = "Approved";
-            animal.IsReceived = true;
+            // Find rejected applications
+            var rejectedApplications = await _db.AdoptionApplications
+                .Where(z => z.AnimalId == application.AnimalId && z.ApplicationId != id && application.Status != "Approved")
+                .ToListAsync();
 
-            _db.AdoptionApplications.Update(animal);
-            _db.SaveChanges();
+            if (rejectedApplications != null)
+            {
+
+
+
+                foreach (var rejectedApplication in rejectedApplications)
+                {
+                    rejectedApplication.Status = "Rejected";
+                }
+
+                // Send email to rejected applicants
+                foreach (var rejectedApplication in rejectedApplications)
+                {
+
+                    string subject = "Sorry ..!!";
+                    string approvalBodyR = $@"
+            <p>Dear Customer,</p>
+            <p>Thank you for using our service. Your Adoption Application for <b>{animal.Name}</b> is rejected:</p>
+            <br>
+            <p>Best Regards,</p>
+            <p>The Admin</p>
+        ";
+
+                    await _emailServices.SendEmailRAsync(rejectedApplication.User.Email, subject, approvalBodyR);
+                }
+            }
+            // Update the animal's status
+            animal.AdoptionStatus = "Not Available";
+            _db.Animals.Update(animal);
+            await _db.SaveChangesAsync();
+
+            // Send email to approved applicant
+            string approvalSubject = "Congratulations ..!!";
+            string approvalBody = $@"
+        <p>Dear {application.User.FullName},</p>
+        <p>Thank you for using our service. Your Adoption Application for <b>{animal.Name}</b> is completed successfully:</p>
+        <br>
+        <p>Best Regards,</p>
+        <p>The Admin</p>
+    ";
+
+            await _emailServices.SendEmailRAsync(application.User.Email, approvalSubject, approvalBody);
 
             return Ok();
-
-            //var a = _db.Animals.FirstOrDefault(z => z.AnimalId == animal.AnimalId);
-            //if (a == null)
-            //{
-            //    return NotFound();
-            //}
-            //_db.Animals.Remove(a);
-            //_db.SaveChanges();
-
         }
 
-        //[HttpGet("GetAdoptionAnimalsByCategoryId/{categoryId}")]
-        //public IActionResult AnimalsByCategoryId(int categoryId)
-        //{
-        //    if (categoryId <= 0)
-        //    {
-        //        return BadRequest("Invalid category ID");
-        //    }
 
-        //    var animals = _db.Animals.Where(a => a.CategoryId == categoryId).ToList();
-
-        //    if (animals == null || !animals.Any())
-        //    {
-        //        return NotFound("No animals found for the given category ID");
-        //    }
-
-        //    return Ok(animals);
-        //}
     }
 }

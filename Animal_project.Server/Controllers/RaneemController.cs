@@ -223,7 +223,7 @@ namespace Animal_project.Server.Controllers
                 return BadRequest("Invalid category ID");
             }
 
-            var animals = _db.Animals.Where(a => a.CategoryId == categoryId).ToList();
+            var animals = _db.Animals.Where(a => a.CategoryId == categoryId && a.AdoptionStatus != "Not Available").ToList();
 
             if (animals == null || !animals.Any())
             {
