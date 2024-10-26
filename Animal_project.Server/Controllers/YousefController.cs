@@ -82,14 +82,17 @@ namespace Animal_project.Server.Controllers
         [HttpPost("PostMessageToEmail")]
         public async Task<IActionResult> PostMessageToEmail([FromForm] ContactUsDto contactUsDto)
         {
-            var contact = new ContactU
-            {
-                Message = contactUsDto.Message,
-                Subject = contactUsDto.Subject,
-                Email = contactUsDto.Email,
-            };
+            //var contact = new ContactU
+            //{
+            //    Message = contactUsDto.Message,
+            //    Subject = contactUsDto.Subject,
+            //    Email = contactUsDto.Email,
+            //};
 
-            _db.ContactUs.Add(contact);
+            var contact = await _db.ContactUs.FindAsync(contactUsDto.ContactId);
+            contact.MessageReply = contactUsDto.MessageReply;
+
+            _db.ContactUs.Update(contact);
             await _db.SaveChangesAsync();
 
             var subject = contactUsDto.Subject;
@@ -102,7 +105,7 @@ namespace Animal_project.Server.Controllers
 
                 // Send email to the user
                 var userEmailSubject = "Thank you for contacting us!";
-                var userEmailBody = $"Dear {contactUsDto.Name},<br><br>Thank you for reaching out. We have received your message:<br><br>{contactUsDto.Message}<br><br>We will get back to you shortly.";
+                var userEmailBody = $"Dear {contactUsDto.Name},<br><br>Thank you for reaching out. We have received your message:<br><br>{contact.MessageReply}<br><br>We will get back to you shortly.";
                 await _emailService.SendEmailAsync(contactUsDto.Email, userEmailSubject, userEmailBody);
 
                 return Ok(new { Message = "Contact message sent successfully and emails delivered!" });
