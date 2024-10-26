@@ -13,7 +13,7 @@
 
       <a routerLink="/About" class="nav-item nav-link">About</a>
       <a routerLink="/Contact" class="nav-item nav-link">Contact Us</a>
-      <a routerLink="/Admin" class="nav-item nav-link ">Admin</a>
+      <!--<a routerLink="/Admin" class="nav-item nav-link ">Admin</a>-->
 
     </div>
 
@@ -27,7 +27,7 @@
         <a><i class="fas fa-user"></i></a>
         <div class="dropdown-menu bg-light m-0" style="right:-40px">
           <a routerLink="/profile" class="dropdown-item">Profile</a>
-          <a class="dropdown-item">My Application</a>
+          <a routerLink="/myApp" class="dropdown-item">My Application</a>
           <a class="dropdown-item" (click)="logout()">Log out</a>
         </div>
       </div>

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class HadeelService {
 
-  staticData = "https://localhost:7119/api";
+  staticData = "https://localhost:44378/api";
 
   constructor(private http: HttpClient) { }
 

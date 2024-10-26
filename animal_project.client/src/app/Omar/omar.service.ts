@@ -29,5 +29,7 @@ export class OmarService {
     return this.http.get(`${this.baseUrl}Omar/GetUserInformation/${userId}`)
   }
 
-
+  getApplications(userId: any): Observable<any>{
+    return this.http.get(`${this.baseUrl}Omar/GetUserApplications/${userId}`)
+  }
 }

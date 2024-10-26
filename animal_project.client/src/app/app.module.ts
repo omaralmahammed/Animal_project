@@ -37,6 +37,7 @@ import { AddShelterAdminComponent } from './Admin/add-shelter-admin/add-shelter-
 import { OrderFormComponent } from './Admin/order-form/order-form.component';
 import { GetAllUsersComponent } from './Admin/get-all-users/get-all-users.component';
 import { GetUserApplicationComponent } from './Admin/get-user-application/get-user-application.component';
+import { MyApplicationsComponent } from './Omar/my-applications/my-applications.component';
 
 
 
@@ -75,6 +76,7 @@ import { GetUserApplicationComponent } from './Admin/get-user-application/get-us
     AddShelterAdminComponent,
     GetAllUsersComponent,
     GetUserApplicationComponent,
+    MyApplicationsComponent,
   ],
   imports: [
     FormsModule,
@@ -94,6 +96,7 @@ import { GetUserApplicationComponent } from './Admin/get-user-application/get-us
      
       { path: 'login', component: LoginComponent },
       { path: 'profile', component: ProfileComponent },
+      { path: 'myApp', component: MyApplicationsComponent },
 
 
 
