@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MimeKit;
 using MailKit.Net.Smtp;
+using Animal_project.Server.DTO;
+using Microsoft.EntityFrameworkCore;
 namespace Animal_project.Server.Controllers
 {
     [Route("api/[controller]")]
@@ -18,7 +20,9 @@ namespace Animal_project.Server.Controllers
             _db = db;
             _emailService = emailService;
         }
-
+      
+        ///////////////////////////////////////////////////////////////////
+       
         [HttpGet("GetAllMessage")]
         public IActionResult GetAllMessage()
         {
@@ -109,9 +113,45 @@ namespace Animal_project.Server.Controllers
             }
         }
 
+        
+        //////////////////////////////////////////////////////
+      
 
+        [HttpGet("GetUsersForAdmin")]
+        public IActionResult GetUsersAdmin() {
+
+            var usersAdmin = _db.Users.ToList();
+
+            return Ok(usersAdmin);
+        }
+
+        //////////////////////////////////////////////////////
+
+        [HttpGet("user/{userId}")]
+        public ActionResult<AdoptionApplicationDto> GetApplicationByUserId(int userId)
+        {
+            var application = _db.AdoptionApplications
+                .Where(app => app.UserId == userId)
+                .Select(app => new AdoptionApplicationDto
+                {
+                    ApplicationId = app.ApplicationId,
+                    UserId = app.UserId,
+                    AnimalId = app.AnimalId,
+                    ApplicationDate = app.ApplicationDate,
+                    Status = app.Status,
+                    IsReceived = app.IsReceived
+                })
+                .FirstOrDefault(); 
+
+            if (application == null)
+            {
+                return NotFound("No application found for the given user.");
+            }
+
+            return Ok(application);
+        }
 
     }
 }
 
-/// //////////////////////////////////////////////////////////// yosef
+/// //////////////////////////////////////////////////////////// Yosef

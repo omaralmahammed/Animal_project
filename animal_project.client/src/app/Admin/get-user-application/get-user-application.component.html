@@ -1,0 +1,48 @@
+
+
+<div class="mobile-menu-overlay"></div>
+<div class="main-container">
+  <div class="pd-ltr-20">
+    <br />
+    <br />
+    <div class="admin-reply-form">
+      <h2>User application </h2>
+
+
+      <form id="admin-reply" *ngFor="let item of applicationArray">
+        <div class="form-group">
+          <label for="applicationId">Application ID</label>
+          <input type="text" id="applicationId" name="applicationId" class="form-control" [value]="item.applicationId" disabled>
+        </div>
+
+        <div class="form-group">
+          <label for="userId">User ID</label>
+          <input type="text" id="userId" name="userId" class="form-control" [value]="item.userId" disabled>
+        </div>
+
+        <div class="form-group">
+          <label for="animalId">Animal ID</label>
+          <input type="text" id="animalId" name="animalId" class="form-control" [value]="item.animalId" disabled>
+        </div>
+
+        <div class="form-group">
+          <label for="applicationDate">Application Date</label>
+          <input type="text" id="applicationDate" name="applicationDate" class="form-control" [value]="item.applicationDate" disabled>
+        </div>
+
+        <div class="form-group">
+          <label for="status">Status</label>
+          <input type="text" id="status" name="status" class="form-control" [value]="item.status" disabled>
+        </div>
+
+        <div class="form-group">
+          <label for="isReceived">Is Received</label>
+          <input type="text" id="isReceived" name="isReceived" class="form-control" [value]="item.isReceived" disabled>
+        </div>
+      </form>
+
+
+
+    </div>
+  </div>
+</div>

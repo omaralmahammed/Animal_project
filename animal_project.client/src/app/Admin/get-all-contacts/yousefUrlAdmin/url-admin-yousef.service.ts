@@ -28,4 +28,12 @@ export class UrlAdminYousefService {
     return this.http.post(`${this.apiUrl}/Yousef/PostMessageToEmail`, contactFormData);
   }
 
+  getUsersAdmin(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/Yousef/GetUsersForAdmin`);
+  }
+
+  getApplicationById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/Yousef/user/${id}`);
+  }
+
 }
