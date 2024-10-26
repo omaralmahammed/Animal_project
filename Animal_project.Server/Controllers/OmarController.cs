@@ -2,6 +2,7 @@
 using Animal_project.Server.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Animal_project.Server.Controllers
 {
@@ -164,6 +165,26 @@ namespace Animal_project.Server.Controllers
                 .Take(4)
                 .ToList();
             return Ok(posts);
+        }
+
+
+        [HttpGet("GetUserApplications/{id}")]
+        public  IActionResult GetUserApplications(int id)
+        {
+            var applications =  _db.AdoptionApplications
+                .Include(a => a.Animal)
+                .Where(i => i.UserId == id).Select(info => new
+                {
+                    info.Animal.Name,
+                    info.Animal.Image1,
+                    info.ApplicationDate,
+                    info.Status,
+                    info.IsReceived,
+                })
+
+                .ToList();
+
+            return Ok(applications);
         }
     }
 }
