@@ -54,6 +54,7 @@ export class ReplyMessegesAdminComponent {
     for (let key in data) {
       form.append(key, data[key])
     }
+    form.append('contactId',this.param)
     this._ser.postContactFormEmail(form).subscribe(() => {
 
       alert("Coment Sent successfully")

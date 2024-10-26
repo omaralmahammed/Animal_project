@@ -32,9 +32,13 @@ import { GetAnimalAdminComponent } from './Admin/get-animal-admin/get-animal-adm
 import { UpdatAnimalAdminComponent } from './Admin/updat-animal-admin/updat-animal-admin.component';
 import { AddAnimalAdminComponent } from './Admin/add-animal-admin/add-animal-admin.component';
 import { GetShelterAdminComponent } from './Admin/get-shelter-admin/get-shelter-admin.component';
-import { OrderFormComponent } from './Admin/order-form/order-form.component';
 import { UpdateShelterAdminComponent } from './Admin/update-shelter-admin/update-shelter-admin.component';
 import { AddShelterAdminComponent } from './Admin/add-shelter-admin/add-shelter-admin.component';
+import { OrderFormComponent } from './Admin/order-form/order-form.component';
+import { GetAllUsersComponent } from './Admin/get-all-users/get-all-users.component';
+import { GetUserApplicationComponent } from './Admin/get-user-application/get-user-application.component';
+
+
 
 
 @NgModule({
@@ -69,11 +73,14 @@ import { AddShelterAdminComponent } from './Admin/add-shelter-admin/add-shelter-
     OrderFormComponent,
     UpdateShelterAdminComponent,
     AddShelterAdminComponent,
+    GetAllUsersComponent,
+    GetUserApplicationComponent,
   ],
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    BrowserModule, HttpClientModule,
+    BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule,
     AppRoutingModule,
@@ -188,8 +195,10 @@ import { AddShelterAdminComponent } from './Admin/add-shelter-admin/add-shelter-
             { path: 'getCategoryAdmin', component: GetCategoryAdminComponent },
             { path: 'updatCategoryAdmin/:id', component: UpdatCtegoryAdminComponent },
             { path: 'AddCategoryAdmin', component: AddCategoryAdminComponent },
+
             { path: 'AllContactsAdmin', component: GetAllContactsComponent },
             { path: 'ReplyContactAdmin/:id', component: ReplyMessegesAdminComponent },
+
             { path: 'getAnimalAdmin', component: GetAnimalAdminComponent },
             { path: 'updatAnimalAdmin/:id', component: UpdatAnimalAdminComponent },
             { path: 'AddAnimalAdmin', component: AddAnimalAdminComponent },
@@ -198,6 +207,8 @@ import { AddShelterAdminComponent } from './Admin/add-shelter-admin/add-shelter-
             { path: 'AddShelterAdmin', component: AddShelterAdminComponent },
 
             { path: 'AllOrder', component: OrderFormComponent },
+            { path: 'AllUsersAdmin', component: GetAllUsersComponent },
+            { path: 'UserApplications/:id', component: GetUserApplicationComponent},
           ]
       }
 

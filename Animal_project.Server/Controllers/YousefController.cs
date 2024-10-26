@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MimeKit;
 using MailKit.Net.Smtp;
+using Animal_project.Server.DTO;
+using Microsoft.EntityFrameworkCore;
 namespace Animal_project.Server.Controllers
 {
     [Route("api/[controller]")]
@@ -18,7 +20,9 @@ namespace Animal_project.Server.Controllers
             _db = db;
             _emailService = emailService;
         }
-
+      
+        ///////////////////////////////////////////////////////////////////
+       
         [HttpGet("GetAllMessage")]
         public IActionResult GetAllMessage()
         {
@@ -78,14 +82,17 @@ namespace Animal_project.Server.Controllers
         [HttpPost("PostMessageToEmail")]
         public async Task<IActionResult> PostMessageToEmail([FromForm] ContactUsDto contactUsDto)
         {
-            var contact = new ContactU
-            {
-                Message = contactUsDto.Message,
-                Subject = contactUsDto.Subject,
-                Email = contactUsDto.Email,
-            };
+            //var contact = new ContactU
+            //{
+            //    Message = contactUsDto.Message,
+            //    Subject = contactUsDto.Subject,
+            //    Email = contactUsDto.Email,
+            //};
 
-            _db.ContactUs.Add(contact);
+            var contact = await _db.ContactUs.FindAsync(contactUsDto.ContactId);
+            contact.MessageReply = contactUsDto.MessageReply;
+
+            _db.ContactUs.Update(contact);
             await _db.SaveChangesAsync();
 
             var subject = contactUsDto.Subject;
@@ -98,7 +105,7 @@ namespace Animal_project.Server.Controllers
 
                 // Send email to the user
                 var userEmailSubject = "Thank you for contacting us!";
-                var userEmailBody = $"Dear {contactUsDto.Name},<br><br>Thank you for reaching out. We have received your message:<br><br>{contactUsDto.Message}<br><br>We will get back to you shortly.";
+                var userEmailBody = $"Dear {contactUsDto.Name},<br><br>Thank you for reaching out. We have received your message:<br><br>{contact.MessageReply}<br><br>We will get back to you shortly.";
                 await _emailService.SendEmailAsync(contactUsDto.Email, userEmailSubject, userEmailBody);
 
                 return Ok(new { Message = "Contact message sent successfully and emails delivered!" });
@@ -109,9 +116,45 @@ namespace Animal_project.Server.Controllers
             }
         }
 
+        
+        //////////////////////////////////////////////////////
+      
 
+        [HttpGet("GetUsersForAdmin")]
+        public IActionResult GetUsersAdmin() {
+
+            var usersAdmin = _db.Users.ToList();
+
+            return Ok(usersAdmin);
+        }
+
+        //////////////////////////////////////////////////////
+
+        [HttpGet("user/{userId}")]
+        public ActionResult<AdoptionApplicationDto> GetApplicationByUserId(int userId)
+        {
+            var application = _db.AdoptionApplications
+                .Where(app => app.UserId == userId)
+                .Select(app => new AdoptionApplicationDto
+                {
+                    ApplicationId = app.ApplicationId,
+                    UserId = app.UserId,
+                    AnimalId = app.AnimalId,
+                    ApplicationDate = app.ApplicationDate,
+                    Status = app.Status,
+                    IsReceived = app.IsReceived
+                })
+                .FirstOrDefault(); 
+
+            if (application == null)
+            {
+                return NotFound("No application found for the given user.");
+            }
+
+            return Ok(application);
+        }
 
     }
 }
 
-/// //////////////////////////////////////////////////////////// yosef
+/// //////////////////////////////////////////////////////////// Yosef

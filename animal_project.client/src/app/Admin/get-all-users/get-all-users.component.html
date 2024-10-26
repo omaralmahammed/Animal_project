@@ -1,0 +1,28 @@
+<div class="main-container">
+  <div class="pd-ltr-20">
+    <br />
+    <h1>Users</h1>
+    <br /><br />
+    <table class="table" id="table">
+      <thead>
+        <tr>
+          <th>fullName</th>
+          <th>email</th>
+          <th>phoneNo</th>
+          <th>Applications</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let item of UsersArray">
+
+          <td> {{item.fullName}}  </td>
+          <td> {{item.email}}  </td>
+          <td> {{item.phoneNo}} </td>
+
+          <td> <a routerLink="/Admin/UserApplications/{{item.userId}}">Applications</a> </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
