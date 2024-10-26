@@ -18,8 +18,12 @@ export class AppComponent implements OnInit {
 
   constructor(private http: HttpClient) {}
 
+ 
+  isAdmin:any;
+  
   ngOnInit() {
     this.getForecasts();
+    this.isAdmin = localStorage.getItem("IsAdmin")
   }
 
   getForecasts() {

@@ -1,33 +1,7 @@
-
 <div class="container mt-5 mb-5">
 
-  <!-- إضافة منشور جديد -->
-  <!--<div class="row d-flex align-items-center justify-content-center mb-4">
-    <div class="col-md-6">
-      <div class="card p-3">
-        <h4>Add New Post</h4>
-        <form (ngSubmit)="addPost()">
-          <div class="form-group">
-            <label for="storyText">Story Text</label>
-            <textarea id="storyText" class="form-control" [(ngModel)]="newPost.storyText" name="storyText" rows="3" required></textarea>
-          </div>
-          <div class="form-group">
-            <label for="image1">Upload Image 1</label>
-            <input type="file" id="image1" (change)="onFileChange($event, 1)" class="form-control" name="image1" />
-          </div>
-          <div class="form-group">
-            <label for="image2">Upload Image 2 (optional)</label>
-            <input type="file" id="image2" (change)="onFileChange($event, 2)" class="form-control" name="image2" />
-          </div>
-          <button type="submit" class="btn btn-primary mt-3">Post</button>
-        </form>
-      </div>
-    </div>
-  </div>-->
-
-
   <div class="row d-flex align-items-center justify-content-center mb-4">
-    <button (click)="showAddPostAlert()" class="btn btn-success btn-lg">
+    <button (click)="showAddPostAlert()" class="btn btn-success btn-lg" >
       <i class="fa fa-plus"></i>
     </button>
   </div>
@@ -39,7 +13,7 @@
           <div class="d-flex flex-row align-items-center">
             <div class="d-flex flex-column ml-2">
               <span class="font-weight-bold">{{ post.userName }}</span>
-              <small class="text-primary">{{ post.animalName }}</small>
+        
             </div>
           </div>
           <div class="d-flex flex-row mt-1 ellipsis">
@@ -58,76 +32,80 @@
         <div class="p-2">
           <hr>
           <div class="d-flex justify-content-between align-items-center">
-            <!--<div class="d-flex flex-row icons d-flex align-items-center">
-    <i class="fa fa-heart"></i>
-    <i class="fa fa-smile-o ml-2"></i>
-  </div>-->
-            <div class="d-flex flex-row icons d-flex align-items-center" (click)="toggleLike(post.postId, post)">
-              <i class="fa" [ngClass]="{'fa-heart': post.likeStatus, 'fa-heart-o': !post.likeStatus}"
-                 [style.color]="post.likeStatus ? 'red' : 'black'"></i>
-            </div>
+            <span class="like-icon" (click)="addLike(post)" [ngClass]="{'text-danger': post.userHasLiked}">
+              <i class="bi bi-heart" style="font-size: 20px;"></i>
+              <!--<span class="">{{ post.likeNumber }}</span>-->
+            </span>
+
+
 
             <div class="d-flex flex-row muted-color">
-              <span>{{ post.likeNumber }} likes</span>
-              <span class="ml-2">{{ post.comments?.length || 0 }} comments</span>
+
+              <span class="mr-3">{{ post.comments?.length || 0 }} comments</span>
               <span (click)="shareOnX(post)" class="fa fa-share"></span>
             </div>
+
           </div>
-            <hr>
+          <hr>
+          <!-- مساحة إضافة تعليق جديد -->
+          <div class="comment-input mb-3">
+            <input type="text" class="form-control" placeholder="Add a comment..." [(ngModel)]="newComment" (keyup.enter)="addComment(post)">
+            <button (click)="addComment(post)" class="btn btn-success mt-2">Comment</button>
+          </div>
 
-            <!-- زر لتبديل عرض التعليقات -->
-            <button (click)="post.showComments = !post.showComments" class="btn btn-link mt-2">
-              {{ post.showComments ? 'Hide Comments' : 'Show Comments' }}
-            </button>
+          <!-- زر لتبديل عرض التعليقات -->
+          <button (click)="post.showComments = !post.showComments" class="btn btn-link mt-2 text-success">
+            {{ post.showComments ? 'Hide Comments' : 'Show Comments' }}
+          </button>
 
-            <!-- مساحة إضافة تعليق جديد -->
-            <div class="comment-input mb-3">
-              <input type="text" class="form-control" placeholder="Add a comment..." [(ngModel)]="newComment" (keyup.enter)="addComment(post)">
-              <button (click)="addComment(post)" class="btn btn-primary mt-2">Comment</button>
-            </div>
 
-            <div *ngIf="post.showComments">
-              <!-- تحقق من حالة عرض التعليقات -->
-              <h4>Comments:</h4>
-              <div *ngFor="let comment of post.comments" class="d-flex flex-row mb-2">
-                <div class="comment-content">
-                  <span class="name">{{ comment.userName }}</span>
-                  <small class="comment-text">{{ comment.commentText }}</small>
+          <div *ngIf="post.showComments">
+            <!-- تحقق من حالة عرض التعليقات -->
+            <h4>Comments:</h4>
+            <div *ngFor="let comment of post.comments" class="d-flex flex-row mb-2">
+              <div class="comment-content" style="flex-grow: 1;">
+                <span class="name font-weight-bold">{{ comment.userName }}</span>
+                <p class="comment-text mb-1">{{ comment.commentText }}</p>
 
+                <div class="d-flex align-items-center">
                   <!-- زر رد -->
-                  <button (click)="comment.replying = !comment.replying" class="btn btn-link">Reply</button>
-
-                  <!-- حقل إدخال الرد -->
-                  <div *ngIf="comment.replying" class="comment-input mb-3">
-                    <input type="text" class="form-control" placeholder="Add a reply..." [(ngModel)]="newReply" (keyup.enter)="addReply(comment)">
-                    <button (click)="addReply(comment)" class="btn btn-primary mt-2">Reply</button>
-                  </div>
-
-                  <!-- زر لتبديل عرض الردود -->
-                  <button (click)="comment.showReplies = !comment.showReplies" class="btn btn-link mt-2">
-                    {{ comment.showReplies ? 'Hide Replies' : 'Show Replies' }}
+                  <button (click)="comment.replying = !comment.replying" class="btn btn-link text-success p-0">
+                    <i class="fa fa-reply"></i>
                   </button>
 
-                  <!-- عرض الردود إذا كانت موجودة -->
-                  <div *ngIf="comment.showReplies && comment.replies.length > 0">
-                    <h5>Replies:</h5>
-                    <div *ngFor="let reply of comment.replies" class="reply-content">
-                      <span class="reply-user">{{ reply.userName }}:</span>
-                      <small class="reply-text">{{ reply.content }}</small>
-                    </div>
+                  <!-- زر لتبديل عرض الردود -->
+                  <button (click)="comment.showReplies = !comment.showReplies" class="btn btn-link text-success p-0 ml-3">
+                    <i class="fa" [ngClass]="{'fa-eye-slash': comment.showReplies, 'fa-eye': !comment.showReplies}"></i>
+                  </button>
+                </div>
+
+                <!-- حقل إدخال الرد -->
+                <div *ngIf="comment.replying" class="comment-input mb-3 mt-2">
+                  <input type="text" class="form-control" placeholder="Add a reply..." [(ngModel)]="newReply" (keyup.enter)="addReply(comment)">
+                  <button (click)="addReply(comment)" class="btn btn-success mt-2">Reply</button>
+                </div>
+
+                <!-- عرض الردود إذا كانت موجودة -->
+                <div *ngIf="comment.showReplies && comment.replies.length > 0" class="mt-2">
+                  <h5>Replies:</h5>
+                  <div *ngFor="let reply of comment.replies" class="reply-content pl-3">
+                    <span class="reply-user font-weight-bold">{{ reply.userName }}:</span>
+                    <small class="reply-text">{{ reply.content }}</small>
                   </div>
                 </div>
               </div>
+            </div>
 
-              <!-- عرض زر "Show More" إذا كانت التعليقات أكثر من 2 -->
-              <button *ngIf="post.comments.length > 2 && !post.showAllComments" (click)="showMoreComments(post)" class="btn btn-link mt-2">Show More</button>
-              <button *ngIf="post.showAllComments" (click)="hideComments(post)" class="btn btn-link mt-2">Show Less</button>
+            <!-- عرض زر "Show More" إذا كانت التعليقات أكثر من 2 -->
+            <button *ngIf="post.comments.length > 2 && !post.showAllComments" (click)="showMoreComments(post)" class="btn btn-link mt-2 text-success">Show More</button>
+            <button *ngIf="post.showAllComments" (click)="hideComments(post)" class="btn btn-link mt-2 text-success">Show Less</button>
 
-              <div *ngIf="post.comments.length === 0">
-                <h4>No comments yet.</h4>
-              </div>
+            <div *ngIf="post.comments.length === 0">
+              <h4>No comments yet.</h4>
             </div>
           </div>
+        </div>
+        <hr>
       </div>
     </div>
   </div>

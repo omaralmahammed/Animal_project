@@ -35,10 +35,10 @@ export class RahafService {
     return this.http.post<any>(`${this.staticData}/Rahaf/post`, data)
 
   }
-  toggleLike(postId: number): Observable<any> {
-    const url = `${this.staticData}/Rahaf/like/${postId}`;
-    console.log('Calling API:', url); // Log the API URL
-    return this.http.post(url, {});
-  }
 
+  addLike(data: any): Observable<any> {
+    return this.http.post<any>(`${this.staticData}/Rahaf/addLike`, data)
+
+  }
+  
 }

@@ -17,7 +17,6 @@ export class GetAllPostsComponent {
   }
 
   loadPosts(): void {
-    debugger
     this.postService.getPosts().subscribe({
       next: (data) => {
         this.posts = data;

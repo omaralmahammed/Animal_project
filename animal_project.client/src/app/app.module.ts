@@ -26,6 +26,8 @@ import { GetCategoryAdminComponent } from './Admin/get-category-admin/get-catego
 import { FooterComponent } from './footer/footer.component';
 import { UpdatCtegoryAdminComponent } from './Admin/updat-ctegory-admin/updat-ctegory-admin.component';
 import { AddCategoryAdminComponent } from './Admin/add-category-admin/add-category-admin.component';
+import { GetAllContactsComponent } from './Admin/get-all-contacts/get-all-contacts.component';
+import { ReplyMessegesAdminComponent } from './Admin/reply-messeges-admin/reply-messeges-admin.component';
 import { GetAnimalAdminComponent } from './Admin/get-animal-admin/get-animal-admin.component';
 import { UpdatAnimalAdminComponent } from './Admin/updat-animal-admin/updat-animal-admin.component';
 import { AddAnimalAdminComponent } from './Admin/add-animal-admin/add-animal-admin.component';
@@ -42,14 +44,10 @@ import { AddShelterAdminComponent } from './Admin/add-shelter-admin/add-shelter-
     CommentComponent,
     ReplyComponent,
     HomeComponent,
-    ReplyComponent,
-    AppComponent,
-    HomeComponent,
     AdminSideComponent,
     RegistrationComponent,
     CategoryComponent,
     AllAnimalComponent,
-    AdminSideComponent,
     NavBarComponent,
     FormComponent,
     LoginComponent,
@@ -57,12 +55,13 @@ import { AddShelterAdminComponent } from './Admin/add-shelter-admin/add-shelter-
     ProfileComponent,
     GetAllPostsComponent,
     GetByStoryIdComponent,
-    
     AnimalDetailsComponent,
     GetCategoryAdminComponent,
     FooterComponent,
     UpdatCtegoryAdminComponent,
     AddCategoryAdminComponent,
+    GetAllContactsComponent,
+    ReplyMessegesAdminComponent,
     GetAnimalAdminComponent,
     UpdatAnimalAdminComponent,
     AddAnimalAdminComponent,
@@ -189,6 +188,8 @@ import { AddShelterAdminComponent } from './Admin/add-shelter-admin/add-shelter-
             { path: 'getCategoryAdmin', component: GetCategoryAdminComponent },
             { path: 'updatCategoryAdmin/:id', component: UpdatCtegoryAdminComponent },
             { path: 'AddCategoryAdmin', component: AddCategoryAdminComponent },
+            { path: 'AllContactsAdmin', component: GetAllContactsComponent },
+            { path: 'ReplyContactAdmin/:id', component: ReplyMessegesAdminComponent },
             { path: 'getAnimalAdmin', component: GetAnimalAdminComponent },
             { path: 'updatAnimalAdmin/:id', component: UpdatAnimalAdminComponent },
             { path: 'AddAnimalAdmin', component: AddAnimalAdminComponent },

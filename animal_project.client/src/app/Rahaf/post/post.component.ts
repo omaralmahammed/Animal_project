@@ -10,7 +10,6 @@ import Swal from 'sweetalert2'; // استيراد SweetAlert
 export class PostComponent implements OnInit {
   posts: any[] = [];
   newComment: string = '';
-  currentUserId: number = 2;
   newReply: string = '';
 
   // منشور جديد
@@ -29,6 +28,8 @@ export class PostComponent implements OnInit {
   }
 
   //////////////////////////////////////////////////////////////////
+  currentUserId : any = localStorage.getItem("UserId");
+
 
   GetALLPosts() {
     
@@ -53,6 +54,33 @@ export class PostComponent implements OnInit {
         console.error('Error fetching posts:', error);
       }
     );
+  }
+
+  data = {
+    postId: 0,
+    userId: this.currentUserId
+  };
+
+  addLike(post: any) {
+    this.data.postId = post.postId;
+
+    this._ser.addLike(this.data).subscribe(response => {
+
+      if (response) {
+       
+        if (!post.userHasLiked) {
+          post.LikeNumber++;
+          post.userHasLiked = true; 
+        } else {
+          post.LikeNumber--;
+          post.userHasLiked = false; 
+        }
+      }
+      // يمكنك هنا أيضًا استدعاء GetALLPosts إذا كنت بحاجة لتحديث البيانات من السيرفر
+      // this.GetALLPosts(); // إذا كنت تريد تحديث المنشورات بالكامل
+    }, error => {
+      console.error('Error adding like:', error);
+    });
   }
 
 
@@ -226,40 +254,26 @@ addComment(post: any) {
 
   //////////////////////////////////////////////////////////////////
 
-  hideComments(post: any) {
-    post.showAllComments = false;
-  }
+  
 
-  //////////////////////////////////////////////////////////////////
 
   toggleReplies(comment: any) {
     comment.showReplies = !comment.showReplies;
   }
 
   //////////////////////////////////////////////////////////////////
-  toggleLike(postId: number, post: any): void {
-    console.log('Post object:', post); // تحقق من كائن post
-    console.log('Post ID:', postId); // تحقق من قيمة postId
+  
+  ///////////////////////////////////////////////
 
-    if (!postId) {
-      console.error('Post ID is undefined or invalid');
-      return;
-    }
-
-    this._ser.toggleLike(postId).subscribe(
-      response => {
-        if (response && response.likeCount !== undefined) {
-          post.likeNumber = response.likeCount;
-          post.likeStatus = !post.likeStatus;
-        } else {
-          console.error('Invalid response structure:', response);
-        }
-      },
-      error => {
-        console.error('Error toggling like:', error);
-      }
-    );
+  showAllComments(post: any) {
+    post.showAllComments = true;
   }
+
+  hideComments(post: any) {
+    post.showAllComments = false;
+  }
+
+
 
 
 

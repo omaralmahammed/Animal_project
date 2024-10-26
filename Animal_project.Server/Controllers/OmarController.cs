@@ -53,14 +53,14 @@ namespace Animal_project.Server.Controllers
         [HttpPost("Login")]
         public IActionResult Login([FromForm] UserInformationRequestDTO userInfo)
         {
-            var user = _db.Users.FirstOrDefault(e => e.Email == userInfo.Email);
+            var user = _db.Users.Where(e => e.Email == userInfo.Email).FirstOrDefault();
 
             if (user == null || !PasswordHashDTO.VerifyPasswordHash(userInfo.Password, user.PasswordHash, user.PasswordSalt))
             {
                 return Unauthorized("Invalid Email or Password.");
             }
 
-            return Ok(new { UserId = user.UserId, Flag = user.IsAdmin });
+            return Ok(new { UserId = user.UserId, Flag = user.IsAdmin, userName = user.FullName });
         }
 
 
@@ -130,7 +130,40 @@ namespace Animal_project.Server.Controllers
         }
 
 
+        [HttpGet("GetRandomFourAnimals")]
+        public IActionResult GetRandomFourAnimals()
+        {
+
+            var animals = _db.Animals
+                .OrderBy(a => Guid.NewGuid())
+                .Take(4)
+                .ToList();
+            return Ok(animals);
+        }
 
 
+        [HttpGet("GetRandomFourCategory")]
+        public IActionResult GetRandomFourCategory()
+        {
+
+            var categories = _db.Categories
+                .OrderBy(a => Guid.NewGuid())
+                .Take(4)
+                .ToList();
+            return Ok(categories);
+        }
+
+
+
+        [HttpGet("GetRandomFourPost")]
+        public IActionResult GetRandomFourPost()
+        {
+
+            var posts = _db.Posts
+                .OrderBy(a => Guid.NewGuid())
+                .Take(4)
+                .ToList();
+            return Ok(posts);
+        }
     }
 }

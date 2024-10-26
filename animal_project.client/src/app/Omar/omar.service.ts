@@ -10,7 +10,7 @@ export class OmarService {
   constructor(private http: HttpClient) { }
 
 
-  baseUrl = "https://localhost:44378/api/"
+  baseUrl = "https://localhost:7119/api/"
 
 
   register(data: any): Observable<any> {
