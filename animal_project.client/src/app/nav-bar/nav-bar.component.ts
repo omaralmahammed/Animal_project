@@ -17,6 +17,7 @@ export class NavBarComponent {
 
   logout() {
     localStorage.removeItem("UserId");
+    localStorage.removeItem("IsAdmin")
     this._router.navigate(['/'])
   }
 }

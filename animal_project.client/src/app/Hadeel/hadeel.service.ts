@@ -34,6 +34,23 @@ export class HadeelService {
     return this.http.put<any>(`${this.staticData}/Hadeel/AdminApproved?id=${id}`,data)
   }
 
+
+
+  RandomAnimals(): Observable<any> {
+    return this.http.get<any>(`https://localhost:7119/api/Omar/GetRandomFourAnimals`)
+  }
+
+
+  RandomCategory(): Observable<any> {
+    return this.http.get<any>(`https://localhost:7119/api/Omar/GetRandomFourCategory`)
+  }
+
+
+  RandomPosts(): Observable<any> {
+    return this.http.get<any>(`https://localhost:7119/api/Omar/GetRandomFourPost`)
+  }
+
+
   //getAllAdoptionAnimal(id: any): Observable<any> {
 
   //}
