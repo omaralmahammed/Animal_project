@@ -148,7 +148,7 @@ namespace Animal_project.Server.Controllers
 
             var categories = _db.Categories
                 .OrderBy(a => Guid.NewGuid())
-                .Take(4)
+                .Take(3)
                 .ToList();
             return Ok(categories);
         }
