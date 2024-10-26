@@ -132,18 +132,21 @@ namespace Animal_project.Server.Controllers
             }
 
             animal.Status = "Approved";
+            animal.IsReceived = true;
+
             _db.AdoptionApplications.Update(animal);
             _db.SaveChanges();
 
-            var a = _db.Animals.FirstOrDefault(z => z.AnimalId == animal.AnimalId);
-            if (a == null)
-            {
-                return NotFound();
-            }
-            _db.Animals.Remove(a);
-            _db.SaveChanges();
-
             return Ok();
+
+            //var a = _db.Animals.FirstOrDefault(z => z.AnimalId == animal.AnimalId);
+            //if (a == null)
+            //{
+            //    return NotFound();
+            //}
+            //_db.Animals.Remove(a);
+            //_db.SaveChanges();
+
         }
 
         //[HttpGet("GetAdoptionAnimalsByCategoryId/{categoryId}")]
