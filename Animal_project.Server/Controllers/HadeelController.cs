@@ -167,7 +167,12 @@ namespace Animal_project.Server.Controllers
             string approvalSubject = "Congratulations ..!!";
             string approvalBody = $@"
                             <p>Dear {application.User.FullName},</p>
-                            <p>Thank you for using our service. Your Adoption Application for <b>{animal.Name}</b> is completed successfully:</p>
+                            <p>Thank you for using our service. Your Adoption Application for <b>{animal.Name}</b> is completed successfully:</p><br>
+                            <p>You can take your the animal from Safe Haven Animal Shelter</p><br>
+                            <p>Contact Information:</p><br>
+                            <p>info@safehaven.org</p><br>
+                            <p>555-678-1234</p>
+
                             <br>
                             <p>Best Regards,</p>
                             <p>The Admin</p>

@@ -36,10 +36,10 @@
           <td>
             <span class="badge"
                   [ngClass]="{
-                    'bg-succes': item.status === 'Approved',
-                    'bg-danger':  item.status === 'Rejected',
-                    'bg-success': item.status === 'Pending'
-                  }">
+                              'bg-success': item.status === 'Approved',
+                              'bg-danger':  item.status === 'Rejected',
+                              'bg-info': item.status === 'Pending'
+                            }">
               {{item.status}}
             </span>
           </td>

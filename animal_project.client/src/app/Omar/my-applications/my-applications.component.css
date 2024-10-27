@@ -3,3 +3,13 @@ span.badge {
   background: #000000;
   font-size: 16px;
 }
+
+span.bg-success {
+  background-color: #198754 !important;
+}
+
+
+
+span.bg-danger {
+  background-color: #dc3545 !important;
+}

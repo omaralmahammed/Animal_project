@@ -29,7 +29,15 @@
           <td>{{item.animalId}}</td>
 
           <td>{{item.applicationDate}}</td>
-          <td>{{item.status}}</td>
+          <td>
+            <span class="badge"
+                  [ngClass]="{
+                   'bg-success': item.status === 'Approved',
+                   'bg-danger':  item.status === 'Rejected',
+                   'bg-info': item.status === 'Pending'
+                 }">{{item.status}}
+              </span>
+          </td>
           <td>
 
             <!-- Button to trigger the modal -->

@@ -22,12 +22,12 @@
         <tr *ngFor="let post of posts">
           <td>{{ post.userName }}</td>
           <td>
-            <img [src]="'https://localhost:7286/api/Images/getImages/' + post.image1"
-                 [alt]="post.storyText" class="img-fluid" style="max-width: 80px;">
+            <img [src]="'https://localhost:44378/api/images/getImages/' + post.image1"
+                 alt="No Image" class="img-fluid" style="max-width: 80px;">
           </td>
           <td>
-            <img [src]="'https://localhost:7286/api/Images/getImages/' + post.image2"
-                 [alt]="post.storyText" class="img-fluid" style="max-width: 80px;">
+            <img [src]="'https://localhost:44378/api/images/getImages/' + post.image2"
+                 alt="No Image" class="img-fluid" style="max-width: 80px;">
           </td>
           <td>{{ post.storyText }}</td>
           <td>{{ post.storyDate | date:'short' }}</td>

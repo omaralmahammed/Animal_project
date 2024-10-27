@@ -211,7 +211,9 @@ import { MyApplicationsComponent } from './Omar/my-applications/my-applications.
 
             { path: 'AllOrder', component: OrderFormComponent },
             { path: 'AllUsersAdmin', component: GetAllUsersComponent },
-            { path: 'UserApplications/:id', component: GetUserApplicationComponent},
+            { path: 'UserApplications/:id', component: GetUserApplicationComponent },
+            { path: '', component: GetAllUsersComponent },
+
           ]
       }
 
