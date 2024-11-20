@@ -1,4 +1,5 @@
 Animal Adoption Platform 🐾
+
 A web application designed to connect animal shelters with potential adopters, making it easy for users to browse animals, submit adoption applications, and share success stories.
 
 Key Features
